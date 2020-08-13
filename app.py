@@ -13,9 +13,10 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 
 @app.route("/")
-def hello():
-    return "It's working!"
-
+@app.route("/get_users")
+def get_members():
+    members = mongo.db.team_members.find()
+    return render_template("members.html", members=members)
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
