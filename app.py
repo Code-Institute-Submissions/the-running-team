@@ -11,9 +11,10 @@ app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
+mongo = PyMongo(app)
 
 @app.route("/")
-@app.route("/get_users")
+@app.route("/get_members")
 def get_members():
     members = mongo.db.team_members.find()
     return render_template("members.html", members=members)
