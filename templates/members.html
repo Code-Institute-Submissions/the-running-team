@@ -1,12 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
     {% for member in members  %}
-        {{ member.name }}<br>
-        {{ member.nationality }}<br>
-        {{ member.stamina }}<br>
-        {{ member.strength }}<br>
-        {{ member.speed }}<br>
-        {{ member.motto }}
+        <img src="{{ url_for('static', filename='images/runner-logo.PNG') }}" alt="">
+        <h3>{{ member.name }}</h3>
+        <p>{{ member.nationality }}</p>
+        <p>{{ member.stamina }}</p>
+        <p>{{ member.strength }}</p>
+        <p>{{ member.speed }}</p>
+        <p>{{ member.motto }}</p>
     {% endfor %}
 
 {% endblock %}
