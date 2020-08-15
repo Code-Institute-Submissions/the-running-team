@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Running Team</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
     {% for member in members  %}
         {{ member.name }}<br>
         {{ member.nationality }}<br>
@@ -14,5 +8,5 @@
         {{ member.speed }}<br>
         {{ member.motto }}
     {% endfor %}
-</body>
-</html>
+
+{% endblock %}
