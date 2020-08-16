@@ -1,13 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="row">
     {% for member in members  %}
+    <div class="col s12 m4 l3 runner">
         <img src="{{ url_for('static', filename='images/runner-logo.PNG') }}" alt="">
-        <h3>{{ member.name }}</h3>
-        <p>{{ member.nationality }}</p>
-        <p>{{ member.stamina }}</p>
-        <p>{{ member.strength }}</p>
-        <p>{{ member.speed }}</p>
+        <h3 class="no-top-mg">{{ member.name }}</h3>
+        <p>Nationality: {{ member.nationality }}</p>
+        <p>Stamina: {{ member.stamina }}</p>
+        <p>Strength: {{ member.strength }}</p>
+        <p>Speed: {{ member.speed }}</p>
         <p>{{ member.motto }}</p>
+    </div>
+
     {% endfor %}
+</div>
+
 
 {% endblock %}
