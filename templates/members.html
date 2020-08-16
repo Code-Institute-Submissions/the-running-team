@@ -2,18 +2,30 @@
 {% block content %}
 <div class="row">
     {% for member in members  %}
-    <div class="col s12 m4 l3 runner">
-        <img src="{{ url_for('static', filename='images/runner-logo.PNG') }}" alt="">
-        <h3 class="no-top-mg">{{ member.name }}</h3>
-        <p>Nationality: {{ member.nationality }}</p>
-        <p>Stamina: {{ member.stamina }}</p>
-        <p>Strength: {{ member.strength }}</p>
-        <p>Speed: {{ member.speed }}</p>
-        <p>{{ member.motto }}</p>
+    <div class="col s12 m4 runner">
+        <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator" src="{{ url_for('static', filename='images/runner-logo.PNG') }}" alt="">
+            </div>
+            <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4">{{ member.name }}<i
+                        class="fas fa-ellipsis-v right"></i></span>
+            </div>
+            <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">{{ member.name }}<i
+                        class="far fa-times-circle right"></i></span>
+                <p>Nationality: {{ member.nationality }}</p>
+                <p>Stamina: {{ member.stamina }}</p>
+                <p>Strength: {{ member.strength }}</p>
+                <p>Speed: {{ member.speed }}</p>
+                <blockquote><em>{{ member.motto }}</em></blockquote>
+            </div>
+        </div>
     </div>
-
     {% endfor %}
 </div>
+
+
 
 
 {% endblock %}
