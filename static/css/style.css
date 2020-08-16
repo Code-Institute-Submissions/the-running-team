@@ -19,3 +19,7 @@ h1 {
 .no-bottom-mg {
     margin-bottom: 0;
 }
+
+img {
+    width: 100%;
+}
