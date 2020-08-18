@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
         integrity="sha512-xA6Hp6oezhjd6LiLZynuukm80f8BoZ3OpcEYaqKoCV3HKQDrYjDE1Gu8ocxgxoXmwmSzM4iqPvCsOkQNiu41GA=="
         crossorigin="anonymous" />
@@ -28,24 +29,24 @@
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="">Home</a></li>
-                    <li><a href="">The Team</a></li>
+                    <li><a href="{{ url_for('get_members') }}">The Team</a></li>
                     <li><a href="">Training planner</a></li>
                     <li><a href="">Profile</a></li>
                     <li><a href="">Log In</a></li>
                     <li><a href="">Log Out</a></li>
-                    <li><a href="">Register</a></li>
+                    <li><a href="{{ url_for('register') }}">Register</a></li>
                 </ul>
             </div>
         </nav>
         <!-- Navbar mobile -->
         <ul class="sidenav" id="mobile-demo">
             <li><a href="">Home</a></li>
-            <li><a href="">The Team</a></li>
+            <li><a href="{{ url_for('get_members') }}">The Team</a></li>
             <li><a href="">Training planner</a></li>
             <li><a href="">Profile</a></li>
             <li><a href="">Log In</a></li>
             <li><a href="">Log Out</a></li>
-            <li><a href="">Register</a></li>
+            <li><a href="{{ url_for('register') }}">Register</a></li>
         </ul>
     </header>
 
