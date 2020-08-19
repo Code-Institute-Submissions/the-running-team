@@ -2,7 +2,7 @@
 {% block content %}
 <div class="row">
     {% for member in members  %}
-    <div class="col s12 m4 runner">
+    <div class="col s12 m4 l3 runner">
         <div class="card">
             <div class="card-image waves-effect waves-block waves-light">
                 <img class="activator" src="{{ url_for('static', filename='images/runner-logo.PNG') }}" alt="">
@@ -31,7 +31,7 @@
                 <div class="progress">
                     <div class="determinate" style="width:{{ member.fitness }}"></div>
                 </div>
-                <blockquote><em>{{ member.motto }}</em></blockquote>
+                <blockquote><em>{{ member.quote }}</em></blockquote>
             </div>
         </div>
     </div>
