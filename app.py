@@ -23,6 +23,29 @@ def get_members():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    if request.method == "POST":
+        existing_user = mongo.db.team_members.find_one(
+            {"username": request.form.get("username").lower()})
+        
+        if existing_user:
+            flash("Username already exists")
+            return redirect(url_for("register"))
+    
+        new_member = {
+            "username": request.form.get("username").lower(),
+            "password": request.form.get("password").lower(),
+            "first_name": request.form.get("first_name").lower(),
+            "last_name": request.form.get("last_name").lower(),
+            "fitness": request.form.get("fitness"),
+            "stamina": request.form.get("stamina"),
+            "strength": request.form.get("strength"),
+            "speed": request.form.get("speed"),
+            "quote": request.form.get("slogan")
+        }
+        mongo.db.team_members.insert_one(new_member)
+
+        session["member"] = request.form.get("username").lower()
+        flash("Registration Successful!")
     return render_template("register.html")
 
 if __name__ == "__main__":
