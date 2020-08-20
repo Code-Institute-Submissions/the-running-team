@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1 class="center-align">Register and create an account!</h1>
+<p class="center-align">You want to join the team? Awesome! Please take some time to fill out this form so we can set up
+    your account.</p>
+<div class="row">
+    <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('register') }}">
+        <div class="card-panel">
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-user-plus prefix light-blue-text text-darken-4"></i>
+                    <input id="username" name="username" type="text" class="validate" minlength="5" maxlength="20" pattern="^[a-zA-Z0-9]{5,20}$" required>
+                    <label for="username">Username</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-key prefix light-blue-text text-darken-4"></i>
+                    <input id="password" name="password" type="password" class="validate" minlength="5" pattern="^[a-zA-Z0-9]{5,15}$" required>
+                    <label for="password">Password</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="first_name" name="first_name" type="text" class="validate" required>
+                    <label for="first_name">First Name</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="last_name" name="last_name" type="text" class="validate" required>
+                    <label for="last_name">Last Name</label>
+                </div>
+            </div>
+            <div class="input-field col s12">
+                <select id="fitness" class="validate" name="fitness" required>
+                    <option value="" disabled selected>Choose an option</option>
+                    <option value="20%">Very Low</option>
+                    <option value="40%">Low</option>
+                    <option value="60%">Medium</option>
+                    <option value="80%">High</option>
+                    <option value="100%">Very High</option>
+                </select>
+                <label for="fitness">Level of general fitness</label>
+            </div>
+            <div class="input-field col s12">
+                <select id="stamina" class="validate" name="stamina" required>
+                    <option value="" disabled selected>Choose an option</option>
+                    <option value="20%">Very Low</option>
+                    <option value="40%">Low</option>
+                    <option value="60%">Medium</option>
+                    <option value="80%">High</option>
+                    <option value="100%">Very High</option>
+                </select>
+                <label for="stamina">Level of Stamina</label>
+            </div>
+            <div class="input-field col s12">
+                <select id="strength" class="validate" name="strength" required>
+                    <option value="" disabled selected>Choose an option</option>
+                    <option value="20%">Very Low</option>
+                    <option value="40%">Low</option>
+                    <option value="60%">Medium</option>
+                    <option value="80%">High</option>
+                    <option value="100%">Very High</option>
+                </select>
+                <label for="strength">Level of Strength</label>
+            </div>
+            <div class="input-field col s12">
+                <select id="speed" class="validate" name="speed" required>
+                    <option value="" disabled selected>Choose an option</option>
+                    <option value="20%">Very Low</option>
+                    <option value="40%">Low</option>
+                    <option value="60%">Medium</option>
+                    <option value="80%">High</option>
+                    <option value="100%">Very High</option>
+                </select>
+                <label for="speed">Level of Speed</label>
+            </div>
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <textarea id="slogan" name="slogan" class="materialize-textarea"></textarea>
+                            <label for="slogan">Do you have a slogan or any words of motivation?</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <button class="btn-large waves-effect waves-light blue darken-4" type="submit" name="action">Register
+                <i class="material-icons right">send</i>
+            </button>
+        </div>
+
+    </form>
+</div>
+
+{% endblock %}
