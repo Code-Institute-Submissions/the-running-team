@@ -49,7 +49,7 @@ def register():
     return render_template("register.html")
 
 @app.route("/login")
-def log_in():
+def login():
     return render_template("login.html")
 
 if __name__ == "__main__":
