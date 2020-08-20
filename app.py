@@ -50,6 +50,8 @@ def register():
 
 @app.route("/login")
 def login():
+    if request.method == "POST":
+        existing_user = mongo.db.team_members.find_one({"username": request.form.get("username").lower})
     return render_template("login.html")
 
 if __name__ == "__main__":
