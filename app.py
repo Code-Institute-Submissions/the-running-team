@@ -65,7 +65,8 @@ def login():
             if check_password_hash(existing_user["password"], request.form.get("password")):
                 print("Matching password")
                 session["user"] = request.form.get("username").lower()
-                flash("Welcome, {}".format(request.form.get("username")))
+                current_runner = mongo.db.team_members.find_one({"username": session["user"]})
+                flash("Welcome, {}".format(current_runner["first_name"]))
                 return redirect(url_for("get_members"))
 
         else:
