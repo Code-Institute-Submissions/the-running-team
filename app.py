@@ -53,8 +53,10 @@ def register():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    print("loggin in")
-    if request.method == "POST":
+    if session.get('user'):
+        print("User already logged in")
+        return redirect(url_for("get_members"))
+    elif request.method == "POST":
         existing_user = mongo.db.team_members.find_one(
             {"username": request.form.get("username").lower()})
         if existing_user:
