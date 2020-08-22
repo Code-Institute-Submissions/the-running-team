@@ -30,7 +30,7 @@ def register():
             {"username": request.form.get("username").lower()})
 
         if existing_user:
-            flash("Username already exists")
+            flash("Username already exists", "error-flash")
             return redirect(url_for("register"))
 
         new_member = {
@@ -47,7 +47,7 @@ def register():
         mongo.db.team_members.insert_one(new_member)
 
         session["member"] = request.form.get("username").lower()
-        flash("Registration Successful!")
+        flash("Registration Successful!", "success-flash")
     return render_template("register.html")
 
 
@@ -55,19 +55,18 @@ def register():
 def login():
     print("loggin in")
     if request.method == "POST":
-        print("it's a post method")
         existing_user = mongo.db.team_members.find_one(
             {"username": request.form.get("username").lower()})
-        print(existing_user)
         if existing_user:
-            print("this is an exisiting user")
-            print(check_password_hash(existing_user["password"], request.form.get("password")))
             if check_password_hash(existing_user["password"], request.form.get("password")):
-                print("Matching password")
                 session["user"] = request.form.get("username").lower()
-                current_runner = mongo.db.team_members.find_one({"username": session["user"]})
-                flash("Welcome, {}".format(current_runner["first_name"]))
+                current_runner = mongo.db.team_members.find_one(
+                    {"username": session["user"]})
+                flash("Welcome, {}".format(current_runner["first_name"]), "success-flash")
                 return redirect(url_for("get_members"))
+            else:
+                flash("Username and/or password is incorrect.", "error-flash")
+                return render_template("login.html")
 
         else:
             return redirect(url_for("login"))
