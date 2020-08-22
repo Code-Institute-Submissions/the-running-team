@@ -35,6 +35,10 @@ nav ul li a:hover {
     margin-bottom: 0;
 }
 
+.title {
+    padding-top: 3rem;
+}
+
 img {
     width: 100%;
 }
