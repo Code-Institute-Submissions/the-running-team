@@ -10,7 +10,18 @@ body {
 h1 {
     font-family: "Oswald", sans-serif;
     font-weight: 700;
-    letter-spacing: 3px;
+    letter-spacing: 0rem;
+}
+
+nav ul li a {
+    font-family: "Oswlad", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0rem;
+    transition: color 0.2s;
+}
+
+nav ul li a:hover {
+    color: #90caf9;
 }
 
 .card-reveal h4 {
