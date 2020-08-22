@@ -69,6 +69,7 @@ def login():
                 return render_template("login.html")
 
         else:
+            flash("Username does not exist", "error-flash")
             return redirect(url_for("login"))
     return render_template("login.html")
 
