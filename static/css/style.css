@@ -31,3 +31,11 @@ img {
 blockquote {
     border-color: #0d47a1;
 }
+
+.error-flash {
+   background-color: #ef5350; 
+}
+
+.success-flash {
+    background-color: #90caf9;
+}
