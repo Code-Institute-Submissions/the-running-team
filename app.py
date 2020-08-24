@@ -65,7 +65,7 @@ def login():
                 current_runner = mongo.db.team_members.find_one(
                     {"username": session["user"]})
                 flash("Welcome, {}".format(current_runner["first_name"]), "success-flash")
-                return redirect(url_for("get_members"))
+                return redirect(url_for("profile", username=session["user"]))
             else:
                 flash("Username and/or password is incorrect.", "error-flash")
                 return render_template("login.html")
@@ -75,6 +75,15 @@ def login():
             return redirect(url_for("login"))
     return render_template("login.html")
 
+
+@app.route("/profile/<username>", methods=["GET", "POST"])
+def profile(username):
+    if session.get('user'):
+        first_name = mongo.db.team_members.find_one({"username": session["user"]})["first_name"]
+        print(username)
+        return render_template("profile.html", first_name=first_name)
+    else:
+        return redirect(url_for("login"))
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
