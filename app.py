@@ -85,6 +85,12 @@ def profile(username):
     else:
         return redirect(url_for("login"))
 
+
+@app.route("/logout")
+def logout():
+    session.pop("user", None)
+    return redirect(url_for('get_members'))    
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
