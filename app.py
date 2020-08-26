@@ -22,6 +22,11 @@ def get_members():
     return render_template("members.html", members=members)
 
 
+@app.route("/training_blog")
+def training_blog():
+    return render_template("training_blog.html")
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     print("register in process")
