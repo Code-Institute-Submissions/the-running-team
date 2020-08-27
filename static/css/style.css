@@ -58,3 +58,15 @@ blockquote {
 .modal {
     width: 50%;
 }
+
+@media only screen and (max-width: 1000px) {
+    .modal {
+      width: 80%;
+    }
+  }
+
+@media only screen and (max-width: 600px) {
+    .modal {
+      width: 95%;
+    }
+  }
