@@ -24,7 +24,7 @@ def get_members():
 
 @app.route("/training_blog", methods=["GET", "POST"])
 def training_blog():
-    posts = mongo.db.posts.find()
+    posts = list(mongo.db.posts.find())
     return render_template("training_blog.html", posts=posts)
 
 
