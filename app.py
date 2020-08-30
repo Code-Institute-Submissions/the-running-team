@@ -22,9 +22,10 @@ def get_members():
     return render_template("members.html", members=members)
 
 
-@app.route("/training_blog")
+@app.route("/training_blog", methods=["GET", "POST"])
 def training_blog():
-    return render_template("training_blog.html")
+    posts = mongo.db.posts.find()
+    return render_template("training_blog.html", posts=posts)
 
 
 @app.route("/register", methods=["GET", "POST"])
