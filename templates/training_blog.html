@@ -59,15 +59,15 @@
                 <div class="card-panel">
                     <h3>{{ post.title }}</h3>
                     <div class="row workout-container">
-                        <div class="col m3 workout-specs"><i
+                        <div class="col s6 m3 workout-specs"><i
                                 class="small material-icons">location_on</i>{{ post.location }}
                         </div>
-                        <div class="col m3 workout-specs"><i
+                        <div class="col s6 m3 workout-specs"><i
                                 class="small material-icons">calendar_today</i>{{ post.date }}
                         </div>
-                        <div class="col m3 workout-specs"><i class="small material-icons">access_time</i>{{ post.time }}
+                        <div class="col s6 m3 workout-specs"><i class="small material-icons">access_time</i>{{ post.time }}
                         </div>
-                        <div class="col m3 workout-specs"><i
+                        <div class="col s6 m3 workout-specs"><i
                                 class="small material-icons">access_alarm</i>{{ post.duration }} mins</div>
                     </div>
                     <p>{{ post.description }}</p>
@@ -86,6 +86,7 @@
                 <div class="card-panel">
                     <h3>{{ post.title }}</h3>
                     <p>{{ post.description }}</p>
+                    <p class="grey-text"><em>Posted by: {{ post.author }}</em></p>
                 </div>
             </div>
         </div>
