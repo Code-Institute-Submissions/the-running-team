@@ -52,18 +52,55 @@
         <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
     </div>
 </div>
-{% for post in posts %}
-<div class="row">
-    <div class="col s12 m5">
-        <div class="card-panel teal">
-         <p>{{ post.title }}</p>   
-         <p>{{ post.location }}</p>
-         <p>{{ post.date }}</p>
-         <p>{{ post.time }}</p>
-         <p>{{ post.description }}</p>
-        </div>
-    </div>
-</div>
-{% endfor %}
 
-{% endblock %}
+
+<div class="row">
+    <div class="col s12">
+        <ul class="tabs">
+            <li class="tab col s3"><a class="active" href="#workouts">Workouts</a></li>
+            <li class="tab col s3"><a  href="#blog-posts">Blog Posts</a></li>
+        </ul>
+    </div>
+    <div id="workouts" class="col s12">
+        {% for post in posts %}
+        {% if post.category == "workout" %}
+        <div class="row">
+            <div class="col s12">
+                <div class="card-panel">
+                    <h3>{{ post.title }}</h3>
+                    <div class="row workout-container">
+                        <div class="col m3 workout-specs"><i
+                                class="small material-icons">location_on</i>{{ post.location }}
+                        </div>
+                        <div class="col m3 workout-specs"><i
+                                class="small material-icons">calendar_today</i>{{ post.date }}
+                        </div>
+                        <div class="col m3 workout-specs"><i class="small material-icons">access_time</i>{{ post.time }}
+                        </div>
+                        <div class="col m3 workout-specs"><i
+                                class="small material-icons">access_alarm</i>{{ post.duration }} mins</div>
+                    </div>
+                    <p>{{ post.description }}</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+    <div id="blog-posts" class="col s12">
+        {% for post in posts %}
+        {% if post.category == "blog-post" %}
+        <div class="row">
+            <div class="col s12">
+                <div class="card-panel">
+                    <h3>{{ post.title }}</h3>
+                    <p>{{ post.description }}</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+
+    {% endblock %}
+</div>
