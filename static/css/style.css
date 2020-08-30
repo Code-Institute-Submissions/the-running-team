@@ -68,6 +68,27 @@ blockquote {
     margin-bottom: 2rem;
 }
 
+.tabs .tab a {
+    color: #000;
+    font-weight: 600;
+}
+ .tabs .tab a:hover {
+    color: #000;
+ }
+.tabs .tab a:focus.active {
+    background-color: rgba(13, 71, 161, 0.2);
+    color: #000;
+}
+
+.tabs .indicator {
+    background-color:#0d47a1;
+}
+
+.text-icon {
+    position: relative;
+    top: 5px;
+}
+
 @media only screen and (max-width: 1000px) {
     .modal {
       width: 80%;
