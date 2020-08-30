@@ -64,6 +64,10 @@ blockquote {
     padding-bottom: 1rem;
 }
 
+.tabs {
+    margin-bottom: 2rem;
+}
+
 @media only screen and (max-width: 1000px) {
     .modal {
       width: 80%;
