@@ -24,21 +24,25 @@ def get_members():
 
 @app.route("/training_blog", methods=["GET", "POST"])
 def training_blog():
-    if request.method == "POST":
-        new_post = {
-            "title": request.form.get("title"),
-            "description": request.form.get("main-content"),
-            "author": session["user"],
-            "category": "blog-post",
-        }
-        mongo.db.posts.insert_one(new_post)
-        return redirect(url_for("training_blog"))
-    posts = list(mongo.db.posts.find().sort("$natural", -1))
-    return render_template("training_blog.html", posts=posts)
+    if session.get("user"):
+        if request.method == "POST":
+            new_post = {
+                "title": request.form.get("title"),
+                "description": request.form.get("main-content"),
+                "author": session["user"],
+                "category": "blog-post",
+            }
+            mongo.db.posts.insert_one(new_post)
+            return redirect(url_for("training_blog"))
+        posts = list(mongo.db.posts.find().sort("$natural", -1))
+        return render_template("training_blog.html", posts=posts)
+    return redirect(url_for("login"))
 
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    if session.get('user'):
+        return redirect(url_for("get_members"))
     print("register in process")
     if request.method == "POST":
         existing_user = mongo.db.team_members.find_one(
@@ -80,7 +84,8 @@ def login():
                 session["user"] = request.form.get("username").lower()
                 current_runner = mongo.db.team_members.find_one(
                     {"username": session["user"]})
-                flash("Welcome, {}".format(current_runner["first_name"]), "success-flash")
+                flash("Welcome, {}".format(
+                    current_runner["first_name"]), "success-flash")
                 return redirect(url_for("profile", username=session["user"]))
             else:
                 flash("Username and/or password is incorrect.", "error-flash")
@@ -95,7 +100,8 @@ def login():
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     if session.get('user'):
-        first_name = mongo.db.team_members.find_one({"username": session["user"]})["first_name"]
+        first_name = mongo.db.team_members.find_one(
+            {"username": session["user"]})["first_name"]
         print(username)
         return render_template("profile.html", first_name=first_name)
     else:
@@ -105,7 +111,8 @@ def profile(username):
 @app.route("/logout")
 def logout():
     session.pop("user", None)
-    return redirect(url_for('get_members'))    
+    return redirect(url_for('get_members'))
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
