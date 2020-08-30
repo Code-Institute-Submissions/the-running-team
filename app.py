@@ -24,7 +24,16 @@ def get_members():
 
 @app.route("/training_blog", methods=["GET", "POST"])
 def training_blog():
-    posts = list(mongo.db.posts.find())
+    if request.method == "POST":
+        new_post = {
+            "title": request.form.get("title"),
+            "description": request.form.get("main-content"),
+            "author": session["user"],
+            "category": "blog-post",
+        }
+        mongo.db.posts.insert_one(new_post)
+        return redirect(url_for("training_blog"))
+    posts = list(mongo.db.posts.find().sort("$natural", -1))
     return render_template("training_blog.html", posts=posts)
 
 
