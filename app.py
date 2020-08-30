@@ -61,8 +61,9 @@ def register():
         }
         mongo.db.team_members.insert_one(new_member)
 
-        session["member"] = request.form.get("username").lower()
+        session["user"] = request.form.get("username").lower()
         flash("Registration Successful!", "success-flash")
+        return redirect(url_for("profile", username=session["user"]))
     return render_template("register.html")
 
 
