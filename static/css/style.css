@@ -64,6 +64,10 @@ blockquote {
     width: 60%;
 }
 
+.delete-modal {
+    width: 40%;
+}
+
 .workout-container {
     border-bottom: 2px solid #0d47a1;
     padding-bottom: 1rem;
