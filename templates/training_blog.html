@@ -136,6 +136,11 @@
                     </div>
                     <p>{{ post.description }}</p>
                     <p class="grey-text"><em>Posted by: {{ post.author }}</em></p>
+                    {% if session.user|lower == post.author %}
+                    <div>
+                        <a href="">EDIT</a> | <a href="">DELETE</a>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -148,12 +153,18 @@
                 class="large material-icons left">add</i>New Post</button>
         {% for post in posts %}
         {% if post.category == "blog-post" %}
+        <!-- Blog-post -->
         <div class="row">
             <div class="col s12">
                 <div class="card-panel">
                     <h3>{{ post.title }}</h3>
                     <p>{{ post.description }}</p>
                     <p class="grey-text"><em>Posted by: {{ post.author }}</em></p>
+                    {% if session.user|lower == post.author %}
+                    <div>
+                        <a href="">EDIT</a> | <a href="">DELETE</a>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
