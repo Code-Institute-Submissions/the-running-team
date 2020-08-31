@@ -3,7 +3,9 @@ $(document).ready(function () {
   $('select').formSelect();
   $('.modal').modal();
   $('.tabs').tabs();
-  $('.datepicker').datepicker();
+  $('.datepicker').datepicker({
+    autoClose: true
+  });
   $('.timepicker').timepicker();
   /*
   This line enables validation on materialize selects by displaying the otherwise hidden select element.
