@@ -56,8 +56,29 @@ def training_blog():
 
 @app.route("/edit_workout/<post_id>", methods=["GET", "POST"])
 def edit_workout(post_id):
+    if request.method == "POST":
+        updated_post = {
+                    "title": request.form.get("title"),
+                    "date": request.form.get("date"),
+                    "time": request.form.get("time"), 
+                    "duration": request.form.get("duration"),
+                    "location": request.form.get("location"),
+                    "description": request.form.get("description"),
+                    "author": session["user"],
+                    "category": "workout"
+                }
+        mongo.db.posts.update({"_id": ObjectId(post_id)}, updated_post)
+        flash("Your post was successfully updated.", "success-flash")
+        return redirect(url_for("training_blog"))
     post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
     return render_template("edit_workout.html", post=post)
+
+
+@app.route("/delete_workout/<post_id>", methods=["GET", "POST"])
+def delete_workout(post_id):
+    mongo.db.posts.remove({"_id": ObjectId(post_id)})
+    flash("Post successfully deleted", "success-flash")
+    return redirect(url_for("training_blog"))
 
 
 @app.route("/register", methods=["GET", "POST"])
