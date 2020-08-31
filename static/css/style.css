@@ -24,6 +24,11 @@ nav ul li a:hover {
     color: #90caf9;
 }
 
+.card-image {
+    height: 24rem;
+    padding-top: 2rem;
+}
+
 .card-reveal h4 {
     font-size: 1.2rem;
 }
