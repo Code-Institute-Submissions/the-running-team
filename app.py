@@ -54,6 +54,12 @@ def training_blog():
     return redirect(url_for("login"))
 
 
+@app.route("/edit_workout/<post_id>", methods=["GET", "POST"])
+def edit_workout(post_id):
+    post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
+    return render_template("edit_workout.html", post=post)
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if session.get('user'):
