@@ -26,14 +26,29 @@ def get_members():
 def training_blog():
     if session.get("user"):
         if request.method == "POST":
-            new_post = {
-                "title": request.form.get("title"),
-                "description": request.form.get("main-content"),
-                "author": session["user"],
-                "category": "blog-post",
-            }
-            mongo.db.posts.insert_one(new_post)
-            return redirect(url_for("training_blog"))
+            if request.form["action"] == "blog":
+                print("this is a blog post")
+                new_post = {
+                    "title": request.form.get("title"),
+                    "description": request.form.get("main-content"),
+                    "author": session["user"],
+                    "category": "blog-post",
+                }
+                mongo.db.posts.insert_one(new_post)
+                return redirect(url_for("training_blog"))
+            elif request.form["action"] == "workout":
+                new_post = {
+                    "title": request.form.get("title"),
+                    "date": request.form.get("date"),
+                    "time": request.form.get("time"), 
+                    "duration": request.form.get("duration"),
+                    "location": request.form.get("location"),
+                    "description": request.form.get("description"),
+                    "author": session["user"],
+                    "category": "workout"
+                }
+                mongo.db.posts.insert_one(new_post)
+                return redirect(url_for("training_blog"))
         posts = list(mongo.db.posts.find().sort("$natural", -1))
         return render_template("training_blog.html", posts=posts)
     return redirect(url_for("login"))
