@@ -81,6 +81,11 @@ blockquote {
     color: #000;
     font-weight: 600;
 }
+
+.tabs .tab a.active {
+    color: #000;
+    background-color: rgba(13, 71, 161, 0.2);
+}
  .tabs .tab a:hover {
     color: #000;
  }
