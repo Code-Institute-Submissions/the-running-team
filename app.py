@@ -97,6 +97,13 @@ def delete_workout(post_id):
     return redirect(url_for("training_blog"))
 
 
+@app.route("/delete_blog/<post_id>", methods=["GET", "POST"])
+def delete_blog(post_id):
+    mongo.db.posts.remove({"_id": ObjectId(post_id)})
+    flash("Post successfully deleted", "success-flash")
+    return redirect(url_for("training_blog"))
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if session.get('user'):
