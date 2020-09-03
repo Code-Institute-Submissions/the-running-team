@@ -103,6 +103,15 @@ blockquote {
     top: 5px;
 }
 
+.capitalize {
+    text-transform: capitalize;
+}
+
+.progress {
+    height: 0.75rem;
+}
+
+
 @media only screen and (max-width: 1000px) {
     .modal {
       width: 80%;
