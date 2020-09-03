@@ -1,5 +1,6 @@
 .title {
     text-transform: uppercase;
+    font-size: 5rem;
 }
 
 body {
@@ -109,6 +110,10 @@ blockquote {
 
 .progress {
     height: 0.75rem;
+}
+
+.text-shadow {
+    text-shadow: 2px 2px 2px #1e88e5;
 }
 
 
