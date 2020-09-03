@@ -8,28 +8,28 @@
                 <img class="activator" src="{{ url_for('static', filename='images/last_ned.jpg') }}" alt="">
             </div>
             <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4">{{ member.first_name }} {{ member.last_name }}<i
+                <span class="card-title activator grey-text text-darken-4 capitalize">{{ member.last_name }}<i
                         class="fas fa-ellipsis-v right"></i></span>
             </div>
             <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">{{ member.first_name }} {{ member.last_name }}<i
+                <span class="card-title grey-text text-darken-4 capitalize">{{ member.first_name }} {{ member.last_name }}<i
                         class="far fa-times-circle right"></i></span>
                 <h4>Nationality: {{ member.nationality }}</h4>
                 <h4>Stamina: </h4>
                 <div class="progress">
-                    <div class="determinate" style="width:{{ member.stamina }}"></div>
+                    <div class="determinate" style="width:{{ member.stamina }}" data-value="{{ member.stamina }}"></div>
                 </div>
                 <h4>Strength: </h4>
                 <div class="progress">
-                    <div class="determinate" style="width:{{ member.strength }}"></div>
+                    <div class="determinate" style="width:{{ member.strength }}" data-value="{{ member.strength }}"></div>
                 </div>
                 <h4>Speed: </h4>
                 <div class="progress">
-                    <div class="determinate" style="width:{{ member.speed }}"></div>
+                    <div class="determinate" style="width:{{ member.speed }}" data-value="{{ member.speed }}"></div>
                 </div>
                 <h4>General fitness:</h4>
                 <div class="progress">
-                    <div class="determinate" style="width:{{ member.fitness }}"></div>
+                    <div class="determinate" style="width:{{ member.fitness }}" data-value="{{ member.fitness }}"></div>
                 </div>
                 <blockquote><em>{{ member.quote }}</em></blockquote>
             </div>
