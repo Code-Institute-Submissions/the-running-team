@@ -31,18 +31,18 @@ $(document).ready(function () {
       }
       else if (progValue == "80%") {
         console.log("setting color")
-        $(progBar).addClass("light-blue darken-1");
+        $(progBar).addClass("light-blue darken-3");
       }
       else if (progValue == "60%") {
         console.log("setting color")
-        $(progBar).addClass("light-blue lighten-1");
+        $(progBar).addClass("light-blue ligthen-1");
       }
       else if (progValue == "40%") {
         console.log("setting color")
-        $(progBar).addClass("light-blue lighten-2");
+        $(progBar).addClass("light-blue ligthen-3");
       }
       else {
-        $(progBar).addClass("light-blue lighten-3");
+        $(progBar).addClass("light-blue ligthen-4");
       }
       i++;
     }
