@@ -28,22 +28,22 @@ $(document).ready(function () {
       console.log(progValue);
       if (progValue == "100%") {
         console.log("setting color")
-        $(progBar).addClass("light-blue darken-4");
+        $(progBar).addClass("light-green accent-1");
       }
       else if (progValue == "80%") {
         console.log("setting color")
-        $(progBar).addClass("light-blue darken-3");
+        $(progBar).addClass("light-blue");
       }
       else if (progValue == "60%") {
         console.log("setting color")
-        $(progBar).addClass("light-blue ligthen-1");
+        $(progBar).addClass("light-blue lighten-1");
       }
       else if (progValue == "40%") {
         console.log("setting color")
-        $(progBar).addClass("light-blue ligthen-3");
+        $(progBar).addClass("light-blue lighten-2");
       }
       else {
-        $(progBar).addClass("light-blue ligthen-4");
+        $(progBar).addClass("orange lighten-2");
       }
       i++;
     }
