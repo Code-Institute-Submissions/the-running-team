@@ -25,14 +25,12 @@ nav ul li a:hover {
     color: #90caf9;
 }
 
-.card-image {
-    height: 24rem;
-    padding-top: 2rem;
-}
 
 .card-reveal h4 {
-    font-size: 1.2rem;
+    font-size: 1rem;
+    margin: 0;
 }
+
 .no-top-mg {
     margin-top: 0;
 }
@@ -72,6 +70,10 @@ blockquote {
 .workout-container {
     border-bottom: 2px solid #0d47a1;
     padding-bottom: 1rem;
+}
+
+.comment {
+    border: 1px solid #e0e0e0;
 }
 
 .tabs {
