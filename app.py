@@ -193,10 +193,20 @@ def edit_profile(user_id):
         username = mongo.db.team_members.find_one({"_id": ObjectId(user_id)})["username"]
         flash("Profile successfully updated", "success-flash")
         return redirect(url_for("profile", username=username))
-    print(user_id)
     member = mongo.db.team_members.find_one({"_id": ObjectId(user_id)})
-    print(member)
     return render_template("edit_profile.html", member=member)
+
+
+@app.route("/delete_member/<member_id>", methods=["GET", "POST"])
+def delete_member(member_id):
+    print(member_id)
+    delete_posts(member_id)
+    mongo.db.team_members.remove({"_id": ObjectId(member_id)})
+    flash("Team member deleted", "success-flash")
+    return redirect(url_for("logout"))
+
+def delete_posts(member_id):
+    mongo.db.posts.remove({"author": mongo.db.team_members.find_one({"_id": ObjectId(member_id)})["username"]})
 
 
 @app.route("/logout")
