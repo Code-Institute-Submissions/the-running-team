@@ -50,7 +50,8 @@ def training_blog():
                 mongo.db.posts.insert_one(new_post)
                 return redirect(url_for("training_blog"))
         posts = list(mongo.db.posts.find().sort("$natural", -1))
-        return render_template("training_blog.html", posts=posts)
+        comments = list(mongo.db.comments.find())
+        return render_template("training_blog.html", posts=posts, comments=comments)
     return redirect(url_for("login"))
 
 
@@ -207,6 +208,19 @@ def delete_member(member_id):
 
 def delete_posts(member_id):
     mongo.db.posts.remove({"author": mongo.db.team_members.find_one({"_id": ObjectId(member_id)})["username"]})
+
+
+@app.route("/add_comment/<username>/<post_id>", methods=["GET", "POST"])
+def add_comment(username, post_id):
+    if request.method == "POST":
+        comment = {
+           "post_id": ObjectId(post_id),
+           "comment": request.form.get("comment"),
+           "author": username 
+        }
+        mongo.db.comments.insert_one(comment)
+        return redirect(url_for("training_blog"))
+
 
 
 @app.route("/logout")
