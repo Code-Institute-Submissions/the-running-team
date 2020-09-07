@@ -3,18 +3,18 @@
 <div class="row">
     <h1 class="center-align">Meet the Team</h1>
     {% for member in members  %}
-    <div class="col s12 m4 l3 runner">
+    <div class="col s12 m4 xl3 runner">
         <div class="card">
             <div class="card-image waves-effect waves-block waves-light">
                 <img class="activator" src="{{ url_for('static', filename='images/runner-logo.PNG') }}" alt="">
             </div>
             <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4 capitalize">{{ member.last_name }}<i
-                        class="fas fa-ellipsis-v right"></i></span>
+                <span class="card-title activator grey-text text-darken-4 capitalize">{{ member.last_name }}<i class="material-icons right">more_vert</i></i></span>
             </div>
             <div class="card-reveal">
+                <div><i class="card-title material-icons right">close</i></div>
                 <span class="card-title grey-text text-darken-4 capitalize">{{ member.first_name }}
-                    {{ member.last_name }}<i class="far fa-times-circle right"></i></span>
+                    {{ member.last_name }}</span>
                 <h4>Stamina: </h4>
                 <div class="progress">
                     <div class="determinate" style="width:{{ member.stamina }}" data-value="{{ member.stamina }}"></div>
