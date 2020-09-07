@@ -173,6 +173,31 @@ def profile(username):
     else:
         return redirect(url_for("login"))
 
+    
+@app.route("/edit_profile/<user_id>", methods=["GET", "POST"])
+def edit_profile(user_id):
+    if request.method == "POST":
+        updated_profile = {
+            "username": mongo.db.team_members.find_one({"_id": ObjectId(user_id)})["username"],
+            "password": mongo.db.team_members.find_one({"_id": ObjectId(user_id)})["password"],
+            "first_name": request.form.get("first_name").lower(),
+            "last_name": request.form.get("last_name").lower(),
+            "fitness": request.form.get("fitness"),
+            "stamina": request.form.get("stamina"),
+            "strength": request.form.get("strength"),
+            "speed": request.form.get("speed"),
+            "quote": request.form.get("slogan")
+        }
+
+        mongo.db.team_members.update({"_id": ObjectId(user_id)}, updated_profile)
+        username = mongo.db.team_members.find_one({"_id": ObjectId(user_id)})["username"]
+        flash("Profile successfully updated", "success-flash")
+        return redirect(url_for("profile", username=username))
+    print(user_id)
+    member = mongo.db.team_members.find_one({"_id": ObjectId(user_id)})
+    print(member)
+    return render_template("edit_profile.html", member=member)
+
 
 @app.route("/logout")
 def logout():
