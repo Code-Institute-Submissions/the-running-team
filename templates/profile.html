@@ -23,6 +23,23 @@
                     class="modal-trigger">DELETE PROFILE</a>
             </div>
         </div>
+        <!-- Modal for delete blog-post -->
+        <div id="delete-profile" class="modal delete-modal">
+            <div class="modal-content">
+                <h4 class="center-align">Delete Member</h4>
+                <p class="center-align">Are you sure you want to delete your account?</p>
+                <p class="center-align">All of your data will be lost.</p>
+                <div class="row">
+                    <div class="col s6 center-align">
+                        <a class="btn waves-light waves-effect yellow"
+                            href="{{ url_for('delete_member', member_id=member._id) }}">DELETE</a>
+                    </div>
+                    <div class="col s6 center-align">
+                        <a href="#!" class="modal-close btn waves-light waves-effect btn">CANCEL</a>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col s12">
                 <div class="progress">
