@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1 class="center-align">Edit Profile</h1>
+<div class="row">
+    <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('edit_profile', user_id=member._id) }}">
+        <div class="card-panel">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="first_name" value="{{ member.first_name }}" name="first_name" type="text" class="validate" required>
+                    <label for="first_name">First Name</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="last_name" value="{{ member.last_name }}" name="last_name" type="text" class="validate" required>
+                    <label for="last_name">Last Name</label>
+                </div>
+            </div>
+            <div class="input-field col s12">
+                <select id="fitness" class="validate" name="fitness" required>
+                    <option class="initial-value" value="{{ member.fitness }}" selected>{{ member.fitness }}</option>
+                    <option value="20%">Very Low</option>
+                    <option value="40%">Low</option>
+                    <option value="60%">Medium</option>
+                    <option value="80%">High</option>
+                    <option value="100%">Very High</option>
+                </select>
+                <label for="fitness">Level of general fitness</label>
+            </div>
+            <div class="input-field col s12">
+                <select id="stamina" class="validate" name="stamina" required>
+                    <option value="{{ member.stamina }}" selected>{{ member.stamina }}</option>
+                    <option value="20%">Very Low</option>
+                    <option value="40%">Low</option>
+                    <option value="60%">Medium</option>
+                    <option value="80%">High</option>
+                    <option value="100%">Very High</option>
+                </select>
+                <label for="stamina">Level of Stamina</label>
+            </div>
+            <div class="input-field col s12">
+                <select id="strength" class="validate" name="strength" required>
+                    <option value="{{ member.strength }}" selected>{{ member.strength }}</option>
+                    <option value="20%">Very Low</option>
+                    <option value="40%">Low</option>
+                    <option value="60%">Medium</option>
+                    <option value="80%">High</option>
+                    <option value="100%">Very High</option>
+                </select>
+                <label for="strength">Level of Strength</label>
+            </div>
+            <div class="input-field col s12">
+                <select id="speed" class="validate" name="speed" required>
+                    <option value="{{ member.speed }}" selected>{{ member.speed }}</option>
+                    <option value="20%">Very Low</option>
+                    <option value="40%">Low</option>
+                    <option value="60%">Medium</option>
+                    <option value="80%">High</option>
+                    <option value="100%">Very High</option>
+                </select>
+                <label for="speed">Level of Speed</label>
+            </div>
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <textarea id="slogan" name="slogan" class="materialize-textarea">{{ member.quote }}</textarea>
+                            <label for="slogan">Do you have a slogan or any words of motivation?</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <button class="btn-large waves-effect waves-light blue darken-4" type="submit" name="action">Save
+                <i class="material-icons right">save</i>
+            </button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
