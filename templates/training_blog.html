@@ -112,8 +112,8 @@
         </ul>
     </div>
     <!-- Workouts tab -->
-    {% set ns = namespace(attends=False) %}
-    {% set nsa = namespace(has_attendants=False) %}
+    {% set is_attending = namespace(attends=False) %}
+    {% set workout = namespace(has_attendants=False) %}
     <div id="workouts" class="col s12">
         <button id="add-post" data-target="new-workout" class="btn-large modal-trigger"><i
                 class="large material-icons left">add</i>New Post</button>
@@ -141,26 +141,28 @@
                     <div class="attendants">
                         {% for attendant in attendants %}
                             {% if attendant.post_id == post._id %}
-                                {% set nsa.has_attendants = True %}
+                                {% set workout.has_attendants = True %}
                             {% endif %}
                         {% endfor %}
-                        {% if nsa.has_attendants == True %}
+                        {% if workout.has_attendants == True %}
                             <p class="small-bottom-mg"><b>Attending Team Members:</b></p>
-                            {% set nsa.has_attendants = False %}
+                            {% set workout.has_attendants = False %}
                         {% endif %}
                         {% for attendant in attendants if attendant.post_id == post._id  %}
                             <div class="attendant">{{ attendant.attendant }}</div>
                             {% if attendant.attendant == session["user"] %}
-                                {% set ns.attends = True %}
+                                {% set is_attending.attends = True %}
                             {% endif %}
                         {% endfor %}
                     </div>
-                    {% if ns.attends == True %}
-                    <a class="waves-effect waves-light btn-small" href="{{ url_for('attend', post_id=post._id, username=session['user']) }}">Unattend</a>
+                    {% if is_attending.attends == True %}
+                    <a class="waves-effect waves-light btn-small"
+                        href="{{ url_for('attend', post_id=post._id, username=session['user']) }}">Unattend</a>
                     {% else %}
-                    <a class="waves-effect waves-light btn-small" href="{{ url_for('attend', post_id=post._id, username=session['user']) }}">Attend</a>
+                    <a class="waves-effect waves-light btn-small"
+                        href="{{ url_for('attend', post_id=post._id, username=session['user']) }}">Attend</a>
                     {% endif %}
-                    {% set ns.attends = False %}
+                    {% set is_attending.attends = False %}
                     {% if session.user|lower == post.author %}
                     <div class="small-top-mg">
                         <a href="{{ url_for('edit_workout', post_id=post._id) }}">EDIT</a> | <a class="modal-trigger"
