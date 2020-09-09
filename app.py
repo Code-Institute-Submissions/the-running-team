@@ -51,7 +51,9 @@ def training_blog():
                 return redirect(url_for("training_blog"))
         posts = list(mongo.db.posts.find().sort("$natural", -1))
         comments = list(mongo.db.comments.find())
-        return render_template("training_blog.html", posts=posts, comments=comments)
+        attendants = list(mongo.db.attendants.find())
+        attends = False
+        return render_template("training_blog.html", posts=posts, comments=comments, attendants=attendants, attends=attends)
     return redirect(url_for("login"))
 
 
@@ -222,6 +224,15 @@ def add_comment(username, post_id):
         return redirect(url_for("training_blog"))
 
 
+@app.route("/attend/<username>/<post_id>")
+def attend(username, post_id):
+    attendant = {
+        "post_id": ObjectId(post_id),
+        "attendant": username
+    }
+    mongo.db.attendants.insert_one(attendant)
+    attendants = mongo.db.attendants.find()
+    return redirect(url_for("training_blog", attendants=attendants ))
 
 @app.route("/logout")
 def logout():
