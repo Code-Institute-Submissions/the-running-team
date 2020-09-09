@@ -112,6 +112,7 @@
         </ul>
     </div>
     <!-- Workouts tab -->
+    {% set ns = namespace(attends=False) %}
     <div id="workouts" class="col s12">
         <button id="add-post" data-target="new-workout" class="btn-large modal-trigger"><i
                 class="large material-icons left">add</i>New Post</button>
@@ -134,8 +135,20 @@
                         <div class="col s6 m3 workout-specs"><i
                                 class="text-icon small material-icons">access_alarm</i>{{ post.duration }} mins</div>
                     </div>
-                    <p>{{ post.description }}</p>
+                    <p class="line-breaks">{{ post.description }}</p>
                     <p class="grey-text"><em>Posted by: {{ post.author }}</em></p>
+                    {% for attendant in attendants if attendant.post_id == post._id  %}
+                    <p>{{ attendant.attendant }}</p>
+                    {% if attendant.attendant == session["user"] %}
+                    {% set ns.attends = True %}
+                    {% endif %}
+                    {% endfor %}
+                    {% if ns.attends == True %}
+                    <a href="">Unattend</a>
+                    {% else %}
+                    <a href="">Attend</a>
+                    {% endif %}
+                    {% set ns.attends = False %}
                     {% if session.user|lower == post.author %}
                     <div>
                         <a href="{{ url_for('edit_workout', post_id=post._id) }}">EDIT</a> | <a class="modal-trigger"
@@ -175,8 +188,9 @@
             <div class="col s12">
                 <div class="card-panel no-bottom-mg">
                     <h3>{{ post.title }}</h3>
-                    <p>{{ post.description }}</p>
-                    <p class="grey-text"><em>Posted by: {{ post.author }}</em></p>
+                    <p class="grey-text no-top-mg"><em>Posted by: {{ post.author }}</em></p>
+                    <div class="divider"></div>
+                    <p class="line-breaks">{{ post.description }}</p>
                     {% if session.user|lower == post.author %}
                     <div>
                         <a href="{{ url_for('edit_blog' , post_id=post._id) }}">EDIT</a> | <a href="#delete-blog"
@@ -186,7 +200,7 @@
                 </div>
                 <ul class="collapsible no-top-mg">
                     <li>
-                        <div class="collapsible-header"><i class="material-icons">speaker_notes</i>Comments</div>
+                        <div class="collapsible-header"><i class="material-icons">speaker_notes</i>Comments()</div>
                         <div class="collapsible-body">
                             <div class="row">
                                 <form method="POST"
@@ -210,6 +224,7 @@
                                 <blockquote>
                                     <p class="grey-text"><em>Posted by: {{ comment.author }}</em></p>
                                     <p><em>{{ comment.comment }}</em></p>
+                                    <p>{{ comment.counter }}</p>
                                 </blockquote>
                                 {% endif %}
                                 {% endfor %}
