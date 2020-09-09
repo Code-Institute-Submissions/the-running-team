@@ -72,7 +72,14 @@ blockquote {
     padding-bottom: 1rem;
 }
 
+.line-breaks {
+    white-space: pre-wrap;
+}
 
+.divider {
+    background-color: #0d47a1;
+    height: 2px;
+}
 
 .tabs {
     margin-bottom: 2rem;
