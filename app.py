@@ -226,10 +226,17 @@ def add_comment(username, post_id):
 
 @app.route("/attend/<username>/<post_id>")
 def attend(username, post_id):
-    attendant = {
-        "post_id": ObjectId(post_id),
-        "attendant": username
-    }
+    print(username)
+    attending_user = mongo.db.attendants.find_one({"attendant": username, "post_id": ObjectId(post_id)})
+    print(attending_user)
+    if attending_user:
+        mongo.db.attendants.remove(attending_user)
+        return redirect(url_for("training_blog"))
+    else:
+        attendant = {
+            "post_id": ObjectId(post_id),
+            "attendant": username
+        }
     mongo.db.attendants.insert_one(attendant)
     attendants = mongo.db.attendants.find()
     return redirect(url_for("training_blog", attendants=attendants ))
