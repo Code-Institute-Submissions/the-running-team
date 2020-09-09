@@ -81,6 +81,28 @@ blockquote {
     height: 2px;
 }
 
+.attendant {
+    display: inline-block;
+    border: 1px solid #90caf9;
+    border-radius: 5px;
+    padding: 0.2rem;
+    margin-bottom: 1rem;
+}
+
+.small-bottom-mg {
+    margin-bottom: 0.5rem;
+}
+
+.small-top-mg {
+    margin-top: 0.5rem;
+}
+
+.btn-small {
+    height: 2rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem; 
+}
+
 .tabs {
     margin-bottom: 2rem;
 }
