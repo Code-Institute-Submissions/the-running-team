@@ -140,19 +140,19 @@
                     <p class="line-breaks">{{ post.description }}</p>
                     <div class="attendants">
                         {% for attendant in attendants %}
-                            {% if attendant.post_id == post._id %}
-                                {% set workout.has_attendants = True %}
-                            {% endif %}
+                        {% if attendant.post_id == post._id %}
+                        {% set workout.has_attendants = True %}
+                        {% endif %}
                         {% endfor %}
                         {% if workout.has_attendants == True %}
-                            <p class="small-bottom-mg"><b>Attending Team Members:</b></p>
-                            {% set workout.has_attendants = False %}
+                        <p class="small-bottom-mg"><b>Attending Team Members:</b></p>
+                        {% set workout.has_attendants = False %}
                         {% endif %}
                         {% for attendant in attendants if attendant.post_id == post._id  %}
-                            <div class="attendant">{{ attendant.attendant }}</div>
-                            {% if attendant.attendant == session["user"] %}
-                                {% set is_attending.attends = True %}
-                            {% endif %}
+                        <div class="attendant">{{ attendant.attendant }}</div>
+                        {% if attendant.attendant == session["user"] %}
+                        {% set is_attending.attends = True %}
+                        {% endif %}
                         {% endfor %}
                     </div>
                     {% if is_attending.attends == True %}
@@ -214,7 +214,15 @@
                 </div>
                 <ul class="collapsible no-top-mg">
                     <li>
-                        <div class="collapsible-header"><i class="material-icons">speaker_notes</i>Comments()</div>
+                        {% set count_comments = namespace(number=0) %}
+                        {% for comment in comments %}
+                        {% if comment.post_id == post._id %}
+                        {% set count_comments.number = count_comments.number + 1 %}
+                        {% endif %}
+                        {% endfor %}
+                        
+                        <div class="collapsible-header"><i
+                                class="material-icons">speaker_notes</i>Comments({{ count_comments.number }})</div>
                         <div class="collapsible-body">
                             <div class="row">
                                 <form method="POST"
