@@ -207,6 +207,8 @@ def edit_profile(user_id):
 def delete_member(member_id):
     print(member_id)
     delete_posts(member_id)
+    mongo.db.comments.remove({"author": session["user"]})
+    mongo.db.attendants.remove({"attendant": session["user"]})
     mongo.db.team_members.remove({"_id": ObjectId(member_id)})
     flash("Team member deleted", "success-flash")
     return redirect(url_for("logout"))
