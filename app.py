@@ -96,12 +96,14 @@ def edit_blog(post_id):
 @app.route("/delete_workout/<post_id>", methods=["GET", "POST"])
 def delete_workout(post_id):
     mongo.db.posts.remove({"_id": ObjectId(post_id)})
+    mongo.db.attendants.remove({"post_id": ObjectId(post_id)})
     flash("Post successfully deleted", "success-flash")
     return redirect(url_for("training_blog"))
 
 
 @app.route("/delete_blog/<post_id>", methods=["GET", "POST"])
 def delete_blog(post_id):
+    mongo.db.comments.remove({"post_id": ObjectId(post_id)})
     mongo.db.posts.remove({"_id": ObjectId(post_id)})
     flash("Post successfully deleted", "success-flash")
     return redirect(url_for("training_blog"))
