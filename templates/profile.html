@@ -62,10 +62,13 @@
             </div>
         </div>
     </div>
+
+
     <div class="col s12 m6">
         <h2 class="center-align">Blog posts</h2>
+        {% if users_posts|length > 0 %}
         <ul class="collapsible">
-            {% for post in posts %}
+            {% for post in users_posts %}
             <li>
                 {% if post.category == "workout" %}
                 <div class="collapsible-header"><i class="material-icons">directions_run</i>{{ post.title }}</div>
@@ -121,6 +124,37 @@
             </li>
             {% endfor %}
         </ul>
+        {% else %}
+        <p class="center-align">You have not made any posts yet.</p>
+        {% endif %}
+        <h2 class="center-align">Attending workouts</h2>
+        {% if attendants|length > 0 %}
+        <ul class="collapsible">
+            {% for post in all_posts %}
+            <li>
+                {% if post.category == "workout" %}
+                {% for attendant in attendants %}
+                {% if attendant.post_id == post._id %}
+                <div class="collapsible-header"><i class="material-icons">directions_run</i>{{ post.date }} &#8226;
+                    {{ post.title }}</div>
+                <div class="collapsible-body"><span>{{ post.description }}</span>
+                    <div>
+                        <a class="small-top-mg waves-effect waves-light btn-small"
+                            href="{{ url_for('attend', post_id=post._id, username=session['user']) }}">Unattend</a>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p class="center-align">You are not attending any workouts.</p>
+        {% endif %}
+
+
+
     </div>
 </div>
 
