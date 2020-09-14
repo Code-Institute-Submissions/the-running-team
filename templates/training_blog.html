@@ -122,7 +122,7 @@
         <div class="row">
             <div class="col s12">
                 <div class="card-panel">
-                    <h3>{{ post.title }}</h3>
+                    <h3 class="blog-title">{{ post.title|upper }}</h3>
                     <p class="grey-text"><em>Posted by: {{ post.author }}</em></p>
                     <div class="row workout-container">
                         <div class="col s6 m3 workout-specs"><i
@@ -156,10 +156,10 @@
                         {% endfor %}
                     </div>
                     {% if is_attending.attends == True %}
-                    <a class="waves-effect waves-light btn-small"
+                    <a class="waves-effect waves-light btn-small blue"
                         href="{{ url_for('attend', post_id=post._id, username=session['user']) }}">Unattend</a>
                     {% else %}
-                    <a class="waves-effect waves-light btn-small"
+                    <a class="waves-effect waves-light btn-small blue"
                         href="{{ url_for('attend', post_id=post._id, username=session['user']) }}">Attend</a>
                     {% endif %}
                     {% set is_attending.attends = False %}
@@ -266,7 +266,7 @@
                             href="{{ url_for('delete_blog', post_id=post._id) }}">DELETE</a>
                     </div>
                     <div class="col s6 center-align">
-                        <a href="#!" class="modal-close btn waves-light waves-effect btn">CANCEL</a>
+                        <a href="#!" class="modal-close btn waves-light waves-effect btn blue">CANCEL</a>
                     </div>
                 </div>
             </div>
