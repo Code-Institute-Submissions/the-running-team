@@ -52,8 +52,7 @@ def training_blog():
         posts = list(mongo.db.posts.find().sort("$natural", -1))
         comments = list(mongo.db.comments.find())
         attendants = list(mongo.db.attendants.find())
-        attends = False
-        return render_template("training_blog.html", posts=posts, comments=comments, attendants=attendants, attends=attends)
+        return render_template("training_blog.html", posts=posts, comments=comments, attendants=attendants)
     return redirect(url_for("login"))
 
 
