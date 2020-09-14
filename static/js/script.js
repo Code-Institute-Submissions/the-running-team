@@ -49,4 +49,7 @@ $(document).ready(function () {
     }
   }
   setProgBarColor();
+  setTimeout(function() {
+    $(".flashes").fadeOut('slow');
+}, 5000);
 });
