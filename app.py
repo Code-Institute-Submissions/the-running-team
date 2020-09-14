@@ -22,12 +22,22 @@ def get_members():
     return render_template("members.html", members=members)
 
 
-@app.route("/training_blog", methods=["GET", "POST"])
-def training_blog():
+@app.route("/get_posts")
+def get_posts():
+    if session.get("user"):
+        posts = list(mongo.db.posts.find().sort("$natural", -1))
+        comments = list(mongo.db.comments.find().sort("$natural", -1))
+        attendants = list(mongo.db.attendants.find())
+        return render_template("training_blog.html", posts=posts, comments=comments, attendants=attendants)
+    else:
+        return redirect(url_for("login"))
+
+
+@app.route("/add_post", methods=["GET", "POST"])
+def add_post():
     if session.get("user"):
         if request.method == "POST":
             if request.form["action"] == "blog":
-                print("this is a blog post")
                 new_post = {
                     "title": request.form.get("title"),
                     "description": request.form.get("main-content"),
@@ -35,12 +45,12 @@ def training_blog():
                     "category": "blog-post",
                 }
                 mongo.db.posts.insert_one(new_post)
-                return redirect(url_for("training_blog"))
+                return redirect(url_for("get_posts"))
             elif request.form["action"] == "workout":
                 new_post = {
                     "title": request.form.get("title"),
                     "date": request.form.get("date"),
-                    "time": request.form.get("time"), 
+                    "time": request.form.get("time"),
                     "duration": request.form.get("duration"),
                     "location": request.form.get("location"),
                     "description": request.form.get("description"),
@@ -48,11 +58,8 @@ def training_blog():
                     "category": "workout"
                 }
                 mongo.db.posts.insert_one(new_post)
-                return redirect(url_for("training_blog"))
-        posts = list(mongo.db.posts.find().sort("$natural", -1))
-        comments = list(mongo.db.comments.find())
-        attendants = list(mongo.db.attendants.find())
-        return render_template("training_blog.html", posts=posts, comments=comments, attendants=attendants)
+                return redirect(url_for("get_posts"))
+        return redirect(url_for("get_posts"))
     return redirect(url_for("login"))
 
 
@@ -60,15 +67,15 @@ def training_blog():
 def edit_workout(post_id):
     if request.method == "POST":
         updated_post = {
-                    "title": request.form.get("title"),
-                    "date": request.form.get("date"),
-                    "time": request.form.get("time"), 
-                    "duration": request.form.get("duration"),
-                    "location": request.form.get("location"),
-                    "description": request.form.get("description"),
-                    "author": session["user"],
-                    "category": "workout"
-                }
+            "title": request.form.get("title"),
+            "date": request.form.get("date"),
+            "time": request.form.get("time"), 
+            "duration": request.form.get("duration"),
+            "location": request.form.get("location"),
+            "description": request.form.get("description"),
+            "author": session["user"],
+            "category": "workout"
+        }
         mongo.db.posts.update({"_id": ObjectId(post_id)}, updated_post)
         flash("Your post was successfully updated.", "success-flash")
         return redirect(url_for("training_blog"))
@@ -225,7 +232,7 @@ def add_comment(username, post_id):
            "author": username 
         }
         mongo.db.comments.insert_one(comment)
-        return redirect(url_for("training_blog"))
+        return redirect(url_for("get_posts"))
 
 
 @app.route("/attend/<username>/<post_id>")
@@ -235,7 +242,7 @@ def attend(username, post_id):
     print(attending_user)
     if attending_user:
         mongo.db.attendants.remove(attending_user)
-        return redirect(url_for("training_blog"))
+        return redirect(url_for("get_posts"))
     else:
         attendant = {
             "post_id": ObjectId(post_id),
@@ -243,7 +250,7 @@ def attend(username, post_id):
         }
     mongo.db.attendants.insert_one(attendant)
     attendants = mongo.db.attendants.find()
-    return redirect(url_for("training_blog", attendants=attendants ))
+    return redirect(url_for("get_posts", attendants=attendants ))
 
 @app.route("/logout")
 def logout():
