@@ -59,6 +59,10 @@ blockquote {
     background-color: #90caf9;
 }
 
+.flashes h4 {
+    line-height: 6rem;
+}
+
 .modal {
     width: 60%;
 }
@@ -80,6 +84,7 @@ blockquote {
     background-color: #0d47a1;
     height: 2px;
 }
+
 
 .attendant {
     display: inline-block;
