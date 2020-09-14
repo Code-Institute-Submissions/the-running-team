@@ -10,7 +10,7 @@
     <div class="modal-content">
         <h2 class="center-align">Post a Workout</h2>
     </div>
-    <form method="POST" action="{{ url_for('training_blog') }}">
+    <form method="POST" action="{{ url_for('add_post') }}">
         <div class="row">
             <div class="input-field col s10 offset-s1">
                 <i class="material-icons prefix">title</i>
@@ -75,7 +75,7 @@
     <div class="modal-content">
         <h2 class="center-align">New Blog-Post</h2>
     </div>
-    <form method="POST" action="{{ url_for('training_blog') }}">
+    <form method="POST" action="{{ url_for('add_post') }}">
         <div class="row">
             <div class="input-field col s10 offset-s1">
                 <i class="material-icons prefix">title</i>
@@ -220,7 +220,6 @@
                         {% set count_comments.number = count_comments.number + 1 %}
                         {% endif %}
                         {% endfor %}
-                        
                         <div class="collapsible-header"><i
                                 class="material-icons">speaker_notes</i>Comments({{ count_comments.number }})</div>
                         <div class="collapsible-body">
