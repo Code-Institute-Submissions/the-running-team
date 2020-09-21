@@ -247,6 +247,12 @@
                                     <p><em>{{ comment.comment }}</em></p>
                                     <p>{{ comment.counter }}</p>
                                 </blockquote>
+                                {% if session.user|lower == comment.author %}
+                    <div class="small-top-mg">
+                        <a href="{{ url_for('edit_workout', post_id=post._id) }}">EDIT</a> | <a class="modal-trigger"
+                            href="#delete-workout">DELETE</a>
+                    </div>
+                    {% endif %}
                                 {% endif %}
                                 {% endfor %}
                             </div>
