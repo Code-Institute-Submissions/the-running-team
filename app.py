@@ -78,7 +78,7 @@ def edit_workout(post_id):
         }
         mongo.db.posts.update({"_id": ObjectId(post_id)}, updated_post)
         flash("Your post was successfully updated.", "success-flash")
-        return redirect(url_for("training_blog"))
+        return redirect(url_for("get_posts"))
     post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
     return render_template("edit_workout.html", post=post)
 
@@ -94,7 +94,7 @@ def edit_blog(post_id):
                 }
         mongo.db.posts.update({"_id": ObjectId(post_id)}, updated_post)
         flash("Your post was successfully updated.", "success-flash")
-        return redirect(url_for("training_blog"))
+        return redirect(url_for("get_posts"))
     post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
     return render_template("edit_blog.html", post=post)
 
@@ -104,7 +104,7 @@ def delete_workout(post_id):
     mongo.db.posts.remove({"_id": ObjectId(post_id)})
     mongo.db.attendants.remove({"post_id": ObjectId(post_id)})
     flash("Post successfully deleted", "success-flash")
-    return redirect(url_for("training_blog"))
+    return redirect(url_for("get_posts"))
 
 
 @app.route("/delete_blog/<post_id>", methods=["GET", "POST"])
@@ -112,7 +112,7 @@ def delete_blog(post_id):
     mongo.db.comments.remove({"post_id": ObjectId(post_id)})
     mongo.db.posts.remove({"_id": ObjectId(post_id)})
     flash("Post successfully deleted", "success-flash")
-    return redirect(url_for("training_blog"))
+    return redirect(url_for("get_posts"))
 
 
 @app.route("/register", methods=["GET", "POST"])
