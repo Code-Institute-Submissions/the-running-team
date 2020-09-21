@@ -14,24 +14,24 @@
         <div class="row">
             <div class="input-field col s10 offset-s1">
                 <i class="material-icons prefix">title</i>
-                <input id="title" name="title" type="text" class="validate" required>
+                <input id="title" name="title" type="text" class="validate" oninvalid="this.setCustomValidity('Enter a title between 2 and 50 characters.')" oninput="this.setCustomValidity('')" minlength="2" maxlength="50" pattern="^[^\s].*" required>
                 <label for="title">Title</label>
             </div>
         </div>
         <div class="row">
-            <div class="input-field col s5 offset-s1">
+            <div class="input-field col m5 offset-m1 s10 offset-s1">
                 <i class="material-icons prefix">calendar_today</i>
-                <input type="text" id="date" name="date" class="datepicker validate" required>
+                <input type="text" id="date" name="date" class="datepicker validate" oninvalid="this.setCustomValidity('Pick a date for the workout.')" oninput="this.setCustomValidity('')" required>
                 <label for="date">Date</label>
             </div>
-            <div class="input-field col s5">
+            <div class="input-field col m5 s10 offset-s1">
                 <i class="material-icons prefix">access_time</i>
-                <input type="text" id="time" name="time" class="timepicker validate" required>
-                <label for="time">Date</label>
+                <input type="text" id="time" name="time" class="timepicker validate" oninvalid="this.setCustomValidity('Enter a time for the workout.')" oninput="this.setCustomValidity('')" required>
+                <label for="time">Time</label>
             </div>
         </div>
         <div class="row">
-            <div class="input-field col s5 offset-s1">
+            <div class="input-field col m5 offset-m1 s10 offset-s1">
                 <i class="material-icons prefix">access_alarm</i>
                 <select id="duration" class="validate" name="duration" required>
                     <option value="" disabled selected>Choose an option</option>
@@ -44,16 +44,16 @@
                 </select>
                 <label for="duration">Duration of Workout</label>
             </div>
-            <div class="input-field col s5">
+            <div class="input-field col m5 offset-s1 s10 offset-s1">
                 <i class="material-icons prefix">location_on</i>
-                <input id="location" name="location" type="text" class="validate" required>
+                <input id="location" name="location" type="text" class="validate" oninvalid="this.setCustomValidity('Enter a location for the workout.')" oninput="this.setCustomValidity('')" minlength="2" maxlength="100" pattern="^[^\s].*" required>
                 <label for="location">Location</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s10 offset-s1">
                 <i class="material-icons prefix">subject</i>
-                <textarea id="description" name="description" class="materialize-textarea" required></textarea>
+                <textarea id="description" name="description" class="materialize-textarea" data-length="1000" validate oninvalid="this.setCustomValidity('Describe the workout')" oninput="this.setCustomValidity('')" minlength="5" maxlength="1000" required></textarea>
                 <label for="description">Description</label>
             </div>
         </div>
@@ -79,14 +79,14 @@
         <div class="row">
             <div class="input-field col s10 offset-s1">
                 <i class="material-icons prefix">title</i>
-                <input id="title" name="title" type="text" class="validate" required>
+                <input id="title" name="title" type="text" class="validate" oninvalid="this.setCustomValidity('Enter a title between 2 and 50 characters.')" oninput="this.setCustomValidity('')" minlength="2" maxlength="50" pattern="^[^\s].*" required>
                 <label for="title">Title</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s10 s10 offset-s1">
                 <i class="material-icons prefix">subject</i>
-                <textarea id="main-content" name="main-content" class="materialize-textarea" required></textarea>
+                <textarea id="main-content" name="main-content" data-length="3000" class="materialize-textarea validate" oninvalid="this.setCustomValidity('Enter main content of blog post.')" oninput="this.setCustomValidity('')" minlength="5" maxlength="3000" required></textarea>
                 <label for="main-content">Text content</label>
             </div>
         </div>

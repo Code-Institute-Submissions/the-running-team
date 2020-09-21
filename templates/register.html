@@ -10,26 +10,26 @@
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fas fa-user-plus prefix light-blue-text text-darken-4"></i>
-                    <input id="username" name="username" type="text" class="validate" minlength="5" maxlength="20" pattern="^[a-zA-Z0-9]{5,20}$" required>
+                    <input id="username" name="username" type="text" class="validate" oninvalid="this.setCustomValidity('Enter a username between 5-20 characters. Alphanumeric characters only.')" oninput="this.setCustomValidity('')" minlength="5" maxlength="20" pattern="^[a-zA-Z0-9]{5,20}$" required>
                     <label for="username">Username</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fas fa-key prefix light-blue-text text-darken-4"></i>
-                    <input id="password" name="password" type="password" class="validate" minlength="5" pattern="^[a-zA-Z0-9]{5,15}$" required>
+                    <input id="password" name="password" type="password" class="validate" oninvalid="this.setCustomValidity('Enter a password between 5-15 characters. Alphanumeric characters only.')" oninput="this.setCustomValidity('')" minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" required>
                     <label for="password">Password</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="first_name" name="first_name" type="text" class="validate" required>
+                    <input id="first_name" name="first_name" type="text" class="validate" oninvalid="this.setCustomValidity('Enter first name. Maximum 50 characters, no blank space.')" oninput="this.setCustomValidity('')" minlength="2" maxlength="50" pattern="^[\S]+$" required>
                     <label for="first_name">First Name</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="last_name" name="last_name" type="text" class="validate" required>
+                    <input id="last_name" name="last_name" type="text" class="validate" oninvalid="this.setCustomValidity('Enter last name. Maximum 50 characters, no blank space.')" oninput="this.setCustomValidity('')" minlength="2" maxlength="50" pattern="^[\S]+$" required>
                     <label for="last_name">Last Name</label>
                 </div>
             </div>
@@ -81,7 +81,7 @@
                 <form class="col s12">
                     <div class="row">
                         <div class="input-field col s12">
-                            <textarea id="slogan" name="slogan" class="materialize-textarea"></textarea>
+                            <textarea id="slogan" name="slogan" data-length="120" maxlength="120" class="materialize-textarea"></textarea>
                             <label for="slogan">Do you have a slogan or any words of motivation?</label>
                         </div>
                     </div>
