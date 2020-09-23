@@ -69,7 +69,7 @@ def edit_workout(post_id):
         updated_post = {
             "title": request.form.get("title"),
             "date": request.form.get("date"),
-            "time": request.form.get("time"), 
+            "time": request.form.get("time"),
             "duration": request.form.get("duration"),
             "location": request.form.get("location"),
             "description": request.form.get("description"),
@@ -87,16 +87,31 @@ def edit_workout(post_id):
 def edit_blog(post_id):
     if request.method == "POST":
         updated_post = {
-                    "title": request.form.get("title"),
-                    "description": request.form.get("main-content"),
-                    "author": session["user"],
-                    "category": "blog-post"
-                }
+            "title": request.form.get("title"),
+            "description": request.form.get("main-content"),
+            "author": session["user"],
+            "category": "blog-post"
+        }
         mongo.db.posts.update({"_id": ObjectId(post_id)}, updated_post)
         flash("Your post was successfully updated.", "success-flash")
         return redirect(url_for("get_posts"))
     post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
     return render_template("edit_blog.html", post=post)
+
+
+@app.route("/edit_comment/<comment_id>/<post_id>", methods=["GET", "POST"])
+def edit_comment(comment_id, post_id):
+    if request.method == "POST":
+        updated_comment = {
+            "post_id": ObjectId(post_id),
+            "comment": request.form.get("comment"),
+            "author": session["user"]
+        }
+        mongo.db.comments.update({"_id": ObjectId(comment_id)}, updated_comment)
+        flash("Your comment was successfully updated.", "success-flash")
+        return redirect(url_for("get_posts"))
+    comment = mongo.db.comments.find_one({"_id": ObjectId(comment_id)})
+    return render_template("edit_comment.html", comment=comment, post_id=post_id)
 
 
 @app.route("/delete_workout/<post_id>", methods=["GET", "POST"])
@@ -178,14 +193,15 @@ def profile(username):
     if session.get('user'):
         users_posts = list(mongo.db.posts.find({"author": session["user"]}))
         all_posts = list(mongo.db.posts.find())
-        attendants = list(mongo.db.attendants.find({"attendant": session["user"]}))   
+        attendants = list(mongo.db.attendants.find(
+            {"attendant": session["user"]}))
         member = mongo.db.team_members.find_one(
             {"username": session["user"]})
         return render_template("profile.html", member=member, all_posts=all_posts, users_posts=users_posts, attendants=attendants)
     else:
         return redirect(url_for("login"))
 
-    
+
 @app.route("/edit_profile/<user_id>", methods=["GET", "POST"])
 def edit_profile(user_id):
     if request.method == "POST":
@@ -201,8 +217,10 @@ def edit_profile(user_id):
             "quote": request.form.get("slogan")
         }
 
-        mongo.db.team_members.update({"_id": ObjectId(user_id)}, updated_profile)
-        username = mongo.db.team_members.find_one({"_id": ObjectId(user_id)})["username"]
+        mongo.db.team_members.update(
+            {"_id": ObjectId(user_id)}, updated_profile)
+        username = mongo.db.team_members.find_one(
+            {"_id": ObjectId(user_id)})["username"]
         flash("Profile successfully updated", "success-flash")
         return redirect(url_for("profile", username=username))
     member = mongo.db.team_members.find_one({"_id": ObjectId(user_id)})
@@ -219,17 +237,19 @@ def delete_member(member_id):
     flash("Team member deleted", "success-flash")
     return redirect(url_for("logout"))
 
+
 def delete_posts(member_id):
-    mongo.db.posts.remove({"author": mongo.db.team_members.find_one({"_id": ObjectId(member_id)})["username"]})
+    mongo.db.posts.remove({"author": mongo.db.team_members.find_one(
+        {"_id": ObjectId(member_id)})["username"]})
 
 
 @app.route("/add_comment/<username>/<post_id>", methods=["GET", "POST"])
 def add_comment(username, post_id):
     if request.method == "POST":
         comment = {
-           "post_id": ObjectId(post_id),
-           "comment": request.form.get("comment"),
-           "author": username 
+            "post_id": ObjectId(post_id),
+            "comment": request.form.get("comment"),
+            "author": username
         }
         mongo.db.comments.insert_one(comment)
         return redirect(url_for("get_posts"))
@@ -238,7 +258,8 @@ def add_comment(username, post_id):
 @app.route("/attend/<username>/<post_id>")
 def attend(username, post_id):
     print(username)
-    attending_user = mongo.db.attendants.find_one({"attendant": username, "post_id": ObjectId(post_id)})
+    attending_user = mongo.db.attendants.find_one(
+        {"attendant": username, "post_id": ObjectId(post_id)})
     print(attending_user)
     if attending_user:
         mongo.db.attendants.remove(attending_user)
@@ -250,7 +271,8 @@ def attend(username, post_id):
         }
     mongo.db.attendants.insert_one(attendant)
     attendants = mongo.db.attendants.find()
-    return redirect(url_for("get_posts", attendants=attendants ))
+    return redirect(url_for("get_posts", attendants=attendants))
+
 
 @app.route("/logout")
 def logout():
