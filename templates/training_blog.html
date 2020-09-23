@@ -14,19 +14,25 @@
         <div class="row">
             <div class="input-field col s10 offset-s1">
                 <i class="material-icons prefix">title</i>
-                <input id="title" name="title" type="text" class="validate" oninvalid="this.setCustomValidity('Enter a title between 2 and 50 characters.')" oninput="this.setCustomValidity('')" minlength="2" maxlength="50" pattern="^[^\s].*" required>
+                <input id="title" name="title" type="text" class="validate"
+                    oninvalid="this.setCustomValidity('Enter a title between 2 and 50 characters.')"
+                    oninput="this.setCustomValidity('')" minlength="2" maxlength="50" pattern="^[^\s].*" required>
                 <label for="title">Title</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col m5 offset-m1 s10 offset-s1">
                 <i class="material-icons prefix">calendar_today</i>
-                <input type="text" id="date" name="date" class="datepicker validate" oninvalid="this.setCustomValidity('Pick a date for the workout.')" oninput="this.setCustomValidity('')" required>
+                <input type="text" id="date" name="date" class="datepicker validate"
+                    oninvalid="this.setCustomValidity('Pick a date for the workout.')"
+                    oninput="this.setCustomValidity('')" required>
                 <label for="date">Date</label>
             </div>
             <div class="input-field col m5 s10 offset-s1">
                 <i class="material-icons prefix">access_time</i>
-                <input type="text" id="time" name="time" class="timepicker validate" oninvalid="this.setCustomValidity('Enter a time for the workout.')" oninput="this.setCustomValidity('')" required>
+                <input type="text" id="time" name="time" class="timepicker validate"
+                    oninvalid="this.setCustomValidity('Enter a time for the workout.')"
+                    oninput="this.setCustomValidity('')" required>
                 <label for="time">Time</label>
             </div>
         </div>
@@ -46,20 +52,25 @@
             </div>
             <div class="input-field col m5 offset-s1 s10 offset-s1">
                 <i class="material-icons prefix">location_on</i>
-                <input id="location" name="location" type="text" class="validate" oninvalid="this.setCustomValidity('Enter a location for the workout.')" oninput="this.setCustomValidity('')" minlength="2" maxlength="100" pattern="^[^\s].*" required>
+                <input id="location" name="location" type="text" class="validate"
+                    oninvalid="this.setCustomValidity('Enter a location for the workout.')"
+                    oninput="this.setCustomValidity('')" minlength="2" maxlength="100" pattern="^[^\s].*" required>
                 <label for="location">Location</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s10 offset-s1">
                 <i class="material-icons prefix">subject</i>
-                <textarea id="description" name="description" class="materialize-textarea" data-length="1000" validate oninvalid="this.setCustomValidity('Describe the workout')" oninput="this.setCustomValidity('')" minlength="5" maxlength="1000" required></textarea>
+                <textarea id="description" name="description" class="materialize-textarea" data-length="1000" validate
+                    oninvalid="this.setCustomValidity('Describe the workout')" oninput="this.setCustomValidity('')"
+                    minlength="5" maxlength="1000" required></textarea>
                 <label for="description">Description</label>
             </div>
         </div>
         <div class="row">
             <div class="col s12 center-align">
-                <button class="btn waves-effect waves-light blue darken-4" type="submit" name="action" value="workout">Submit
+                <button class="btn waves-effect waves-light blue darken-4" type="submit" name="action"
+                    value="workout">Submit
                     <i class="material-icons right">send</i>
                 </button>
             </div>
@@ -79,20 +90,25 @@
         <div class="row">
             <div class="input-field col s10 offset-s1">
                 <i class="material-icons prefix">title</i>
-                <input id="title" name="title" type="text" class="validate" oninvalid="this.setCustomValidity('Enter a title between 2 and 50 characters.')" oninput="this.setCustomValidity('')" minlength="2" maxlength="50" pattern="^[^\s].*" required>
+                <input id="title" name="title" type="text" class="validate"
+                    oninvalid="this.setCustomValidity('Enter a title between 2 and 50 characters.')"
+                    oninput="this.setCustomValidity('')" minlength="2" maxlength="50" pattern="^[^\s].*" required>
                 <label for="title">Title</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s10 s10 offset-s1">
                 <i class="material-icons prefix">subject</i>
-                <textarea id="main-content" name="main-content" data-length="3000" class="materialize-textarea validate" oninvalid="this.setCustomValidity('Enter main content of blog post.')" oninput="this.setCustomValidity('')" minlength="5" maxlength="3000" required></textarea>
+                <textarea id="main-content" name="main-content" data-length="3000" class="materialize-textarea validate"
+                    oninvalid="this.setCustomValidity('Enter main content of blog post.')"
+                    oninput="this.setCustomValidity('')" minlength="5" maxlength="3000" required></textarea>
                 <label for="main-content">Text content</label>
             </div>
         </div>
         <div class="row">
             <div class="col s12 center-align">
-                <button class="btn waves-effect waves-light blue darken-4" type="submit" name="action" value="blog">Submit
+                <button class="btn waves-effect waves-light blue darken-4" type="submit" name="action"
+                    value="blog">Submit
                     <i class="material-icons right">send</i>
                 </button>
             </div>
@@ -234,7 +250,8 @@
                                             <label for="comment">Textarea</label>
                                         </div>
                                     </div>
-                                    <button class="btn waves-effect waves-light blue darken-4" type="submit" name="action">Submit
+                                    <button class="btn waves-effect waves-light blue darken-4" type="submit"
+                                        name="action">Submit
                                         <i class="material-icons right">send</i>
                                     </button>
                                 </form>
@@ -242,17 +259,19 @@
                             <div class="comments">
                                 {% for comment in comments %}
                                 {% if comment.post_id == post._id %}
-                                <blockquote>
-                                    <p class="grey-text"><em>Posted by: {{ comment.author }}</em></p>
-                                    <p><em>{{ comment.comment }}</em></p>
-                                    <p>{{ comment.counter }}</p>
-                                </blockquote>
+                                <p class="comment">
+                                <p class="grey-text"><em>Posted by: {{ comment.author }}</em></p>
                                 {% if session.user|lower == comment.author %}
-                    <div class="small-top-mg">
-                        <a href="{{ url_for('edit_workout', post_id=post._id) }}">EDIT</a> | <a class="modal-trigger"
-                            href="#delete-workout">DELETE</a>
-                    </div>
-                    {% endif %}
+                                <div class="small-top-mg">
+                                    <a href="{{ url_for('edit_comment', comment_id=comment._id, post_id=post._id) }}"><i
+                                            class="material-icons right">create</i></a> <a class="modal-trigger"
+                                        href="#delete-comment"><i class="material-icons right">delete</i></a>
+                                </div>
+                                <p><em>{{ comment.comment }}</em></p>
+                                {% else %}
+                                <p><em>{{ comment.comment }}</em></p>
+                                {% endif %}
+                                </p>
                                 {% endif %}
                                 {% endfor %}
                             </div>
