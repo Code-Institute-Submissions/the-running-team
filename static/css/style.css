@@ -84,6 +84,10 @@ blockquote {
     padding-bottom: 1rem;
 }
 
+.comment {
+    border-top: 1px solid #000;
+}
+
 .line-breaks {
     white-space: pre-wrap;
 }
