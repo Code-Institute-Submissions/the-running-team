@@ -107,11 +107,19 @@ def edit_comment(comment_id, post_id):
             "comment": request.form.get("comment"),
             "author": session["user"]
         }
-        mongo.db.comments.update({"_id": ObjectId(comment_id)}, updated_comment)
+        mongo.db.comments.update(
+            {"_id": ObjectId(comment_id)}, updated_comment)
         flash("Your comment was successfully updated.", "success-flash")
         return redirect(url_for("get_posts"))
     comment = mongo.db.comments.find_one({"_id": ObjectId(comment_id)})
     return render_template("edit_comment.html", comment=comment, post_id=post_id)
+
+
+@app.route("/delete_comment/<comment_id>")
+def delete_comment(comment_id):
+    mongo.db.comments.remove({"_id": ObjectId(comment_id)})
+    flash("Comment successfully deleted", "success-flash")
+    return redirect(url_for("get_posts"))
 
 
 @app.route("/delete_workout/<post_id>", methods=["GET", "POST"])
