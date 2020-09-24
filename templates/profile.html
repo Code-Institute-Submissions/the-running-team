@@ -2,19 +2,21 @@
 {% block content %}
 <div class="row">
     <div class="col s12">
-        <div class="card panel">
-            <h3 class="center-align capitalize">Profile</h3>
-        </div>
+        <h2 class="center-align capitalize">{{ member.first_name }} {{ member.last_name }}</h2>
     </div>
 </div>
 <div class="row">
     <div class="col s12 m6">
         <div class="row">
-            <div class="col s4">
-                <img src="{{ url_for('static', filename='images/runner-logo.PNG') }}" alt="Profile image">
+            <div class="col s12">
+                <h2 class="center-align capitalize">My Profile</h2>
             </div>
-            <div class="col s8">
-                <h2 class="capitalize">{{ member.first_name }} {{ member.last_name }}</h2>
+        </div>
+        <div class="row">
+            <div class="col s8 offset-s2">
+                <div class="img-border">
+                    <a href=""><img src="{{ member.img }}" alt="Profile image"></a>
+                </div>
             </div>
         </div>
         <div class="row">
