@@ -35,7 +35,7 @@
                             href="{{ url_for('delete_member', member_id=member._id) }}">DELETE</a>
                     </div>
                     <div class="col s6 center-align">
-                        <a href="#!" class="modal-close btn waves-light waves-effect btn">CANCEL</a>
+                        <a href="#!" class="modal-close btn waves-light waves-effect btn blue">CANCEL</a>
                     </div>
                 </div>
             </div>
@@ -88,7 +88,7 @@
                                         href="{{ url_for('delete_workout', post_id=post._id) }}">DELETE</a>
                                 </div>
                                 <div class="col s6 center-align">
-                                    <a href="#!" class="modal-close btn waves-light waves-effect btn">CANCEL</a>
+                                    <a href="#!" class="modal-close btn waves-light waves-effect btn blue">CANCEL</a>
                                 </div>
                             </div>
                         </div>
@@ -114,7 +114,7 @@
                                         href="{{ url_for('delete_blog', post_id=post._id) }}">DELETE</a>
                                 </div>
                                 <div class="col s6 center-align">
-                                    <a href="#!" class="modal-close btn waves-light waves-effect btn">CANCEL</a>
+                                    <a href="#!" class="modal-close btn waves-light waves-effect btn blue">CANCEL</a>
                                 </div>
                             </div>
                         </div>
@@ -139,7 +139,7 @@
                     {{ post.title }}</div>
                 <div class="collapsible-body"><span>{{ post.description }}</span>
                     <div>
-                        <a class="small-top-mg waves-effect waves-light btn-small"
+                        <a class="small-top-mg waves-effect waves-light btn-small blue"
                             href="{{ url_for('attend', post_id=post._id, username=session['user']) }}">Unattend</a>
                     </div>
                 </div>
