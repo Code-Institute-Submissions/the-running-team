@@ -39,7 +39,7 @@ def add_post():
         if request.method == "POST":
             if request.form["action"] == "blog":
                 new_post = {
-                    "title": request.form.get("title"),
+                    "title": request.form.get("blog-title"),
                     "description": request.form.get("main-content"),
                     "author": session["user"],
                     "category": "blog-post",
@@ -48,7 +48,7 @@ def add_post():
                 return redirect(url_for("get_posts"))
             elif request.form["action"] == "workout":
                 new_post = {
-                    "title": request.form.get("title"),
+                    "title": request.form.get("workout-title"),
                     "date": request.form.get("date"),
                     "time": request.form.get("time"),
                     "duration": request.form.get("duration"),

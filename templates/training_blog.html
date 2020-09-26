@@ -15,10 +15,10 @@
         <div class="row">
             <div class="input-field col s10 offset-s1">
                 <i class="material-icons prefix">title</i>
-                <input id="title" name="title" type="text" class="validate"
+                <input id="workout-title" name="workout-title" type="text" class="validate"
                     oninvalid="this.setCustomValidity('Enter a title between 2 and 50 characters.')"
                     oninput="this.setCustomValidity('')" minlength="2" maxlength="50" pattern="^[^\s].*" required>
-                <label for="title">Title</label>
+                <label for="workout-title">Title</label>
             </div>
         </div>
         <div class="row">
@@ -62,7 +62,7 @@
         <div class="row">
             <div class="input-field col s10 offset-s1">
                 <i class="material-icons prefix">subject</i>
-                <textarea id="description" name="description" class="materialize-textarea" data-length="1000" validate
+                <textarea id="description" name="description" class="materialize-textarea validate" data-length="1000"
                     oninvalid="this.setCustomValidity('Describe the workout')" oninput="this.setCustomValidity('')"
                     minlength="5" maxlength="1000" required></textarea>
                 <label for="description">Description</label>
@@ -92,10 +92,10 @@
         <div class="row">
             <div class="input-field col s10 offset-s1">
                 <i class="material-icons prefix">title</i>
-                <input id="title" name="title" type="text" class="validate"
+                <input id="blog-title" name="blog-title" type="text" class="validate"
                     oninvalid="this.setCustomValidity('Enter a title between 2 and 50 characters.')"
                     oninput="this.setCustomValidity('')" minlength="2" maxlength="50" pattern="^[^\s].*" required>
-                <label for="title">Title</label>
+                <label for="blog-title">Title</label>
             </div>
         </div>
         <div class="row">
@@ -130,7 +130,7 @@
             <li class="tab col s6"><a href="#blog-posts">Blog Posts</a></li>
         </ul>
     </div>
-    
+
     <!-- Workouts tab -->
     {% set is_attending = namespace(attends=False) %}
     {% set workout = namespace(has_attendants=False) %}
@@ -192,7 +192,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Modal for delete workout -->
         <div id="delete-workout" class="modal delete-modal">
             <div class="modal-content">
@@ -218,7 +218,7 @@
                 class="large material-icons left">add</i>New Post</button>
         {% for post in posts %}
         {% if post.category == "blog-post" %}
-        
+
         <!-- Blog-post -->
         <div class="row">
             <div class="col s12">
@@ -277,7 +277,7 @@
                                 {% else %}
                                 <p><em>{{ comment.comment }}</em></p>
                                 {% endif %}
-                                </p>
+                                
                                 <!-- Modal for delete comment -->
                                 <div id="{{ comment._id }}" class="modal delete-modal">
                                     <div class="modal-content">
@@ -303,7 +303,7 @@
                 </ul>
             </div>
         </div>
-        
+
         <!-- Modal for delete blog-post -->
         <div id="delete-blog" class="modal delete-modal">
             <div class="modal-content">
@@ -323,5 +323,5 @@
         {% endif %}
         {% endfor %}
     </div>
-    {% endblock %}
 </div>
+{% endblock %}
