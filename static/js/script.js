@@ -9,6 +9,7 @@ $(document).ready(function () {
   $('.timepicker').timepicker();
   $('.collapsible').collapsible();
   $('textarea').characterCounter();
+  $('.tooltipped').tooltip();
   /*
   This line enables validation on materialize selects by displaying the otherwise hidden select element.
   The idea was taken from stackoverflow user "Imran Saleem."
