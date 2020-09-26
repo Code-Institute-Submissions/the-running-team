@@ -235,6 +235,13 @@ def edit_profile(user_id):
     return render_template("edit_profile.html", member=member)
 
 
+@app.route("/edit_img/<member_id>", methods=["GET", "POST"])
+def edit_img(member_id):
+    if request.method == "POST":
+        mongo.db.team_members.update({"_id": ObjectId(member_id)}, { "$set": {"img": request.form.get("img-url")}})
+        return redirect(url_for("profile", username=session["user"]))
+    return redirect(url_for("profile", username=session["user"]))
+
 @app.route("/delete_member/<member_id>", methods=["GET", "POST"])
 def delete_member(member_id):
     print(member_id)
