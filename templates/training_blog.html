@@ -135,7 +135,7 @@
     {% set is_attending = namespace(attends=False) %}
     {% set workout = namespace(has_attendants=False) %}
     <div id="workouts" class="col s12">
-        <button id="add-post" data-target="new-workout" class="btn-large modal-trigger blue darken-4"><i
+        <button id="add-workout" data-target="new-workout" class="btn-large modal-trigger blue darken-4"><i
                 class="large material-icons left">add</i>New Post</button>
         {% for post in posts %}
         {% if post.category == "workout" %}
@@ -214,7 +214,7 @@
     </div>
     <!-- Blog-post tab -->
     <div id="blog-posts" class="col s12">
-        <button id="add-post" data-target="new-blog" class="btn-large modal-trigger blue darken-4"><i
+        <button id="add-blog" data-target="new-blog" class="btn-large modal-trigger blue darken-4"><i
                 class="large material-icons left">add</i>New Post</button>
         {% for post in posts %}
         {% if post.category == "blog-post" %}
