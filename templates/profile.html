@@ -15,8 +15,41 @@
         <div class="row">
             <div class="col s8 offset-s2">
                 <div class="img-border">
-                    <a href=""><img src="{{ member.img }}" alt="Profile image"></a>
+                    {% if member.img %}
+                    <a class="tooltipped modal-trigger" data-position="bottom" data-tooltip="Edit profile image" href="#edit-image"><img src="{{ member.img }}" alt="Profile image"></a>
+                    {% else %}
+                    <a class="tooltipped modal-trigger" data-position="bottom" data-tooltip="Edit profile image" href="#edit-image"><img src="{{ url_for('static', filename='images/runner-logo.PNG') }}"></a>
+                    {% endif %}
                 </div>
+            </div>
+        </div>
+        <!-- Modal for edit image -->
+        <div id="edit-image" class="modal">
+            <div class="modal-content">
+                <h2 class="center-align">Profile Image</h2>
+                <p class="">Enter a url for an image. If left blank, a default image will be displayed.</p>
+            </div>
+            <form method="POST" method="POST" action="{{ url_for('edit_img', member_id=member._id) }}">
+                <div class="row">
+                    <div class="input-field col s10 offset-s1">
+                        <i class="material-icons prefix">http</i>
+                        <input id="img-url" name="img-url" type="text" class="validate"
+                            oninvalid="this.setCustomValidity('Url must start with http(s): and end with .jpg, .png or .gif')"
+                            oninput="this.setCustomValidity('')" maxlength="200" pattern="(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)">
+                        <label for="img_url">Enter url</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <button class="btn waves-effect waves-light blue darken-4" type="submit" name="action">Save
+                            <i class="material-icons right">save</i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat"><i
+                        class="text-icon large material-icons">cancel</i>Cancel</a>
             </div>
         </div>
         <div class="row">
@@ -45,7 +78,8 @@
         <div class="row">
             <div class="col s12">
                 <div class="progress">
-                    <div class="determinate" style="width:{{ member.stamina }}" data-value="{{ member.stamina }}"></div>
+                    <div class="determinate" style="width:{{ member.stamina }}" data-value="{{ member.stamina }}">
+                    </div>
                 </div>
                 <h4>Strength: </h4>
                 <div class="progress">
@@ -58,7 +92,8 @@
                 </div>
                 <h4>General fitness:</h4>
                 <div class="progress">
-                    <div class="determinate" style="width:{{ member.fitness }}" data-value="{{ member.fitness }}"></div>
+                    <div class="determinate" style="width:{{ member.fitness }}" data-value="{{ member.fitness }}">
+                    </div>
                 </div>
                 <blockquote><em>{{ member.quote }}</em></blockquote>
             </div>
