@@ -1,8 +1,9 @@
 import os
-from flask import Flask, flash, render_template, redirect, request, url_for, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask import (Flask, flash, render_template, redirect, request,
+url_for, session)
 if os.path.exists("env.py"):
     import env
 
@@ -14,7 +15,8 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
-#Query mongoDB for all team members and send to template.
+
+# Query mongoDB for all team members and send to template.
 @app.route("/")
 @app.route("/get_members")
 def get_members():
@@ -22,7 +24,7 @@ def get_members():
     return render_template("members.html", members=members)
 
 
-#Query mongoDB for all posts and send to template
+# Query mongoDB for all posts and send to template
 @app.route("/get_posts")
 def get_posts():
     if session.get("user"):
@@ -30,17 +32,19 @@ def get_posts():
         comments = list(mongo.db.comments.find().sort("$natural", -1))
         attendants = list(mongo.db.attendants.find())
         return render_template("training_blog.html", posts=posts,
-        comments=comments, attendants=attendants)
+                               comments=comments, attendants=attendants)
     else:
         return redirect(url_for("login"))
 
 '''
 Route for adding a new post. First check if there's a user cookie. If
-not, redirect user to login login route. If there's a user and and 
-request is POST, check if form action is 'blog' or 'workout'. Then 
+not, redirect user to login login route. If there's a user and and
+request is POST, check if form action is 'blog' or 'workout'. Then
 insert data from form into database. If not post, redirect to route for
 'get_members'.
 '''
+
+
 @app.route("/add_post", methods=["GET", "POST"])
 def add_post():
     if session.get("user"):
@@ -75,6 +79,8 @@ def add_post():
 Route for editing a workout. If method is post, insert data from
 form into database. Else, render template.
 '''
+
+
 @app.route("/edit_workout/<post_id>", methods=["GET", "POST"])
 def edit_workout(post_id):
     if request.method == "POST":
@@ -99,6 +105,8 @@ def edit_workout(post_id):
 Route for editing a blog post. If method is post, insert data from
 form into database. Else, render template.
 '''
+
+
 @app.route("/edit_blog/<post_id>", methods=["GET", "POST"])
 def edit_blog(post_id):
     if request.method == "POST":
@@ -119,6 +127,8 @@ def edit_blog(post_id):
 Route for editing a comment. If method is post, insert data from
 form into database. Else, render template.
 '''
+
+
 @app.route("/edit_comment/<comment_id>/<post_id>", methods=["GET", "POST"])
 def edit_comment(comment_id, post_id):
     if request.method == "POST":
@@ -133,7 +143,8 @@ def edit_comment(comment_id, post_id):
         return redirect(url_for("get_posts"))
     comment = mongo.db.comments.find_one({"_id": ObjectId(comment_id)})
     return render_template("edit_comment.html", comment=comment,
-    post_id=post_id)
+                           post_id=post_id)
+
 
 # Route for deleting comment.
 @app.route("/delete_comment/<comment_id>")
@@ -146,7 +157,9 @@ def delete_comment(comment_id):
 '''
 Route for deleting workout. When a workout is deleted, all attendants,
 associated with the post via post_id are also deleted.
-''' 
+'''
+
+
 @app.route("/delete_workout/<post_id>", methods=["GET", "POST"])
 def delete_workout(post_id):
     mongo.db.posts.remove({"_id": ObjectId(post_id)})
@@ -156,9 +169,11 @@ def delete_workout(post_id):
 
 
 '''
-Route for deleting blog post. When a blog post is deleted, all 
+Route for deleting blog post. When a blog post is deleted, all
 comments associated with the post via post_id are also deleted.
-''' 
+'''
+
+
 @app.route("/delete_blog/<post_id>", methods=["GET", "POST"])
 def delete_blog(post_id):
     mongo.db.comments.remove({"post_id": ObjectId(post_id)})
@@ -174,6 +189,8 @@ so, check if username is already in database. If so, flash an error
 message and redirect. If not, insert data from form into database with
 hashed password field. Redirect to profile page.
 '''
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if session.get('user'):
@@ -206,7 +223,6 @@ def register():
     return render_template("register.html")
 
 
-
 '''
 Route for logging in. First check for user cookie. If so, redirect to
 get_members route. Else, if method is POST, check if username exists,
@@ -215,6 +231,8 @@ password matches that of existing_user-variable. If so, assign username
 to cookie and display success flash message. If not, display error
 message and redirect.
 '''
+
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if session.get('user'):
@@ -224,7 +242,7 @@ def login():
             {"username": request.form.get("username").lower()})
         if existing_user:
             if check_password_hash(existing_user["password"],
-                request.form.get("password")):
+                                   request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
                 current_runner = mongo.db.team_members.find_one(
                     {"username": session["user"]})
@@ -241,12 +259,13 @@ def login():
     return render_template("login.html")
 
 
-
 '''
-Route for profile page. Check if there's a user cookie. If so, 
-Query database for all posts by user and all workout-potsts the user 
+Route for profile page. Check if there's a user cookie. If so,
+Query database for all posts by user and all workout-potsts the user
 is attending. Send these to template. If not, redirect to login.
 '''
+
+
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     if session.get('user'):
@@ -257,10 +276,10 @@ def profile(username):
         member = mongo.db.team_members.find_one(
             {"username": session["user"]})
         return render_template("profile.html", member=member,
-        all_posts=all_posts, users_posts=users_posts, attendants=attendants)
+                               all_posts=all_posts, users_posts=users_posts,
+                               attendants=attendants)
     else:
         return redirect(url_for("login"))
-
 
 
 @app.route("/edit_profile/<user_id>", methods=["GET", "POST"])
@@ -293,10 +312,12 @@ def edit_profile(user_id):
 @app.route("/edit_img/<member_id>", methods=["GET", "POST"])
 def edit_img(member_id):
     if request.method == "POST":
-        mongo.db.team_members.update({"_id": ObjectId(member_id)}, 
-        { "$set": {"img": request.form.get("img-url")}})
+        mongo.db.team_members.update({"_id": ObjectId(member_id)},
+                                     {"$set":
+                                     {"img": request.form.get("img-url")}})
         return redirect(url_for("profile", username=session["user"]))
     return redirect(url_for("profile", username=session["user"]))
+
 
 @app.route("/delete_member/<member_id>", methods=["GET", "POST"])
 def delete_member(member_id):
