@@ -27,11 +27,24 @@ h3 {
 .blog-title {
     border-top: 2px solid rgba(0, 0, 0, 0.4);
     border-bottom: 2px solid rgba(0, 0, 0, 0.4);
-    padding: 1.5rem 0 1.5rem 0
+    padding: 1.5rem 0 1.5rem 0;
+    background: rgba(255, 255, 255, 0);
+}
+
+.navbar-bg {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 1)), url(/static/images/runners_cropped.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+nav.no-top-mg {
+    background: rgba(255, 255, 255, 0);
 }
 
 nav ul li a {
     font-family: "Oswlad", sans-serif;
+    font-weight: 500;
+    color: #FFF;
     text-transform: uppercase;
     letter-spacing: 0rem;
     transition: color 0.2s;
