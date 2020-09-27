@@ -4,7 +4,8 @@ $(document).ready(function () {
   $('.modal').modal();
   $('.tabs').tabs();
   $('.datepicker').datepicker({
-    autoClose: true
+    autoClose: true,
+    minDate: new Date() 
   });
   $('.timepicker').timepicker();
   $('.collapsible').collapsible();
