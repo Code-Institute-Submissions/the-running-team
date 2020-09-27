@@ -23,11 +23,11 @@
                 </div>
             </div>
         </div>
-        <!-- Modal for edit image -->
+        <!-- Modal for edit image. Regex pattern taken from https://regexr.com/3g1v7 -->
         <div id="edit-image" class="modal">
             <div class="modal-content">
                 <h2 class="center-align">Profile Image</h2>
-                <p class="">Enter a url for an image. If left blank, a default image will be displayed.</p>
+                <p class="center-align">Enter a url for an image. If left blank, a default image will be displayed.</p>
             </div>
             <form method="POST" method="POST" action="{{ url_for('edit_img', member_id=member._id) }}">
                 <div class="row">
@@ -35,7 +35,7 @@
                         <i class="material-icons prefix">http</i>
                         <input id="img-url" name="img-url" type="text" class="validate"
                             oninvalid="this.setCustomValidity('Url must start with http(s): and end with .jpg, .png or .gif')"
-                            oninput="this.setCustomValidity('')" maxlength="200" pattern="(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)">
+                            oninput="this.setCustomValidity('')" maxlength="300" pattern="(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)">
                         <label for="img_url">Enter url</label>
                     </div>
                 </div>
