@@ -21,18 +21,20 @@ mongo = PyMongo(app)
 @app.route("/get_members")
 def get_members():
     members = mongo.db.team_members.find()
-    return render_template("members.html", members=members)
+    return render_template("members.html", members=members, active_tab="workout")
 
 
 # Query mongoDB for all posts and send to template
-@app.route("/get_posts")
-def get_posts():
+@app.route("/get_posts/<active_tab>")
+def get_posts(active_tab):
     if session.get("user"):
         posts = list(mongo.db.posts.find().sort("$natural", -1))
         comments = list(mongo.db.comments.find().sort("$natural", -1))
         attendants = list(mongo.db.attendants.find())
+        print(active_tab)
         return render_template("training_blog.html", posts=posts,
-                               comments=comments, attendants=attendants)
+                               comments=comments, attendants=attendants,
+                               active_tab=active_tab)
     else:
         return redirect(url_for("login"))
 
@@ -57,7 +59,7 @@ def add_post():
                     "category": "blog-post",
                 }
                 mongo.db.posts.insert_one(new_post)
-                return redirect(url_for("get_posts"))
+                return redirect(url_for("get_posts", active_tab="blog"))
             elif request.form["action"] == "workout":
                 new_post = {
                     "title": request.form.get("workout-title"),
@@ -70,7 +72,7 @@ def add_post():
                     "category": "workout"
                 }
                 mongo.db.posts.insert_one(new_post)
-                return redirect(url_for("get_posts"))
+                return redirect(url_for("get_posts", active_tab="workout"))
         return redirect(url_for("get_posts"))
     return redirect(url_for("login"))
 
@@ -96,7 +98,7 @@ def edit_workout(post_id):
         }
         mongo.db.posts.update({"_id": ObjectId(post_id)}, updated_post)
         flash("Your post was successfully updated.", "success-flash")
-        return redirect(url_for("get_posts"))
+        return redirect(url_for("get_posts", active_tab="workout"))
     post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
     return render_template("edit_workout.html", post=post)
 
@@ -118,7 +120,7 @@ def edit_blog(post_id):
         }
         mongo.db.posts.update({"_id": ObjectId(post_id)}, updated_post)
         flash("Your post was successfully updated.", "success-flash")
-        return redirect(url_for("get_posts"))
+        return redirect(url_for("get_posts", active_tab="blog"))
     post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
     return render_template("edit_blog.html", post=post)
 
@@ -140,7 +142,7 @@ def edit_comment(comment_id, post_id):
         mongo.db.comments.update(
             {"_id": ObjectId(comment_id)}, updated_comment)
         flash("Your comment was successfully updated.", "success-flash")
-        return redirect(url_for("get_posts"))
+        return redirect(url_for("get_posts", active_tab="blog"))
     comment = mongo.db.comments.find_one({"_id": ObjectId(comment_id)})
     return render_template("edit_comment.html", comment=comment,
                            post_id=post_id)
@@ -149,9 +151,10 @@ def edit_comment(comment_id, post_id):
 # Route for deleting comment.
 @app.route("/delete_comment/<comment_id>")
 def delete_comment(comment_id):
+    active_tab = "blog"
     mongo.db.comments.remove({"_id": ObjectId(comment_id)})
     flash("Comment successfully deleted", "success-flash")
-    return redirect(url_for("get_posts"))
+    return redirect(url_for("get_posts", active_tab=active_tab))
 
 
 '''
@@ -162,10 +165,11 @@ associated with the post via post_id are also deleted.
 
 @app.route("/delete_workout/<post_id>", methods=["GET", "POST"])
 def delete_workout(post_id):
+    active_tab = "workout"
     mongo.db.posts.remove({"_id": ObjectId(post_id)})
     mongo.db.attendants.remove({"post_id": ObjectId(post_id)})
     flash("Post successfully deleted", "success-flash")
-    return redirect(url_for("get_posts"))
+    return redirect(url_for("get_posts", active_tab=active_tab))
 
 
 '''
@@ -176,10 +180,11 @@ comments associated with the post via post_id are also deleted.
 
 @app.route("/delete_blog/<post_id>", methods=["GET", "POST"])
 def delete_blog(post_id):
+    active_tab = "post"
     mongo.db.comments.remove({"post_id": ObjectId(post_id)})
     mongo.db.posts.remove({"_id": ObjectId(post_id)})
     flash("Post successfully deleted", "success-flash")
-    return redirect(url_for("get_posts"))
+    return redirect(url_for("get_posts", active_tab=active_tab))
 
 
 '''
@@ -344,7 +349,7 @@ def add_comment(username, post_id):
             "author": username
         }
         mongo.db.comments.insert_one(comment)
-        return redirect(url_for("get_posts"))
+        return redirect(url_for("get_posts", active_tab="blog"))
 
 
 @app.route("/attend/<username>/<post_id>")
@@ -355,7 +360,7 @@ def attend(username, post_id):
     print(attending_user)
     if attending_user:
         mongo.db.attendants.remove(attending_user)
-        return redirect(url_for("get_posts"))
+        return redirect(url_for("get_posts", active_tab="workout"))
     else:
         attendant = {
             "post_id": ObjectId(post_id),
@@ -363,7 +368,7 @@ def attend(username, post_id):
         }
     mongo.db.attendants.insert_one(attendant)
     attendants = mongo.db.attendants.find()
-    return redirect(url_for("get_posts", attendants=attendants))
+    return redirect(url_for("get_posts", active_tab="workout", attendants=attendants))
 
 
 @app.route("/logout")
