@@ -29,14 +29,14 @@
                 <h2 class="center-align">Profile Image</h2>
                 <p class="center-align">Enter a url for an image. If left blank, a default image will be displayed.</p>
             </div>
-            <form method="POST" method="POST" action="{{ url_for('edit_img', member_id=member._id) }}">
+            <form method="POST" action="{{ url_for('edit_img', member_id=member._id) }}">
                 <div class="row">
                     <div class="input-field col s10 offset-s1">
                         <i class="material-icons prefix">http</i>
                         <input id="img-url" name="img-url" type="text" class="validate"
                             oninvalid="this.setCustomValidity('Url must start with http(s): and end with .jpg, .png or .gif')"
                             oninput="this.setCustomValidity('')" maxlength="300" pattern="(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)">
-                        <label for="img_url">Enter url</label>
+                        <label for="img-url">Enter url</label>
                     </div>
                 </div>
                 <div class="row">
@@ -58,7 +58,7 @@
                     href="#delete-profile" class="modal-trigger">DELETE PROFILE</a>
             </div>
         </div>
-        <!-- Modal for delete blog-post -->
+        <!-- Modal for delete account -->
         <div id="delete-profile" class="modal delete-modal">
             <div class="modal-content">
                 <h4 class="center-align">Delete Member</h4>
