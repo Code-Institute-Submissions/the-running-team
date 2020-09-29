@@ -158,10 +158,15 @@ def edit_comment(comment_id, post_id):
 # Route for deleting comment.
 @app.route("/delete_comment/<comment_id>")
 def delete_comment(comment_id):
-    active_tab = "blog"
-    mongo.db.comments.remove({"_id": ObjectId(comment_id)})
-    flash("Comment successfully deleted", "success-flash")
-    return redirect(url_for("get_posts", active_tab=active_tab))
+    if session.get("user"):
+        if is_owner(comment_id):
+            mongo.db.comments.remove({"_id": ObjectId(comment_id)})
+            flash("Comment successfully deleted", "success-flash")
+            return redirect(url_for("get_posts", active_tab="blog"))
+        else:
+            flash("Authentication failed", "error-flash")
+            return redirect(url_for("get_posts", active_tab="blog"))
+    return redirect(url_for("get_posts", active_tab="blog"))
 
 
 '''
@@ -364,7 +369,6 @@ def add_comment(username, post_id):
 
 @app.route("/attend/<username>/<post_id>")
 def attend(username, post_id):
-    print(username)
     attending_user = mongo.db.attendants.find_one(
         {"attendant": username, "post_id": ObjectId(post_id)})
     print(attending_user)
@@ -388,13 +392,28 @@ def logout():
 
 
 #Helper functions
-
 #Generate random string. https://pynative.com/python-generate-random-string
 def get_random_string(length):
     letters = string.ascii_lowercase
     result_str = ''.join(random.choice(letters) for i in range(length))
-    print("Random string of length", length, "is:", result_str)
     return result_str
+
+
+'''
+Defensive function to prevent brute force deleting and editing,
+of comments that the user did not create. Checks if the session user 
+matches the "author" field of the comment.
+'''
+
+
+def is_owner(comment_id):
+    user = mongo.db.comments.find_one({"_id": ObjectId(comment_id)})
+    print(user)
+    if session.get("user") == user["author"]:
+        print(user["author"])
+        return True
+    else:
+        return False
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
