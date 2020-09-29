@@ -2,7 +2,7 @@
 {% block content %}
 <div class="row">
     <div class="col s12">
-        <h2 class="center-align capitalize">{{ member.first_name }} {{ member.last_name }}</h2>
+        <h1 class="center-align capitalize">{{ member.first_name }} {{ member.last_name }}</h1>
     </div>
 </div>
 <div class="row">
@@ -77,22 +77,22 @@
         </div>
         <!-- Member stats -->
         <div class="row">
-            <div class="col s12">
-                <h4>Stamina </h4>
+            <div class="col s12 profile-stats">
+                <h3>Stamina</h3>
                 <div class="progress">
                     <div class="determinate" style="width:{{ member.stamina }}" data-value="{{ member.stamina }}">
                     </div>
                 </div>
-                <h4>Strength: </h4>
+                <h3>Strength:</h3>
                 <div class="progress">
                     <div class="determinate" style="width:{{ member.strength }}" data-value="{{ member.strength }}">
                     </div>
                 </div>
-                <h4>Speed: </h4>
+                <h3>Speed:</h3>
                 <div class="progress">
                     <div class="determinate" style="width:{{ member.speed }}" data-value="{{ member.speed }}"></div>
                 </div>
-                <h4>General fitness:</h4>
+                <h3>General fitness:</h3>
                 <div class="progress">
                     <div class="determinate" style="width:{{ member.fitness }}" data-value="{{ member.fitness }}">
                     </div>
@@ -191,9 +191,6 @@
         {% else %}
         <p class="center-align">You are not attending any workouts.</p>
         {% endif %}
-
-
-
     </div>
 </div>
 
