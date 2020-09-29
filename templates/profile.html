@@ -3,6 +3,7 @@
 <div class="row">
     <div class="col s12">
         <h1 class="center-align capitalize">{{ member.first_name }} {{ member.last_name }}</h1>
+        <p class="center-align"><em>"{{ member.quote }}"</em></p>
     </div>
 </div>
 <div class="row">
@@ -54,8 +55,10 @@
         </div>
         <div class="row">
             <div class="col s12">
-                <a id="init-form" href="{{ url_for('edit_profile', user_id=member._id) }}">EDIT PROFILE</a> | <a
-                    href="#delete-profile" class="modal-trigger">DELETE PROFILE</a>
+                <div class="center-align">
+                    <a id="init-form" href="{{ url_for('edit_profile', user_id=member._id) }}">EDIT PROFILE</a> | <a
+                        href="#delete-profile" class="modal-trigger">DELETE PROFILE</a>
+                </div>
             </div>
         </div>
         <!-- Modal for delete account -->
@@ -78,7 +81,7 @@
         <!-- Member stats -->
         <div class="row">
             <div class="col s12 profile-stats">
-                <h3>Stamina</h3>
+                <h3 class="no-top-mg">Stamina</h3>
                 <div class="progress">
                     <div class="determinate" style="width:{{ member.stamina }}" data-value="{{ member.stamina }}">
                     </div>
@@ -97,7 +100,6 @@
                     <div class="determinate" style="width:{{ member.fitness }}" data-value="{{ member.fitness }}">
                     </div>
                 </div>
-                <blockquote><em>{{ member.quote }}</em></blockquote>
             </div>
         </div>
     </div>
