@@ -226,7 +226,7 @@ main {
     background-color: #0d47a1; /* Set a background color */
     color: white; /* Text color */
     cursor: pointer; /* Add a mouse pointer on hover */
-    padding: 0.4; /* Some padding */
+    padding: 0.8rem; /* Some padding */
     border-radius: 10px; /* Rounded corners */
     opacity: 0.7;
   }
