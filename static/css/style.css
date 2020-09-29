@@ -31,6 +31,10 @@ h3 {
     font-family: "Oswald", sans-serif;
 }
 
+.profile-stats h3 {
+    font-size: 1.5rem;
+} 
+
 .form-tip {
     font-style: italic;
     font-family: "Roboto", sans-serif;
