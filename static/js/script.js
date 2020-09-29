@@ -5,7 +5,7 @@ $(document).ready(function () {
   $('.tabs').tabs();
   $('.datepicker').datepicker({
     autoClose: true,
-    minDate: new Date() 
+    minDate: new Date()
   });
   $('.timepicker').timepicker();
   $('.collapsible').collapsible();
@@ -19,40 +19,35 @@ $(document).ready(function () {
 
   /*
   This function iterates through all the progressbars, gets its data-value, and
-  sets a class(color) to the progressbar according to the data-value.
+  sets a width and class(color) to the progressbar according to the data-value.
   */
-  function setProgBarColor() {
+  function setProgBar() {
     let i = 0;
     let progBar = document.getElementsByClassName("determinate")
     while (i < progBar.length) {
 
       let progBar = document.getElementsByClassName("determinate")[i];
       let progValue = progBar.getAttribute("data-value");
-      console.log(progValue);
-      if (progValue == "100%") {
-        console.log("setting color")
-        $(progBar).addClass("light-green accent-1");
+      if (progValue == "Very High") {
+        $(progBar).addClass("light-green accent-1").width("100%");
       }
-      else if (progValue == "80%") {
-        console.log("setting color")
-        $(progBar).addClass("light-blue");
+      else if (progValue == "High") {
+        $(progBar).addClass("light-blue").width("80%");
       }
-      else if (progValue == "60%") {
-        console.log("setting color")
-        $(progBar).addClass("light-blue lighten-1");
+      else if (progValue == "Medium") {
+        $(progBar).addClass("light-blue lighten-1").width("60%");
       }
-      else if (progValue == "40%") {
-        console.log("setting color")
-        $(progBar).addClass("light-blue lighten-2");
+      else if (progValue == "Low") {
+        $(progBar).addClass("light-blue lighten-2").width("40%");
       }
       else {
-        $(progBar).addClass("orange lighten-2");
+        $(progBar).addClass("orange lighten-2").width("20%");
       }
       i++;
     }
   }
-  setProgBarColor();
-  setTimeout(function() {
+  setProgBar();
+  setTimeout(function () {
     $(".flashes").fadeOut('slow');
-}, 5000);
+  }, 5000);
 });
