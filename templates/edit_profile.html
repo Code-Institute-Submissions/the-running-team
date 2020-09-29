@@ -76,14 +76,18 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col s12">
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <textarea id="slogan" name="slogan" class="materialize-textarea" data-length="120"
-                                maxlength="120">{{ member.quote }}</textarea>
-                            <label for="slogan">Do you have a slogan or any words of motivation?</label>
-                        </div>
-                    </div>
+                <div class="input-field col s12">
+                    <textarea id="slogan" name="slogan" class="materialize-textarea" data-length="120"
+                        maxlength="120">{{ member.quote }}</textarea>
+                    <label for="slogan">Do you have a slogan or any words of motivation? <span class="form-tip">(Optional)</span></label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="img-url" value="{{ member.img }}" name="img-url" type="text" class="validate"
+                        oninvalid="this.setCustomValidity('Url must start with http(s): and end with .jpg, .png or .gif')"
+                        oninput="this.setCustomValidity('')" maxlength="300" pattern="(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)">
+                    <label for="img-url">Enter url for an image <span class="form-tip">(Optional)</span></label>
                 </div>
             </div>
             <button class="btn-large waves-effect waves-light blue darken-4" type="submit" name="action">Save
