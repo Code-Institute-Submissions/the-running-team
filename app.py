@@ -218,7 +218,8 @@ def register():
             "stamina": request.form.get("stamina"),
             "strength": request.form.get("strength"),
             "speed": request.form.get("speed"),
-            "quote": request.form.get("slogan")
+            "quote": request.form.get("slogan"),
+            "img": request.form.get("img-url")
         }
         mongo.db.team_members.insert_one(new_member)
 
@@ -301,7 +302,8 @@ def edit_profile(user_id):
             "stamina": request.form.get("stamina"),
             "strength": request.form.get("strength"),
             "speed": request.form.get("speed"),
-            "quote": request.form.get("slogan")
+            "quote": request.form.get("slogan"),
+            "img": request.form.get("img-url")
         }
 
         mongo.db.team_members.update(
