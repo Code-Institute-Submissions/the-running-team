@@ -191,7 +191,7 @@
                             {% if session.user|lower == post.author %}
                                 <div class="small-top-mg">
                                     <a href="{{ url_for('edit_workout', post_id=post._id) }}">EDIT</a> | <a class="modal-trigger"
-                                        href="#{{ post._id }}">DELETE</a>
+                                        href="#{{ post.element_id }}">DELETE</a>
                                 </div>
                             {% endif %}
                         </div>
@@ -199,7 +199,7 @@
                 </div>
 
                 <!-- Modal for delete workout -->
-                <div id="{{ post._id }}" class="modal delete-modal">
+                <div id="{{ post.element_id }}" class="modal delete-modal">
                     <div class="modal-content">
                         <h4 class="center-align">Delete post</h4>
                         <p class="center-align">Are you sure you want to delete this post?</p>
@@ -234,7 +234,7 @@
                             <p class="line-breaks">{{ post.description }}</p>
                             {% if session.user|lower == post.author %}
                                 <div>
-                                    <a href="{{ url_for('edit_blog' , post_id=post._id) }}">EDIT</a> | <a href="#{{ post._id }}"
+                                    <a href="{{ url_for('edit_blog' , post_id=post._id) }}">EDIT</a> | <a href="#{{ post.element_id }}"
                                         class="modal-trigger">DELETE</a>
                                 </div>
                             {% endif %}
@@ -278,7 +278,7 @@
                                                         <a href="{{ url_for('edit_comment', comment_id=comment._id, post_id=post._id) }}"><i
                                                         class="material-icons right">create</i></a>
                                                         <a class="modal-trigger"
-                                                        href="#{{ comment._id }}"><i class="material-icons right">delete</i></a>
+                                                        href="#{{ comment.element_id }}"><i class="material-icons right">delete</i></a>
                                                     </div>
                                                     <p><em>{{ comment.comment }}</em></p>
                                                 {% else %}
@@ -286,7 +286,7 @@
                                                 {% endif %}
 
                                                 <!-- Modal for delete comment -->
-                                                <div id="{{ comment._id }}" class="modal delete-modal">
+                                                <div id="{{ comment.element_id }}" class="modal delete-modal">
                                                     <div class="modal-content">
                                                         <h4 class="center-align">Delete Comment</h4>
                                                         <p class="center-align">Are you sure you want to delete this comment?</p>
@@ -312,7 +312,7 @@
                 </div>
 
                 <!-- Modal for delete blog-post -->
-                <div id="{{post._id}}" class="modal delete-modal">
+                <div id="{{post.element_id}}" class="modal delete-modal">
                     <div class="modal-content">
                         <h4 class="center-align">Delete post</h4>
                         <p class="center-align">Are you sure you want to delete this post?</p>
