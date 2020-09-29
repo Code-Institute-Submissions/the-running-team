@@ -31,6 +31,11 @@ h3 {
     font-family: "Oswald", sans-serif;
 }
 
+.form-tip {
+    font-style: italic;
+    font-family: "Roboto", sans-serif;
+}
+
 .blog-title {
     border-top: 2px solid rgba(0, 0, 0, 0.4);
     border-bottom: 2px solid rgba(0, 0, 0, 0.4);
