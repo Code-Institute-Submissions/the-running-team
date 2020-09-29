@@ -1,4 +1,6 @@
 import os
+import random
+import string
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -57,6 +59,7 @@ def add_post():
                     "description": request.form.get("main-content"),
                     "author": session["user"],
                     "category": "blog-post",
+                    "element_id": get_random_string(20)
                 }
                 mongo.db.posts.insert_one(new_post)
                 return redirect(url_for("get_posts", active_tab="blog"))
@@ -69,7 +72,8 @@ def add_post():
                     "location": request.form.get("location"),
                     "description": request.form.get("description"),
                     "author": session["user"],
-                    "category": "workout"
+                    "category": "workout",
+                    "element_id": get_random_string(20)
                 }
                 mongo.db.posts.insert_one(new_post)
                 return redirect(url_for("get_posts", active_tab="workout"))
@@ -94,7 +98,8 @@ def edit_workout(post_id):
             "location": request.form.get("location"),
             "description": request.form.get("description"),
             "author": session["user"],
-            "category": "workout"
+            "category": "workout",
+            "element_id": get_random_string(20)
         }
         mongo.db.posts.update({"_id": ObjectId(post_id)}, updated_post)
         flash("Your post was successfully updated.", "success-flash")
@@ -116,7 +121,8 @@ def edit_blog(post_id):
             "title": request.form.get("title"),
             "description": request.form.get("main-content"),
             "author": session["user"],
-            "category": "blog-post"
+            "category": "blog-post",
+            "element_id": get_random_string(20)
         }
         mongo.db.posts.update({"_id": ObjectId(post_id)}, updated_post)
         flash("Your post was successfully updated.", "success-flash")
@@ -137,7 +143,8 @@ def edit_comment(comment_id, post_id):
         updated_comment = {
             "post_id": ObjectId(post_id),
             "comment": request.form.get("comment"),
-            "author": session["user"]
+            "author": session["user"],
+            "element_id": get_random_string(20)
         }
         mongo.db.comments.update(
             {"_id": ObjectId(comment_id)}, updated_comment)
@@ -348,7 +355,8 @@ def add_comment(username, post_id):
         comment = {
             "post_id": ObjectId(post_id),
             "comment": request.form.get("comment"),
-            "author": username
+            "author": username,
+            "element_id": get_random_string(20)
         }
         mongo.db.comments.insert_one(comment)
         return redirect(url_for("get_posts", active_tab="blog"))
@@ -378,6 +386,15 @@ def logout():
     session.pop("user", None)
     return redirect(url_for('get_members'))
 
+
+#Helper functions
+
+#Generate random string. https://pynative.com/python-generate-random-string
+def get_random_string(length):
+    letters = string.ascii_lowercase
+    result_str = ''.join(random.choice(letters) for i in range(length))
+    print("Random string of length", length, "is:", result_str)
+    return result_str
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
