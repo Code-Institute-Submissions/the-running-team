@@ -180,7 +180,7 @@ comments associated with the post via post_id are also deleted.
 
 @app.route("/delete_blog/<post_id>", methods=["GET", "POST"])
 def delete_blog(post_id):
-    active_tab = "post"
+    active_tab = "blog"
     mongo.db.comments.remove({"post_id": ObjectId(post_id)})
     mongo.db.posts.remove({"_id": ObjectId(post_id)})
     flash("Post successfully deleted", "success-flash")
@@ -282,7 +282,7 @@ def profile(username):
             {"username": session["user"]})
         return render_template("profile.html", member=member,
                                all_posts=all_posts, users_posts=users_posts,
-                               attendants=attendants)
+                               attendants=attendants, active_tab="workout")
     else:
         return redirect(url_for("login"))
 
