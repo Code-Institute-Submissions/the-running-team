@@ -30,12 +30,13 @@ def get_members():
 @app.route("/get_posts/<active_tab>")
 def get_posts(active_tab):
     if session.get("user"):
-        posts = list(mongo.db.posts.find().sort("$natural", -1))
+        workouts = list(mongo.db.posts.find({"category": "workout"}).sort("$natural", -1))
+        blogs = list(mongo.db.posts.find({"category": "blog-post"}).sort("$natural", -1))
         comments = list(mongo.db.comments.find().sort("$natural", -1))
         attendants = list(mongo.db.attendants.find())
         print(active_tab)
-        return render_template("training_blog.html", posts=posts,
-                               comments=comments, attendants=attendants,
+        return render_template("training_blog.html", workouts=workouts,
+                               blogs=blogs, comments=comments, attendants=attendants,
                                active_tab=active_tab)
     else:
         return redirect(url_for("login"))
@@ -139,17 +140,20 @@ form into database. Else, render template.
 
 @app.route("/edit_comment/<comment_id>/<post_id>", methods=["GET", "POST"])
 def edit_comment(comment_id, post_id):
-    if request.method == "POST":
-        updated_comment = {
-            "post_id": ObjectId(post_id),
-            "comment": request.form.get("comment"),
-            "author": session["user"],
-            "element_id": get_random_string(20)
-        }
-        mongo.db.comments.update(
-            {"_id": ObjectId(comment_id)}, updated_comment)
-        flash("Your comment was successfully updated.", "success-flash")
-        return redirect(url_for("get_posts", active_tab="blog"))
+    if session.get("user"):
+        if is_owner(comment_id):
+            if request.method == "POST":
+                updated_comment = {
+                    "post_id": ObjectId(post_id),
+                    "comment": request.form.get("comment"),
+                    "author": session["user"],
+                    "element_id": get_random_string(20)
+                }
+                mongo.db.comments.update(
+                    {"_id": ObjectId(comment_id)}, updated_comment)
+                flash("Your comment was successfully updated.",
+                      "success-flash")
+                return redirect(url_for("get_posts", active_tab="blog"))
     comment = mongo.db.comments.find_one({"_id": ObjectId(comment_id)})
     return render_template("edit_comment.html", comment=comment,
                            post_id=post_id)
@@ -408,9 +412,7 @@ matches the "author" field of the comment.
 
 def is_owner(comment_id):
     user = mongo.db.comments.find_one({"_id": ObjectId(comment_id)})
-    print(user)
     if session.get("user") == user["author"]:
-        print(user["author"])
         return True
     else:
         return False
