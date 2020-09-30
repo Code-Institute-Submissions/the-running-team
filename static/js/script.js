@@ -1,5 +1,6 @@
 $(document).ready(function () {
-  "use strict"
+  "use strict";
+
   $('.sidenav').sidenav();
   $('select').formSelect();
   $('.modal').modal();
@@ -24,7 +25,7 @@ $(document).ready(function () {
   */
   function setProgBar() {
     let i = 0;
-    let progBar = document.getElementsByClassName("determinate")
+    let progBar = document.getElementsByClassName("determinate");
     while (i < progBar.length) {
 
       let progBar = document.getElementsByClassName("determinate")[i];
@@ -60,7 +61,9 @@ $(document).ready(function () {
   let mybutton = document.getElementById("back-to-top");
 
   // When the user scrolls down 500px from the top of the document, show the button
-  window.onscroll = function () { scrollFunction() };
+  window.onscroll = function () {
+    scrollFunction();
+  };
 
   function scrollFunction() {
     if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
