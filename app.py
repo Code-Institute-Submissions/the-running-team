@@ -83,8 +83,10 @@ def add_post():
 
 
 '''
-Route for editing a workout. If method is post, insert data from
-form into database. Else, render template.
+Route for editing workout. First check if there's a user cookie.
+If not, return to login. Else, check if user owns the post. If
+not, flash error message. Else, if POST, update record. Else, render
+template.
 '''
 
 
@@ -107,15 +109,19 @@ def edit_workout(post_id):
                 mongo.db.posts.update({"_id": ObjectId(post_id)}, updated_post)
                 flash("Your post was successfully updated.", "success-flash")
                 return redirect(url_for("get_posts", active_tab="workout"))
+            else:
+                post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
+                return render_template("edit_workout.html", post=post) 
         else:
             flash("Authentication failed", "error-flash")
-    post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
-    return render_template("edit_workout.html", post=post)
+    return redirect(url_for("login"))
 
 
 '''
-Route for editing a blog post. If method is post, insert data from
-form into database. Else, render template.
+Route for editing blog post. First check if there's a user cookie.
+If not, return to login. Else, check if user owns the post. If
+not, flash error message. Else, if POST, update record. Else, render
+template page.
 '''
 
 
@@ -134,15 +140,21 @@ def edit_blog(post_id):
                 mongo.db.posts.update({"_id": ObjectId(post_id)}, updated_post)
                 flash("Your post was successfully updated.", "success-flash")
                 return redirect(url_for("get_posts", active_tab="blog"))
+            else:
+                post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
+                return render_template("edit_blog.html", post=post)
         else:
             flash("Authentication failed.", "error-flash")
-    post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
-    return render_template("edit_blog.html", post=post)
+    return redirect(url_for("login"))
+    
+    
 
 
 '''
-Route for editing a comment. If method is post, insert data from
-form into database. Else, render template.
+Route for editing comment. First check if there's a user cookie.
+If not, return to login. Else, check if user owns the comment. If
+not, flash error message. Else, if POST, update record. Return to blog
+page. Else, render template.
 '''
 
 
@@ -162,12 +174,22 @@ def edit_comment(comment_id, post_id):
                 flash("Your comment was successfully updated.",
                       "success-flash")
                 return redirect(url_for("get_posts", active_tab="blog"))
-    comment = mongo.db.comments.find_one({"_id": ObjectId(comment_id)})
-    return render_template("edit_comment.html", comment=comment,
-                           post_id=post_id)
+            else:
+                comment = mongo.db.comments.find_one({"_id": ObjectId(comment_id)})
+                return render_template("edit_comment.html", comment=comment,
+                                    post_id=post_id)
+        else:
+            flash("Authentication failed", "error-flash")   
+    return redirect(url_for("login"))
 
 
-# Route for deleting comment.
+
+'''
+Route for deleting comment. First check if there's a user cookie.
+If not, return to login. Else, check if user owns the comment. If
+not, flash error message. Else, remove record. Return to blog page.
+'''
+
 @app.route("/delete_comment/<comment_id>")
 def delete_comment(comment_id):
     if session.get("user"):
@@ -178,12 +200,13 @@ def delete_comment(comment_id):
         else:
             flash("Authentication failed", "error-flash")
             return redirect(url_for("get_posts", active_tab="blog"))
-    return redirect(url_for("get_posts", active_tab="blog"))
+    return redirect(url_for("login"))
 
 
 '''
-Route for deleting workout. When a workout is deleted, all attendants,
-associated with the post via post_id are also deleted.
+Route for deleting workout post. First check if there's a user cookie.
+If not, return to login. Else, check if user owns the current post. If
+not, flash error message. Else, remove record. Return to blog page.
 '''
 
 
@@ -201,8 +224,9 @@ def delete_workout(post_id):
 
 
 '''
-Route for deleting blog post. When a blog post is deleted, all
-comments associated with the post via post_id are also deleted.
+Route for deleting blog post. First check if there's a user cookie.
+If not, return to login. Else, check if user owns the current post. If
+not, flash error message. Else, remove record. Return to blog page.
 '''
 
 
@@ -320,32 +344,53 @@ def profile(username):
         return redirect(url_for("login"))
 
 
+'''
+Route for editing profile. First check for user cookie. If not, return
+to login. Else, check if user cookie matches user_id. If not, return to
+logout with error flash. Else, and if POST, update record. Else, return
+template.
+ '''
+
+
 @app.route("/edit_profile/<user_id>", methods=["GET", "POST"])
 def edit_profile(user_id):
-    if request.method == "POST":
-        updated_profile = {
-            "username": mongo.db.team_members.find_one(
-                {"_id": ObjectId(user_id)})["username"],
-            "password": mongo.db.team_members.find_one(
-                {"_id": ObjectId(user_id)})["password"],
-            "first_name": request.form.get("first_name").lower(),
-            "last_name": request.form.get("last_name").lower(),
-            "fitness": request.form.get("fitness"),
-            "stamina": request.form.get("stamina"),
-            "strength": request.form.get("strength"),
-            "speed": request.form.get("speed"),
-            "quote": request.form.get("slogan"),
-            "img": request.form.get("img-url")
-        }
+    if session.get("user"):
+        if owns_account(user_id):
+            if request.method == "POST":
+                updated_profile = {
+                    "username": mongo.db.team_members.find_one(
+                        {"_id": ObjectId(user_id)})["username"],
+                    "password": mongo.db.team_members.find_one(
+                        {"_id": ObjectId(user_id)})["password"],
+                    "first_name": request.form.get("first_name").lower(),
+                    "last_name": request.form.get("last_name").lower(),
+                    "fitness": request.form.get("fitness"),
+                    "stamina": request.form.get("stamina"),
+                    "strength": request.form.get("strength"),
+                    "speed": request.form.get("speed"),
+                    "quote": request.form.get("slogan"),
+                    "img": request.form.get("img-url")
+                }
 
-        mongo.db.team_members.update(
-            {"_id": ObjectId(user_id)}, updated_profile)
-        username = mongo.db.team_members.find_one(
-            {"_id": ObjectId(user_id)})["username"]
-        flash("Profile successfully updated", "success-flash")
-        return redirect(url_for("profile", username=username))
-    member = mongo.db.team_members.find_one({"_id": ObjectId(user_id)})
-    return render_template("edit_profile.html", member=member)
+                mongo.db.team_members.update(
+                    {"_id": ObjectId(user_id)}, updated_profile)
+                username = mongo.db.team_members.find_one(
+                    {"_id": ObjectId(user_id)})["username"]
+                flash("Profile successfully updated", "success-flash")
+                return redirect(url_for("profile", username=username))
+            else:
+                member = mongo.db.team_members.find_one({"_id": ObjectId(user_id)})
+                return render_template("edit_profile.html", member=member)
+        else:
+            flash("Authentication failed", "error-flash")
+            return redirect(url_for("logout"))
+    return redirect(url_for("login"))
+
+
+'''
+Route for updating image url. If POST, update record. Else, return
+template.
+'''
 
 
 @app.route("/edit_img/<member_id>", methods=["GET", "POST"])
@@ -358,14 +403,27 @@ def edit_img(member_id):
     return redirect(url_for("profile", username=session["user"]))
 
 
+
+'''
+Route for deleting profile. First, check for user cookie. If not,
+return to logout. Else, check that user owns the profile. If not,
+return to logout with error flash. Else, removeuser's records of
+comments, attendants and the profile itself. Return to logout.
+'''
+
+
 @app.route("/delete_member/<member_id>", methods=["GET", "POST"])
 def delete_member(member_id):
-    print(member_id)
-    delete_posts(member_id)
-    mongo.db.comments.remove({"author": session["user"]})
-    mongo.db.attendants.remove({"attendant": session["user"]})
-    mongo.db.team_members.remove({"_id": ObjectId(member_id)})
-    flash("Team member deleted", "success-flash")
+    if session.get("user"):
+        if owns_account(member_id):
+            delete_posts(member_id)
+            mongo.db.comments.remove({"author": session["user"]})
+            mongo.db.attendants.remove({"attendant": session["user"]})
+            mongo.db.team_members.remove({"_id": ObjectId(member_id)})
+            flash("Team member deleted", "success-flash")
+            return redirect(url_for("logout"))
+        else:
+            flash("Authentication failed", "error-flash")
     return redirect(url_for("logout"))
 
 
@@ -374,6 +432,9 @@ def delete_posts(member_id):
         {"_id": ObjectId(member_id)})["username"]})
 
 
+
+
+# Route for adding a comment. If POST, insert data.
 @app.route("/add_comment/<username>/<post_id>", methods=["GET", "POST"])
 def add_comment(username, post_id):
     if request.method == "POST":
@@ -387,11 +448,17 @@ def add_comment(username, post_id):
         return redirect(url_for("get_posts", active_tab="blog"))
 
 
+'''
+Route for attending a workout. First check if there's a record with
+the user's username and post_id matching post_id argument. If
+not, insert data. Else, remove record. Return to blog.
+'''
+
+
 @app.route("/attend/<username>/<post_id>")
 def attend(username, post_id):
     attending_user = mongo.db.attendants.find_one(
         {"attendant": username, "post_id": ObjectId(post_id)})
-    print(attending_user)
     if attending_user:
         mongo.db.attendants.remove(attending_user)
         return redirect(url_for("get_posts", active_tab="workout"))
@@ -405,6 +472,7 @@ def attend(username, post_id):
     return redirect(url_for("get_posts", active_tab="workout", attendants=attendants))
 
 
+#Route for logging out. Removes session cookie.
 @app.route("/logout")
 def logout():
     session.pop("user", None)
@@ -427,18 +495,42 @@ matches the "author" field of the comment.
 
 
 def owns_comment(comment_id):
-    user = mongo.db.comments.find_one({"_id": ObjectId(comment_id)})
-    if session.get("user") == user["author"]:
+    comment = mongo.db.comments.find_one({"_id": ObjectId(comment_id)})
+    if session.get("user") == comment["author"]:
         return True
     else:
         return False
 
+
+'''
+Defensive function to prevent brute force deleting and editing,
+of posts that the user did not create. Checks if the session user 
+matches the "author" field of the comment.
+'''
+
+
 def owns_post(post_id):
-    user = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
-    if session.get("user") == user["author"]:
+    post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
+    if session.get("user") == post["author"]:
         return True
     else:
         return False
+
+
+'''
+Defensive function to prevent brute force deleting and editing,
+of profile that the user did not create. Checks if the session user 
+matches the "author" field of the comment.
+'''
+
+
+def owns_account(member_id):
+    user = mongo.db.team_members.find_one({"_id": ObjectId(member_id)})
+    if session.get("user") == user["username"]:
+        return True
+    else:
+        return False
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
