@@ -138,7 +138,7 @@
 
     <!-- Workouts tab -->
     {% set is_attending = namespace(attends=False) %}
-    {% set workout = namespace(has_attendants=False) %}
+    {% set this_workout = namespace(has_attendants=False) %}
     <div id="workouts" class="col s12">
         <button id="add-workout" data-target="new-workout" class="btn-large modal-trigger blue darken-4"><i
                 class="large material-icons left">add</i>New Post</button>
@@ -166,15 +166,15 @@
                             <p class="line-breaks">{{ workout.description }}</p>
                             <div class="attendants">
                                 {% for attendant in attendants %}
-                                    {% if attendant.post_id == post._id %}
-                                        {% set workout.has_attendants = True %}
+                                    {% if attendant.post_id == workout._id %}
+                                        {% set this_workout.has_attendants = True %}
                                     {% endif %}
                                 {% endfor %}
-                                {% if workout.has_attendants == True %}
+                                {% if this_workout.has_attendants == True %}
                                     <p class="small-bottom-mg"><b>Attending Team Members:</b></p>
-                                    {% set workout.has_attendants = False %}
+                                    {% set this_workout.has_attendants = False %}
                                 {% endif %}
-                                {% for attendant in attendants if attendant.post_id == post._id  %}
+                                {% for attendant in attendants if attendant.post_id == workout._id  %}
                                     <div class="attendant">{{ attendant.attendant }}</div>
                                     {% if attendant.attendant == session["user"] %}
                                         {% set is_attending.attends = True %}
@@ -248,7 +248,7 @@
                             <li>
                                 {% set count_comments = namespace(number=0) %}
                                 {% for comment in comments %}
-                                    {% if comment.post_id == post._id %}
+                                    {% if comment.post_id == blog._id %}
                                         {% set count_comments.number = count_comments.number + 1 %}
                                     {% endif %}
                                 {% endfor %}
@@ -274,12 +274,12 @@
                                     </div>
                                     <div class="comments">
                                         {% for comment in comments %}
-                                            {% if comment.post_id == post._id %}
+                                            {% if comment.post_id == blog._id %}
                                                 <p class="comment">
                                                 <p class="grey-text"><em>Posted by: {{ comment.author }}</em></p>
                                                 {% if session.user|lower == comment.author %}
                                                     <div class="small-top-mg">
-                                                        <a href="{{ url_for('edit_comment', comment_id=comment._id, post_id=post._id) }}"><i
+                                                        <a href="{{ url_for('edit_comment', comment_id=comment._id, post_id=blog._id) }}"><i
                                                         class="material-icons right">create</i></a>
                                                         <a class="modal-trigger"
                                                         href="#{{ comment.element_id }}"><i class="material-icons right">delete</i></a>
