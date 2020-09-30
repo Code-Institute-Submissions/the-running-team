@@ -57,7 +57,7 @@ $(document).ready(function () {
   Code for displaying/hiding back-to-top button. Taken from 
   https://www.w3schools.com/howto/howto_js_scroll_to_top.asp
   */
-  mybutton = document.getElementById("back-to-top");
+  let mybutton = document.getElementById("back-to-top");
 
   // When the user scrolls down 500px from the top of the document, show the button
   window.onscroll = function () { scrollFunction() };
