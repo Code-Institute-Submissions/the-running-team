@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  "use strict"
   $('.sidenav').sidenav();
   $('select').formSelect();
   $('.modal').modal();
