@@ -90,21 +90,25 @@ form into database. Else, render template.
 
 @app.route("/edit_workout/<post_id>", methods=["GET", "POST"])
 def edit_workout(post_id):
-    if request.method == "POST":
-        updated_post = {
-            "title": request.form.get("title"),
-            "date": request.form.get("date"),
-            "time": request.form.get("time"),
-            "duration": request.form.get("duration"),
-            "location": request.form.get("location"),
-            "description": request.form.get("description"),
-            "author": session["user"],
-            "category": "workout",
-            "element_id": get_random_string(20)
-        }
-        mongo.db.posts.update({"_id": ObjectId(post_id)}, updated_post)
-        flash("Your post was successfully updated.", "success-flash")
-        return redirect(url_for("get_posts", active_tab="workout"))
+    if session.get("user"):
+        if owns_post(post_id):
+            if request.method == "POST":
+                updated_post = {
+                    "title": request.form.get("title"),
+                    "date": request.form.get("date"),
+                    "time": request.form.get("time"),
+                    "duration": request.form.get("duration"),
+                    "location": request.form.get("location"),
+                    "description": request.form.get("description"),
+                    "author": session["user"],
+                    "category": "workout",
+                    "element_id": get_random_string(20)
+                }
+                mongo.db.posts.update({"_id": ObjectId(post_id)}, updated_post)
+                flash("Your post was successfully updated.", "success-flash")
+                return redirect(url_for("get_posts", active_tab="workout"))
+        else:
+            flash("Authentication failed", "error-flash")
     post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
     return render_template("edit_workout.html", post=post)
 
@@ -117,17 +121,21 @@ form into database. Else, render template.
 
 @app.route("/edit_blog/<post_id>", methods=["GET", "POST"])
 def edit_blog(post_id):
-    if request.method == "POST":
-        updated_post = {
-            "title": request.form.get("title"),
-            "description": request.form.get("main-content"),
-            "author": session["user"],
-            "category": "blog-post",
-            "element_id": get_random_string(20)
-        }
-        mongo.db.posts.update({"_id": ObjectId(post_id)}, updated_post)
-        flash("Your post was successfully updated.", "success-flash")
-        return redirect(url_for("get_posts", active_tab="blog"))
+    if session.get("user"):
+        if owns_post(post_id):
+            if request.method == "POST":
+                updated_post = {
+                    "title": request.form.get("title"),
+                    "description": request.form.get("main-content"),
+                    "author": session["user"],
+                    "category": "blog-post",
+                    "element_id": get_random_string(20)
+                }
+                mongo.db.posts.update({"_id": ObjectId(post_id)}, updated_post)
+                flash("Your post was successfully updated.", "success-flash")
+                return redirect(url_for("get_posts", active_tab="blog"))
+        else:
+            flash("Authentication failed.", "error-flash")
     post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
     return render_template("edit_blog.html", post=post)
 
@@ -141,7 +149,7 @@ form into database. Else, render template.
 @app.route("/edit_comment/<comment_id>/<post_id>", methods=["GET", "POST"])
 def edit_comment(comment_id, post_id):
     if session.get("user"):
-        if is_owner(comment_id):
+        if owns_comment(comment_id):
             if request.method == "POST":
                 updated_comment = {
                     "post_id": ObjectId(post_id),
@@ -163,7 +171,7 @@ def edit_comment(comment_id, post_id):
 @app.route("/delete_comment/<comment_id>")
 def delete_comment(comment_id):
     if session.get("user"):
-        if is_owner(comment_id):
+        if owns_comment(comment_id):
             mongo.db.comments.remove({"_id": ObjectId(comment_id)})
             flash("Comment successfully deleted", "success-flash")
             return redirect(url_for("get_posts", active_tab="blog"))
@@ -181,11 +189,15 @@ associated with the post via post_id are also deleted.
 
 @app.route("/delete_workout/<post_id>", methods=["GET", "POST"])
 def delete_workout(post_id):
-    active_tab = "workout"
-    mongo.db.posts.remove({"_id": ObjectId(post_id)})
-    mongo.db.attendants.remove({"post_id": ObjectId(post_id)})
-    flash("Post successfully deleted", "success-flash")
-    return redirect(url_for("get_posts", active_tab=active_tab))
+    if session.get("user"):
+        if owns_post(post_id):
+            mongo.db.posts.remove({"_id": ObjectId(post_id)})
+            mongo.db.attendants.remove({"post_id": ObjectId(post_id)})
+            flash("Post successfully deleted", "success-flash")
+            return redirect(url_for("get_posts", active_tab="workout"))
+        else:
+            flash("Authentication failed.", "error-flash")
+    return redirect(url_for("login"))
 
 
 '''
@@ -196,11 +208,15 @@ comments associated with the post via post_id are also deleted.
 
 @app.route("/delete_blog/<post_id>", methods=["GET", "POST"])
 def delete_blog(post_id):
-    active_tab = "blog"
-    mongo.db.comments.remove({"post_id": ObjectId(post_id)})
-    mongo.db.posts.remove({"_id": ObjectId(post_id)})
-    flash("Post successfully deleted", "success-flash")
-    return redirect(url_for("get_posts", active_tab=active_tab))
+    if session.get("user"):
+        if owns_post(post_id):
+            mongo.db.comments.remove({"post_id": ObjectId(post_id)})
+            mongo.db.posts.remove({"_id": ObjectId(post_id)})
+            flash("Post successfully deleted", "success-flash")
+            return redirect(url_for("get_posts", active_tab="blog"))
+        else:
+            flash("Authentication failed.", "error-flash")
+    return redirect(url_for("login")) 
 
 
 '''
@@ -410,8 +426,15 @@ matches the "author" field of the comment.
 '''
 
 
-def is_owner(comment_id):
+def owns_comment(comment_id):
     user = mongo.db.comments.find_one({"_id": ObjectId(comment_id)})
+    if session.get("user") == user["author"]:
+        return True
+    else:
+        return False
+
+def owns_post(post_id):
+    user = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
     if session.get("user") == user["author"]:
         return True
     else:
