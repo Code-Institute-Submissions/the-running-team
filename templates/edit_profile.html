@@ -6,16 +6,14 @@
     <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('edit_profile', user_id=member._id) }}">
         <div class="card-panel">
             <div class="row">
-                <div class="input-field col s12">
+                <div class="input-field col l6 s12">
                     <input id="first_name" value="{{ member.first_name }}" name="first_name" type="text"
                         class="validate"
                         oninvalid="this.setCustomValidity('Enter first name. Maximum 50 characters, no blank space.')"
                         oninput="this.setCustomValidity('')" minlength="2" maxlength="50" pattern="^[\S]+$" required>
                     <label for="first_name">First Name</label>
                 </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
+                <div class="input-field col l6 s12">
                     <input id="last_name" value="{{ member.last_name }}" name="last_name" type="text" class="validate"
                         oninvalid="this.setCustomValidity('Enter last name. Maximum 50 characters, no blank space.')"
                         oninput="this.setCustomValidity('')" minlength="2" maxlength="50" pattern="^[\S]+$" required>
@@ -23,7 +21,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s12">
+                <div class="input-field col l6 s12">
                     <select id="fitness" class="validate" name="fitness" required>
                     <option class="initial-value" value="{{ member.fitness }}" selected>{{ member.fitness }}
                         </option>
@@ -35,9 +33,7 @@
                     </select>
                     <label for="fitness">Level of general fitness</label>
                 </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
+                <div class="input-field col l6 s12">
                     <select id="stamina" class="validate" name="stamina" required>
                     <option value="{{ member.stamina }}" selected>{{ member.stamina }}</option>
                     <option value="Very Low">Very Low</option>
@@ -50,7 +46,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s12">
+                <div class="input-field col l6 s12">
                     <select id="strength" class="validate" name="strength" required>
                     <option value="{{ member.strength }}" selected>{{ member.strength }}</option>
                     <option value="Very Low">Very Low</option>
@@ -61,9 +57,7 @@
                     </select>
                     <label for="strength">Level of Strength</label>
                 </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
+                <div class="input-field col l6 s12">
                     <select id="speed" class="validate" name="speed" required>
                     <option value="{{ member.speed }}" selected>{{ member.speed }}</option>
                     <option value="Very Low">Very Low</option>
