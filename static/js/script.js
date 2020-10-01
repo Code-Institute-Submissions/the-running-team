@@ -18,7 +18,7 @@ $(document).ready(function () {
   The idea was taken from stackoverflow user "Imran Saleem."
   */
   $("select[required]").css({ display: "block", height: 0, padding: 0, width: 0, position: 'absolute' });
-
+  $('.select-wrapper ul.select-dropdown li').off('touchend').on('touchend', function() { $(this).click(); });
   /*
   This function iterates through all the progressbars, gets its data-value, and
   sets a width and class(color) to the progressbar according to the data-value.
