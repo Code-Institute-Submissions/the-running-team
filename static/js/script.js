@@ -31,16 +31,16 @@ $(document).ready(function () {
       let progBar = document.getElementsByClassName("determinate")[i];
       let progValue = progBar.getAttribute("data-value");
       if (progValue == "Very High") {
-        $(progBar).addClass("light-green accent-1").width("100%");
+        $(progBar).addClass("light-green accent-3").width("100%");
       }
       else if (progValue == "High") {
-        $(progBar).addClass("light-blue").width("80%");
+        $(progBar).addClass("light-green accent-2").width("80%");
       }
       else if (progValue == "Medium") {
         $(progBar).addClass("light-blue lighten-1").width("60%");
       }
       else if (progValue == "Low") {
-        $(progBar).addClass("light-blue lighten-2").width("40%");
+        $(progBar).addClass("light-blue lighten-3").width("40%");
       }
       else {
         $(progBar).addClass("orange lighten-2").width("20%");
