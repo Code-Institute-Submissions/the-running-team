@@ -8,74 +8,74 @@
     <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('register') }}">
         <div class="card-panel">
             <div class="row">
-                <div class="input-field col s12">
+                <div class="input-field col l6 s12">
                     <i class="fas fa-user-plus prefix light-blue-text text-darken-4"></i>
                     <input id="username" name="username" type="text" class="validate" oninvalid="this.setCustomValidity('Enter a username between 5-20 characters. Alphanumeric characters only.')" oninput="this.setCustomValidity('')" minlength="5" maxlength="20" pattern="^[a-zA-Z0-9]{5,20}$" required>
                     <label for="username">Username</label>
                 </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
+                <div class="input-field col l6 s12">
                     <i class="fas fa-key prefix light-blue-text text-darken-4"></i>
                     <input id="password" name="password" type="password" class="validate" oninvalid="this.setCustomValidity('Enter a password between 5-15 characters. Alphanumeric characters only.')" oninput="this.setCustomValidity('')" minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" required>
                     <label for="password">Password</label>
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s12">
+                <div class="input-field col l6 s12">
                     <input id="first_name" name="first_name" type="text" class="validate" oninvalid="this.setCustomValidity('Enter first name. Maximum 50 characters, no blank space.')" oninput="this.setCustomValidity('')" minlength="2" maxlength="50" pattern="^[\S]+$" required>
                     <label for="first_name">First Name</label>
                 </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
+                <div class="input-field col l6 s12">
                     <input id="last_name" name="last_name" type="text" class="validate" oninvalid="this.setCustomValidity('Enter last name. Maximum 50 characters, no blank space.')" oninput="this.setCustomValidity('')" minlength="2" maxlength="50" pattern="^[\S]+$" required>
                     <label for="last_name">Last Name</label>
                 </div>
             </div>
-            <div class="input-field col s12">
-                <select id="fitness" class="validate" name="fitness" required>
-                    <option value="" disabled selected>Choose an option</option>
-                    <option value="Very Low">Very Low</option>
-                    <option value="Low">Low</option>
-                    <option value="Medium">Medium</option>
-                    <option value="High">High</option>
-                    <option value="Very High">Very High</option>
-                </select>
-                <label for="fitness">Level of general fitness</label>
+            <div class="row">
+                <div class="input-field col l6 s12">
+                    <select id="fitness" class="validate" name="fitness" required>
+                        <option value="" disabled selected>Choose an option</option>
+                        <option value="Very Low">Very Low</option>
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                        <option value="Very High">Very High</option>
+                    </select>
+                    <label for="fitness">Level of general fitness</label>
+                </div>
+                <div class="input-field col l6 s12">
+                    <select id="stamina" class="validate" name="stamina" required>
+                        <option value="" disabled selected>Choose an option</option>
+                        <option value="Very Low">Very Low</option>
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                        <option value="Very High">Very High</option>
+                    </select>
+                    <label for="stamina">Level of Stamina</label>
+                </div>
             </div>
-            <div class="input-field col s12">
-                <select id="stamina" class="validate" name="stamina" required>
-                    <option value="" disabled selected>Choose an option</option>
-                    <option value="Very Low">Very Low</option>
-                    <option value="Low">Low</option>
-                    <option value="Medium">Medium</option>
-                    <option value="High">High</option>
-                    <option value="Very High">Very High</option>
-                </select>
-                <label for="stamina">Level of Stamina</label>
-            </div>
-            <div class="input-field col s12">
-                <select id="strength" class="validate" name="strength" required>
-                    <option value="" disabled selected>Choose an option</option>
-                    <option value="Very Low">Very Low</option>
-                    <option value="Low">Low</option>
-                    <option value="Medium">Medium</option>
-                    <option value="High">High</option>
-                    <option value="Very High">Very High</option>
-                </select>
-                <label for="strength">Level of Strength</label>
-            </div>
-            <div class="input-field col s12">
-                <select id="speed" class="validate" name="speed" required>
-                    <option value="" disabled selected>Choose an option</option>
-                    <option value="Very Low">Very Low</option>
-                    <option value="Low">Low</option>
-                    <option value="Medium">Medium</option>
-                    <option value="High">High</option>
-                    <option value="Very High">Very High</option>
-                </select>
-                <label for="speed">Level of Speed</label>
+            <div class="row">
+                <div class="input-field col l6 s12">
+                    <select id="strength" class="validate" name="strength" required>
+                        <option value="" disabled selected>Choose an option</option>
+                        <option value="Very Low">Very Low</option>
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                        <option value="Very High">Very High</option>
+                    </select>
+                    <label for="strength">Level of Strength</label>
+                </div>
+                <div class="input-field col l6 s12">
+                    <select id="speed" class="validate" name="speed" required>
+                        <option value="" disabled selected>Choose an option</option>
+                        <option value="Very Low">Very Low</option>
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                        <option value="Very High">Very High</option>
+                    </select>
+                    <label for="speed">Level of Speed</label>
+                </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
