@@ -5,7 +5,7 @@
         <div class="card-panel">
             <h2 class="center-align">Edit Blog Post</h2>
 
-            <form method="POST" action="{{ url_for('edit_blog', post_id=post._id) }}">
+            <form method="POST" action="{{ url_for('edit_blog', post_id=post._id, redirect_to=redirect_to) }}">
                 <div class="row">
                     <div class="input-field col s10 offset-s1">
                         <i class="material-icons prefix">title</i>

@@ -183,15 +183,15 @@
                             </div>
                             {% if is_attending.attends == True %}
                                 <a class="waves-effect waves-light btn-small blue"
-                                    href="{{ url_for('attend', post_id=workout._id, username=session['user']) }}">Unattend</a>
+                                    href="{{ url_for('attend', post_id=workout._id, username=session['user'], redirect_to=redirect_to) }}">Unattend</a>
                             {% else %}
                                 <a class="waves-effect waves-light btn-small blue"
-                                    href="{{ url_for('attend', post_id=workout._id, username=session['user']) }}">Attend</a>
+                                    href="{{ url_for('attend', post_id=workout._id, username=session['user'], redirect_to=redirect_to) }}">Attend</a>
                             {% endif %}
                             {% set is_attending.attends = False %}
                             {% if session.user|lower == workout.author %}
                                 <div class="small-top-mg">
-                                    <a href="{{ url_for('edit_workout', post_id=workout._id) }}">EDIT</a> | <a class="modal-trigger"
+                                    <a href="{{ url_for('edit_workout', post_id=workout._id, redirect_to=redirect_to) }}">EDIT</a> | <a class="modal-trigger"
                                         href="#{{ workout.element_id }}">DELETE</a>
                                 </div>
                             {% endif %}
@@ -207,7 +207,7 @@
                         <div class="row">
                             <div class="col s6 center-align">
                                 <a class="btn waves-light waves-effect yellow"
-                                    href="{{ url_for('delete_workout', post_id=workout._id) }}">DELETE</a>
+                                    href="{{ url_for('delete_workout', post_id=workout._id, redirect_to=redirect_to) }}">DELETE</a>
                             </div>
                             <div class="col s6 center-align">
                                 <a href="#!" class="modal-close btn waves-light waves-effect btn">CANCEL</a>
@@ -238,7 +238,7 @@
                             <p class="line-breaks">{{ blog.description }}</p>
                             {% if session.user|lower == blog.author %}
                                 <div>
-                                    <a href="{{ url_for('edit_blog' , post_id=blog._id) }}">EDIT</a> | <a href="#{{ blog.element_id }}"
+                                    <a href="{{ url_for('edit_blog' , post_id=blog._id, redirect_to=redirect_to) }}">EDIT</a> | <a href="#{{ blog.element_id }}"
                                         class="modal-trigger">DELETE</a>
                                 </div>
                             {% endif %}
@@ -323,7 +323,7 @@
                         <div class="row">
                             <div class="col s6 center-align">
                                 <a class="btn waves-light waves-effect yellow"
-                                    href="{{ url_for('delete_blog', post_id=blog._id) }}">DELETE</a>
+                                    href="{{ url_for('delete_blog', post_id=blog._id, redirect_to=redirect_to) }}">DELETE</a>
                             </div>
                             <div class="col s6 center-align">
                                 <a href="#!" class="modal-close btn waves-light waves-effect btn blue">CANCEL</a>
