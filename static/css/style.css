@@ -57,7 +57,8 @@ nav.no-top-mg {
     background: rgba(255, 255, 255, 0);
 }
 
-nav ul li a {
+nav ul li a,
+ul li a {
     font-family: "Oswald", sans-serif;
     letter-spacing: 1px;
     font-weight: 500;
@@ -84,6 +85,11 @@ img {
 .card-image{
     height: 20rem;
     overflow: hidden;
+}
+
+.card-image img{
+    height: 20rem;
+    object-fit: cover;
 }
 
 .card-reveal h4 {
@@ -116,8 +122,10 @@ blockquote {
     background-color: #90caf9;
 }
 
+
 .flashes h4 {
     line-height: 6rem;
+    border-radius: 3px;
 }
 
 .modal {
@@ -241,6 +249,10 @@ main {
 
 
 @media only screen and (max-width: 993px) {
+    .flashes h4 {
+        font-size: 2rem;
+        line-height: 3rem;
+    }
     .modal {
       width: 80%;
     }
@@ -250,6 +262,9 @@ main {
   }
 
 @media only screen and (max-width: 600px) {
+    .flashes h4 {
+        font-size: 1.2rem;
+    }
     .modal {
       width: 95%;
     }
