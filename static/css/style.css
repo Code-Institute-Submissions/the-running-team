@@ -33,7 +33,11 @@ h3 {
 
 .profile-stats h3 {
     font-size: 1.5rem;
-} 
+}
+
+.profile-quote {
+    font-size: 1.3rem;
+}
 
 .form-tip {
     font-style: italic;
@@ -58,11 +62,10 @@ nav.no-top-mg {
 }
 
 nav ul li a,
-ul li a {
+.sidenav li a {
     font-family: "Oswald", sans-serif;
     letter-spacing: 1px;
     font-weight: 500;
-    color: #FFF;
     text-transform: uppercase;
     transition: color 0.2s;
 }
