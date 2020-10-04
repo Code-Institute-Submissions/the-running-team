@@ -5,7 +5,7 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import (Flask, flash, render_template, redirect, request,
-url_for, session)
+                   url_for, session)
 if os.path.exists("env.py"):
     import env
 
@@ -23,19 +23,23 @@ mongo = PyMongo(app)
 @app.route("/get_members")
 def get_members():
     members = mongo.db.team_members.find()
-    return render_template("members.html", members=members, active_tab="workout")
+    return render_template("members.html", members=members,
+                           active_tab="workout")
 
 
 # Query mongoDB for all posts, comments and attendants and send to template.
 @app.route("/get_posts/<active_tab>")
 def get_posts(active_tab):
     if session.get("user"):
-        workouts = list(mongo.db.posts.find({"category": "workout"}).sort("$natural", -1))
-        blogs = list(mongo.db.posts.find({"category": "blog-post"}).sort("$natural", -1))
+        workouts = list(mongo.db.posts.find(
+            {"category": "workout"}).sort("$natural", -1))
+        blogs = list(mongo.db.posts.find(
+            {"category": "blog-post"}).sort("$natural", -1))
         comments = list(mongo.db.comments.find().sort("$natural", -1))
         attendants = list(mongo.db.attendants.find())
         return render_template("training_blog.html", workouts=workouts,
-                               blogs=blogs, comments=comments, attendants=attendants,
+                               blogs=blogs, comments=comments,
+                               attendants=attendants,
                                active_tab=active_tab, redirect_to="get_posts")
     return redirect(url_for("login"))
 
@@ -101,10 +105,12 @@ def edit_workout(post_id, redirect_to):
                 mongo.db.posts.update({"_id": ObjectId(post_id)}, updated_post)
                 flash("Your post was successfully updated.", "success-flash")
                 if redirect_to == "profile":
-                    return redirect(url_for("profile", username=session["user"]))
+                    return redirect(url_for(
+                        "profile", username=session["user"]))
                 return redirect(url_for("get_posts", active_tab="workout"))
             post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
-            return render_template("edit_workout.html", post=post, redirect_to=redirect_to) 
+            return render_template(
+                "edit_workout.html", post=post, redirect_to=redirect_to)
         flash("Authentication failed", "error-flash")
     return redirect(url_for("login"))
 
@@ -128,14 +134,16 @@ def edit_blog(post_id, redirect_to):
                 mongo.db.posts.update({"_id": ObjectId(post_id)}, updated_post)
                 flash("Your post was successfully updated.", "success-flash")
                 if redirect_to == "profile":
-                    return redirect(url_for("profile", username=session["user"]))    
+                    return redirect(url_for(
+                        "profile", username=session["user"]))
                 return redirect(url_for("get_posts", active_tab="blog"))
             post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
-            return render_template("edit_blog.html", post=post, redirect_to=redirect_to)
+            return render_template(
+                "edit_blog.html", post=post, redirect_to=redirect_to)
         flash("Authentication failed.", "error-flash")
     return redirect(url_for("login"))
-    
-    
+
+
 # Route for editing comment. First check if there's a user cookie.
 # If not, return to login. Else, check if user owns the comment. If
 # not, flash error message. Else, if POST, update record. Return to blog
@@ -159,7 +167,7 @@ def edit_comment(comment_id, post_id):
             comment = mongo.db.comments.find_one({"_id": ObjectId(comment_id)})
             return render_template("edit_comment.html", comment=comment,
                                    post_id=post_id)
-        flash("Authentication failed", "error-flash")   
+        flash("Authentication failed", "error-flash")
     return redirect(url_for("login"))
 
 
@@ -209,7 +217,7 @@ def delete_blog(post_id, redirect_to):
                 return redirect(url_for("profile", username=session["user"]))
             return redirect(url_for("get_posts", active_tab="blog"))
         flash("Authentication failed.", "error-flash")
-    return redirect(url_for("login")) 
+    return redirect(url_for("login"))
 
 
 # Route for registering a new user. First check if there's a user cookie.
@@ -269,12 +277,12 @@ def login():
                 current_runner = mongo.db.team_members.find_one(
                     {"username": session["user"]})
                 flash("Welcome, {}".format(
-                    current_runner["first_name"]), "success-flash")
+                    current_runner["first_name"].capitalize()),
+                    "success-flash")
                 return redirect(url_for("profile", username=session["user"]))
             else:
                 flash("Username and/or password is incorrect.", "error-flash")
                 return render_template("login.html")
-
         else:
             flash("Username does not exist", "error-flash")
             return redirect(url_for("login"))
@@ -295,7 +303,8 @@ def profile(username):
             {"username": session["user"]})
         return render_template("profile.html", member=member,
                                all_posts=all_posts, users_posts=users_posts,
-                               attendants=attendants, active_tab="workout", redirect_to="profile")
+                               attendants=attendants, active_tab="workout",
+                               redirect_to="profile")
     return redirect(url_for("login"))
 
 
@@ -424,7 +433,7 @@ def get_random_string(length):
 
 
 # Defensive function to prevent brute force deleting and editing,
-# of comments that the user did not create. Checks if the session user 
+# of comments that the user did not create. Checks if the session user
 # matches the "author" field of the comment.
 def owns_comment(comment_id):
     comment = mongo.db.comments.find_one({"_id": ObjectId(comment_id)})
@@ -435,7 +444,7 @@ def owns_comment(comment_id):
 
 
 # Defensive function to prevent brute force deleting and editing,
-# of posts that the user did not create. Checks if the session user 
+# of posts that the user did not create. Checks if the session user
 # matches the "author" field of the comment.
 def owns_post(post_id):
     post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
@@ -446,7 +455,7 @@ def owns_post(post_id):
 
 
 # Defensive function to prevent brute force deleting and editing,
-# of profile that the user did not create. Checks if the session user 
+# of profile that the user did not create. Checks if the session user
 # matches the "author" field of the comment.
 def owns_account(member_id):
     user = mongo.db.team_members.find_one({"_id": ObjectId(member_id)})
