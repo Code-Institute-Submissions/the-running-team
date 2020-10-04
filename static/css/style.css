@@ -1,14 +1,4 @@
-.title {
-    text-transform: uppercase;
-    font-size: 5rem;
-    padding-left: 2rem;
-}
-
-.title-small {
-    text-transform: uppercase;
-    font-size: 2.5rem;
-}
-
+/*------------- General body rule and helper classes ------------*/
 body {
     font-family: "Roboto", sans-serif;
     font-size: 1rem;
@@ -17,20 +7,103 @@ body {
     flex-direction: column;
 }
 
-h1, 
-h2, 
-h3 {
+main {
+    flex: 1 0 auto;
+}
+
+.no-top-mg {
+    margin-top: 0;
+}
+
+.no-bottom-mg {
+    margin-bottom: 0;
+}
+
+.small-bottom-mg {
+    margin-bottom: 0.5rem;
+}
+
+.small-top-mg {
+    margin-top: 0.5rem;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+/*------------- Header title and navbar ------------*/
+.title {
+    text-transform: uppercase;
+    font-size: 5rem;
+    padding-left: 2rem;
+    padding-top: 3rem;
+}
+
+.title-small {
+    text-transform: uppercase;
+    font-size: 2.5rem;
+}
+
+.navbar-bg { 
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 1)), url(/static/images/runners_cropped.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+nav.no-top-mg {
+    background: rgba(255, 255, 255, 0);
+}
+
+nav ul li a, .sidenav li a {
+    font-family: "Oswald", sans-serif;
+    letter-spacing: 1px;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: color 0.2s;
+}
+
+nav ul li a:hover {
+    color: #90caf9;
+}
+
+/*------------- Headers ------------*/
+h1, h2, h3 {
     font-family: "Oswald", sans-serif;
     font-weight: 700;
     letter-spacing: 0rem;
 }
 
+/*------------- Cards ------------*/
 .card-reveal h2, span {
     font-size: 1rem;
     margin: 0;
     font-family: "Oswald", sans-serif;
 }
 
+.card-image {
+    height: 20rem;
+    overflow: hidden;
+}
+
+.card-image img {
+    height: 20rem;
+    object-fit: cover;
+}
+
+.card-reveal h4 {
+    font-size: 1rem;
+    margin: 0;
+}
+
+.progress {
+    height: 0.75rem;
+}
+
+blockquote {
+    border-color: #0d47a1;
+}
+
+/*------------- Special rules for profile view ------------*/
 .profile-stats h3 {
     font-size: 1.5rem;
 }
@@ -51,29 +124,7 @@ h3 {
     background: rgba(255, 255, 255, 0);
 }
 
-.navbar-bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 1)), url(/static/images/runners_cropped.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-nav.no-top-mg {
-    background: rgba(255, 255, 255, 0);
-}
-
-nav ul li a,
-.sidenav li a {
-    font-family: "Oswald", sans-serif;
-    letter-spacing: 1px;
-    font-weight: 500;
-    text-transform: uppercase;
-    transition: color 0.2s;
-}
-
-nav ul li a:hover {
-    color: #90caf9;
-}
-
+/*------------- Images ------------*/
 img {
     width: 100%;
 }
@@ -85,52 +136,21 @@ img {
     padding-right: 5px;
 }
 
-.card-image{
-    height: 20rem;
-    overflow: hidden;
-}
-
-.card-image img{
-    height: 20rem;
-    object-fit: cover;
-}
-
-.card-reveal h4 {
-    font-size: 1rem;
-    margin: 0;
-}
-
-.no-top-mg {
-    margin-top: 0;
-}
-
-.no-bottom-mg {
-    margin-bottom: 0;
-}
-
-.title {
-    padding-top: 3rem;
-}
-
-
-blockquote {
-    border-color: #0d47a1;
-}
-
+/*------------- Flashed messages ------------*/
 .error-flash {
-   background-color: #ef5350; 
+    background-color: #ef5350;
 }
 
 .success-flash {
     background-color: #90caf9;
 }
 
-
 .flashes h4 {
     line-height: 6rem;
     border-radius: 3px;
 }
 
+/*------------- Modals ------------*/
 .modal {
     width: 60%;
 }
@@ -139,6 +159,7 @@ blockquote {
     width: 40%;
 }
 
+/*------------- Workouts/blog-posts view ------------*/
 .workout-container {
     border-bottom: 2px solid #0d47a1;
     padding-bottom: 1rem;
@@ -157,7 +178,6 @@ blockquote {
     height: 2px;
 }
 
-
 .attendant {
     display: inline-block;
     border: 1px solid #90caf9;
@@ -166,20 +186,13 @@ blockquote {
     margin-bottom: 1rem;
 }
 
-.small-bottom-mg {
-    margin-bottom: 0.5rem;
-}
-
-.small-top-mg {
-    margin-top: 0.5rem;
-}
-
 .btn-small {
     height: 2rem;
     padding-left: 0.5rem;
-    padding-right: 0.5rem; 
+    padding-right: 0.5rem;
 }
 
+/*------------- Tabs in training blog view ------------*/
 .tabs {
     margin-bottom: 2rem;
 }
@@ -193,16 +206,18 @@ blockquote {
     color: #000;
     background-color: rgba(13, 71, 161, 0.2);
 }
- .tabs .tab a:hover {
+
+.tabs .tab a:hover {
     color: #000;
- }
+}
+
 .tabs .tab a:focus.active {
     background-color: rgba(13, 71, 161, 0.2);
     color: #000;
 }
 
 .tabs .indicator {
-    background-color:#0d47a1;
+    background-color: #0d47a1;
 }
 
 .text-icon {
@@ -210,72 +225,61 @@ blockquote {
     top: 5px;
 }
 
-.capitalize {
-    text-transform: capitalize;
-}
-
-.progress {
-    height: 0.75rem;
-}
-
 .text-shadow {
     text-shadow: 2px 2px 2px #1e88e5;
 }
 
-main {
-    flex: 1 0 auto;
-  }
-
-  .back-to-top {
-    display: none; /* Hidden by default */
-    position: fixed; /* Fixed/sticky position */
-    bottom: 3.5rem; /* Place the button at the bottom of the page */
-    right: 3rem; /* Place the button 30px from the right */
-    z-index: 99; /* Make sure it does not overlap */
-    border: none; /* Remove borders */
-    outline: none; /* Remove outline */
-    background-color: #0d47a1; /* Set a background color */
-    color: white; /* Text color */
-    cursor: pointer; /* Add a mouse pointer on hover */
-    padding: 0.8rem; /* Some padding */
-    border-radius: 10px; /* Rounded corners */
+/*------------- Back to top button. From w3schools.com and modified ------------*/
+.back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 3.5rem;
+    right: 3rem;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: #0d47a1;
+    color: white;
+    cursor: pointer;
+    padding: 0.8rem;
+    border-radius: 10px;
     opacity: 0.7;
-  }
+}
 
-  .back-to-top i {
-      font-size: 3rem;
-  }
-  
-  .back-top-top:hover {
-    background-color: #555; /* Add a dark-grey background on hover */
-  }
+.back-to-top i {
+    font-size: 3rem;
+}
 
+.back-top-top:hover {
+    background-color: #555;
+}
 
+/*------------- Media queries ------------*/
 @media only screen and (max-width: 993px) {
     .flashes h4 {
         font-size: 2rem;
         line-height: 3rem;
     }
     .modal {
-      width: 80%;
+        width: 80%;
     }
     .navbar-bg {
         background: #000;
     }
-  }
+}
 
 @media only screen and (max-width: 600px) {
     .flashes h4 {
         font-size: 1.2rem;
     }
     .modal {
-      width: 95%;
+        width: 95%;
     }
     .back-to-top i {
         font-size: 2rem;
     }
     .back-to-top {
         bottom: 3.5rem;
-        right: 1.5rem;   
+        right: 1.5rem;
     }
-  }
+}
