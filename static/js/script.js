@@ -13,6 +13,10 @@ $(document).ready(function () {
   $('.collapsible').collapsible();
   $('textarea').characterCounter();
   $('.tooltipped').tooltip();
+  $('.carousel.carousel-slider').carousel({
+    fullWidth: true,
+    indicators: true
+  });
   /*
   This line enables validation on materialize selects by displaying the otherwise hidden select element.
   The idea was taken from stackoverflow user "Imran Saleem."
@@ -48,7 +52,21 @@ $(document).ready(function () {
       i++;
     }
   }
+
+  function setCarouselImage() {
+    let i = 0;
+    let carouselImgs = document.getElementsByClassName("carousel-item");
+    while (i < carouselImgs.length) {
+
+      let carouselImg = carouselImgs[i];
+      let url = carouselImg.getAttribute("data-img");
+      console.log(url)
+      $(carouselImg).css({"background-image" : "url(" + url + ")", "background-repeat" : "no-repeat", "background-size" : "cover"});
+      i++;
+    }
+  }
   setProgBar();
+  setCarouselImage();
   setTimeout(function () {
     $(".flashes").fadeOut('slow');
   }, 5000);
