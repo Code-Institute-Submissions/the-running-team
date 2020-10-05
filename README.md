@@ -1,4 +1,4 @@
-# Encryptinator
+# The Running Team
 
 ![readmehero](documentation/images/responsive_demo.PNG)
 [Live website](https://the-running-team.herokuapp.com)
