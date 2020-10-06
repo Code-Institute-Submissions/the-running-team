@@ -37,8 +37,9 @@ def get_members():
 
 
 # Query mongoDB for all posts, comments and attendants and send to template.
+@app.route("/get_posts")
 @app.route("/get_posts/<active_tab>")
-def get_posts(active_tab):
+def get_posts(active_tab = "workouts"):
     if session.get("user"):
         workouts = list(mongo.db.posts.find(
             {"category": "workout"}).sort("$natural", -1))
@@ -85,8 +86,8 @@ def add_post():
                     "element_id": get_random_string(20)
                 }
                 mongo.db.posts.insert_one(new_post)
-                return redirect(url_for("get_posts", active_tab="workout"))
-        return redirect(url_for("get_posts", active_tab="workout"))
+                return redirect(url_for("get_posts"))
+        return redirect(url_for("get_posts"))
     return redirect(url_for("login"))
 
 
@@ -97,7 +98,6 @@ def add_post():
 @app.route("/edit_workout/<post_id>/<redirect_to>", methods=["GET", "POST"])
 def edit_workout(post_id, redirect_to):
     if session.get("user"):
-        print(redirect_to)
         if owns_post(post_id):
             if request.method == "POST":
                 updated_post = {
@@ -116,7 +116,7 @@ def edit_workout(post_id, redirect_to):
                 if redirect_to == "profile":
                     return redirect(url_for(
                         "profile", username=session["user"]))
-                return redirect(url_for("get_posts", active_tab="workout"))
+                return redirect(url_for("get_posts"))
             post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
             return render_template(
                 "edit_workout.html", post=post, redirect_to=redirect_to)
@@ -207,7 +207,7 @@ def delete_workout(post_id, redirect_to):
             flash("Post successfully deleted", "success-flash")
             if redirect_to == "profile":
                 return redirect(url_for("profile", username=session["user"]))
-            return redirect(url_for("get_posts", active_tab="workout"))
+            return redirect(url_for("get_posts"))
         flash("Authentication failed.", "error-flash")
     return redirect(url_for("login"))
 
@@ -312,7 +312,7 @@ def profile(username):
             {"username": session["user"]})
         return render_template("profile.html", member=member,
                                all_posts=all_posts, users_posts=users_posts,
-                               attendants=attendants, active_tab="workout",
+                               attendants=attendants,
                                redirect_to="profile")
     return redirect(url_for("login"))
 
@@ -415,7 +415,7 @@ def attend(username, post_id, redirect_to):
         mongo.db.attendants.remove(attending_user)
         if redirect_to == "profile":
             return redirect(url_for("profile", username=session["user"]))
-        return redirect(url_for("get_posts", active_tab="workout"))
+        return redirect(url_for("get_posts"))
     else:
         attendant = {
             "post_id": ObjectId(post_id),
@@ -424,7 +424,7 @@ def attend(username, post_id, redirect_to):
         mongo.db.attendants.insert_one(attendant)
         if redirect_to == "profile":
             return redirect(url_for("profile", username=session["user"]))
-        return redirect(url_for("get_posts", active_tab="workout"))
+        return redirect(url_for("get_posts"))
 
 
 # Route for logging out. Removes session cookie.
