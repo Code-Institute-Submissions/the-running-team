@@ -3,6 +3,11 @@
 <div class="row">
     <div class="col s12">
         <h1 class="center-align">Upcoming Events</h1>
+        {% if session["user"] %}
+        <p class="center-align">We are participating in the following events. Please contact an administrator if you have suggestions for more events.</p>
+        {% else %}
+        <p class="center-align">Come cheer for the team as they participate in some of the biggest running events in the world!</p>
+        {% endif %}
     </div>
 </div>
 <div class="row">
@@ -10,11 +15,13 @@
     <div class="col s12">
         <div class="carousel carousel-slider">
             {% for event in events %}
-                <div data-img="{{ event.img }}" class="carousel-item">
-                    <h3>{{ event.title }}</h3>
-                    <h3>Date: {{ event.date }}</h4>
-                    <h3>Location: {{ event.location }}</h4>
+            <div data-img="{{ event.img }}" class="carousel-item">
+                <div class="carousel-overlay">
+                    <h3>{{ event.title|title }}</h3>
+                    <h4>Date: {{ event.date }}</h4>
+                    <h4>Location: {{ event.location|title }}</h4>
                 </div>
+            </div>
             {% endfor %}
         </div>
         {% else %}
