@@ -171,7 +171,7 @@
                                     {% endif %}
                                 {% endfor %}
                                 {% if this_workout.has_attendants == True %}
-                                    <p class="small-bottom-mg"><b>Attending Team Members:</b></p>
+                                    <p class="small-bottom-mg bold">Attending Team Members:</p>
                                     {% set this_workout.has_attendants = False %}
                                 {% endif %}
                                 {% for attendant in attendants if attendant.post_id == workout._id  %}
