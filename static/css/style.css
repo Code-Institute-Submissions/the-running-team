@@ -229,6 +229,16 @@ img {
     text-shadow: 2px 2px 2px #1e88e5;
 }
 
+/*------------- Carousel text overlay ------------*/
+.carousel-overlay {
+    position: absolute;
+    top: 2rem;
+    left: 1rem;
+    padding: 0.5rem;
+    background: rgba(0, 0, 0, 0.6);
+    color: #FFF;
+}
+
 /*------------- Back to top button. From w3schools.com and modified ------------*/
 .back-to-top {
     display: none;
@@ -252,6 +262,11 @@ img {
 
 .back-top-top:hover {
     background-color: #555;
+}
+
+/*------------- Footer ------------*/
+.page-footer {
+    margin-top: 2rem;
 }
 
 /*------------- Media queries ------------*/
