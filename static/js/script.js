@@ -52,7 +52,9 @@ $(document).ready(function () {
       i++;
     }
   }
-
+  /*
+  Set background image for carousel items
+  */
   function setCarouselImage() {
     let i = 0;
     let carouselImgs = document.getElementsByClassName("carousel-item");
@@ -60,7 +62,6 @@ $(document).ready(function () {
 
       let carouselImg = carouselImgs[i];
       let url = carouselImg.getAttribute("data-img");
-      console.log(url)
       $(carouselImg).css({"background-image" : "url(" + url + ")", "background-repeat" : "no-repeat", "background-size" : "cover"});
       i++;
     }
