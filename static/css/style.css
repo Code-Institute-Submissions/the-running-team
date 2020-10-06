@@ -31,6 +31,9 @@ main {
     text-transform: capitalize;
 }
 
+.bold {
+    font-weight: bold;
+}
 /*------------- Header title and navbar ------------*/
 .title {
     text-transform: uppercase;
