@@ -17,7 +17,7 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
-
+@app.route("/")
 @app.route("/get_events")
 def get_events():
     events = list(mongo.db.events.find())
@@ -28,7 +28,6 @@ def get_events():
 
 
 # Query mongoDB for all team members and send to template.
-@app.route("/")
 @app.route("/get_members")
 def get_members():
     members = mongo.db.team_members.find()
