@@ -17,22 +17,22 @@ $(document).ready(function () {
     fullWidth: true,
     indicators: true
   });
+  
   /*
   This line enables validation on materialize selects by displaying the otherwise hidden select element.
   The idea was taken from stackoverflow user "Imran Saleem."
   */
   $("select[required]").css({ display: "block", height: 0, padding: 0, width: 0, position: 'absolute' });
-  $('.select-wrapper ul.select-dropdown li').off('touchend').on('touchend', function() { $(this).click(); });
+  
   /*
   This function iterates through all the progressbars, gets its data-value, and
   sets a width and class(color) to the progressbar according to the data-value.
   */
   function setProgBar() {
     let i = 0;
-    let progBar = document.getElementsByClassName("determinate");
-    while (i < progBar.length) {
-
-      let progBar = document.getElementsByClassName("determinate")[i];
+    let progBars = document.getElementsByClassName("determinate");
+    while (i < progBars.length) {
+      let progBar = progBars[i];
       let progValue = progBar.getAttribute("data-value");
       if (progValue == "Very High") {
         $(progBar).addClass("light-green accent-3").width("100%");
@@ -59,7 +59,6 @@ $(document).ready(function () {
     let i = 0;
     let carouselImgs = document.getElementsByClassName("carousel-item");
     while (i < carouselImgs.length) {
-
       let carouselImg = carouselImgs[i];
       let url = carouselImg.getAttribute("data-img");
       $(carouselImg).css({"background-image" : "url(" + url + ")", "background-repeat" : "no-repeat", "background-size" : "cover"});
