@@ -1,7 +1,7 @@
 /*------------- General body rule and helper classes ------------*/
 body {
     font-family: "Roboto", sans-serif;
-    font-size: 1rem;
+    font-size: 1.1rem;
     display: flex;
     min-height: 100vh;
     flex-direction: column;
@@ -37,6 +37,10 @@ main {
     font-size: 5rem;
     padding-left: 2rem;
     padding-top: 3rem;
+}
+
+.title a {
+    color: #FFF;
 }
 
 .title-small {
