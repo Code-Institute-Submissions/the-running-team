@@ -3,6 +3,8 @@
 ![readmehero](documentation/images/responsive_demo.PNG)
 [Live website](https://the-running-team.herokuapp.com)
 
+
+![readmehero](documentation/images/database_diagram.jpeg)
 Encryptinator is a command line themed, educational website for people who want to learn basic encryption. Possible users can range
 from students of data science all the way down to students in elementary school. This does not exclude any other type of users, of course. Some may simply be interested in the website for the sole purpose of encrypting/decrypting
 a message.
