@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+    <div class="col s12">
+        <div class="card-panel">
+            <h2 class="center-align">Edit Event</h2>
+            <form method="POST" action="{{ url_for('edit_event', event_id=event._id) }}">
+                <div class="row">
+                    <div class="input-field col s10 offset-s1">
+                        <i aria-hidden="true" class="material-icons prefix">title</i>
+                        <input id="title" value="{{ event.title }}" name="title" type="text" class="validate"
+                            oninvalid="this.setCustomValidity('Enter a title between 2 and 50 characters.')"
+                            oninput="this.setCustomValidity('')" minlength="2" maxlength="50" pattern="^[^\s].*" required>
+                        <label for="title">Title</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s10 offset-s1">
+                        <i aria-hidden="true" class="material-icons prefix">calendar_today</i>
+                        <input type="text" value="{{ event.date }}" id="date" name="date" class="datepicker validate"
+                            oninvalid="this.setCustomValidity('Pick a date for the event.')"
+                            oninput="this.setCustomValidity('')" required>
+                        <label for="date">Date</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s10 offset-s1">
+                        <i aria-hidden="true" class="material-icons prefix">location_on</i>
+                        <input id="location" value="{{ event.location }}" name="location" type="text" class="validate"
+                            oninvalid="this.setCustomValidity('Enter a title between 2 and 50 characters.')"
+                            oninput="this.setCustomValidity('')" minlength="2" maxlength="50" pattern="^[^\s].*" required>
+                        <label for="location">Location</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s10 offset-s1">
+                        <i aria-hidden="true" class="material-icons prefix">http</i>
+                        <input id="img-url" value="{{ event.img }}" name="img-url" type="text" class="validate"
+                            oninvalid="this.setCustomValidity('Url must start with http(s): and end with .jpg, .png or .gif')"
+                            oninput="this.setCustomValidity('')" maxlength="300"
+                            pattern="(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)" required>
+                        <label for="img-url">Enter URL for event image</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s10 offset-s1">
+                        <i aria-hidden="true" class="material-icons prefix">http</i>
+                        <input id="url" value="{{ event.url }}" name="url" type="text" class="validate"
+                            oninvalid="this.setCustomValidity('Url must start with http(s): and end with .jpg, .png or .gif')"
+                            oninput="this.setCustomValidity('')" maxlength="300"
+                            pattern="(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)">
+                        <label for="url">Enter URL for the event<span class="form-tip"> (Optional)</span></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <button class="btn waves-effect waves-light blue darken-4" type="submit" name="action"
+                            value="workout">Submit
+                            <i aria-hidden="true" class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
