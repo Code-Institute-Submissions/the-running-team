@@ -13,7 +13,7 @@
     </div>
 </div>
 <div class="row">
-    {% if user.is_admin == True %}
+    {% if user.is_admin == true %}
     <div class="col s12 small-bottom-mg">
         <button id="add-event" data-target="new-event" class="btn-large modal-trigger blue darken-4"><i
                 aria-hidden="true" class="large material-icons left">add</i>New Event</button>
@@ -28,7 +28,7 @@
                     <h2 class="overlay-header">{{ event.title|title }}</h2>
                     <p class="small-bottom-mg">Date: {{ event.date }}</p>
                     <p class="small-top-mg">Location: {{ event.location|title }}</p>
-                    {% if user.is_admin == True %}
+                    {% if user.is_admin == true %}
                     <div class="small-top-mg">
                         <a href="{{ url_for('edit_event', event_id=event._id) }}">EDIT</a> | <a class="modal-trigger"
                             href="#{{ event.element_id }}">DELETE</a>
