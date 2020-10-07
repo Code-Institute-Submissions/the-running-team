@@ -8,7 +8,7 @@
             <form method="POST" action="{{ url_for('edit_blog', post_id=post._id, redirect_to=redirect_to) }}">
                 <div class="row">
                     <div class="input-field col s10 offset-s1">
-                        <i class="material-icons prefix">title</i>
+                        <i aria-hidden="true" class="material-icons prefix">title</i>
                         <input id="title" name="title" value="{{ post.title }}" type="text" class="validate"
                             oninvalid="this.setCustomValidity('Enter a title between 2 and 50 characters.')"
                             oninput="this.setCustomValidity('')" minlength="2" maxlength="50" pattern="^[^\s].*"
@@ -18,7 +18,7 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s10 s10 offset-s1">
-                        <i class="material-icons prefix">subject</i>
+                        <i aria-hidden="true" class="material-icons prefix">subject</i>
                         <textarea id="main-content" name="main-content" class="materialize-textarea"
                             oninvalid="this.setCustomValidity('Enter main content of blog post.')"
                             oninput="this.setCustomValidity('')" minlength="5" maxlength="3000"
@@ -29,7 +29,7 @@
                 <div class="row">
                     <div class="col s12 center-align">
                         <button class="btn waves-effect waves-light blue darken-4" type="submit" name="action">Save
-                            <i class="material-icons right">save</i>
+                            <i aria-hidden="true" class="material-icons right">save</i>
                         </button>
                     </div>
                 </div>

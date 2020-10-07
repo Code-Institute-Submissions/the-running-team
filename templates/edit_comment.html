@@ -9,7 +9,7 @@
             <form method="POST" action="{{ url_for('edit_comment', comment_id=comment._id, post_id=post_id) }}">
                 <div class="row">
                     <div class="input-field col s10 s10 offset-s1">
-                        <i class="material-icons prefix">subject</i>
+                        <i aria-hidden="true" class="material-icons prefix">subject</i>
                         <textarea id="comment" name="comment" data-length="3000" class="materialize-textarea validate"
                             oninvalid="this.setCustomValidity('Enter main content of blog post.')"
                             oninput="this.setCustomValidity('')" minlength="5" maxlength="3000"
@@ -20,7 +20,7 @@
                 <div class="row">
                     <div class="col s12 center-align">
                         <button class="btn waves-effect waves-light blue darken-4" type="submit" name="action">Save
-                            <i class="material-icons right">save</i>
+                            <i aria-hidden="true" class="material-icons right">save</i>
                         </button>
                     </div>
                 </div>

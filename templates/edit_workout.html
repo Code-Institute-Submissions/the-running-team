@@ -7,26 +7,26 @@
             <form method="POST" action="{{ url_for('edit_workout', post_id=post._id, redirect_to=redirect_to) }}">
                 <div class="row">
                     <div class="input-field col s10 offset-s1">
-                        <i class="material-icons prefix">title</i>
+                        <i aria-hidden="true" class="material-icons prefix">title</i>
                         <input id="title" name="title" type="text" value="{{ post.title }}" class="validate" oninvalid="this.setCustomValidity('Enter a title between 2 and 50 characters.')" oninput="this.setCustomValidity('')" minlength="2" maxlength="50" pattern="^[^\s].*" required>
                         <label for="title">Title</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s5 offset-s1">
-                        <i class="material-icons prefix">calendar_today</i>
+                        <i aria-hidden="true" class="material-icons prefix">calendar_today</i>
                         <input type="text" id="date" name="date" value="{{ post.date }}" class="datepicker validate" oninvalid="this.setCustomValidity('Pick a date for the workout.')" oninput="this.setCustomValidity('')" required>
                         <label for="date">Date</label>
                     </div>
                     <div class="input-field col s5">
-                        <i class="material-icons prefix">access_time</i>
+                        <i aria-hidden="true" class="material-icons prefix">access_time</i>
                         <input type="text" id="time" name="time" value="{{ post.time }}" class="timepicker validate" oninvalid="this.setCustomValidity('Enter a time for the workout.')" oninput="this.setCustomValidity('')" required>
                         <label for="time">Time</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s5 offset-s1">
-                        <i class="material-icons prefix">access_alarm</i>
+                        <i aria-hidden="true" class="material-icons prefix">access_alarm</i>
                         <select id="duration" class="validate" name="duration" required>
                             <option value="{{ post.duration }}" selected>{{ post.duration }} min</option>
                             <option value="15">15 min</option>
@@ -39,14 +39,14 @@
                         <label for="duration">Duration of Workout</label>
                     </div>
                     <div class="input-field col s5">
-                        <i class="material-icons prefix">location_on</i>
+                        <i aria-hidden="true" class="material-icons prefix">location_on</i>
                         <input id="location" name="location" value="{{ post.location }}" type="text" class="validate" oninvalid="this.setCustomValidity('Enter a location for the workout.')" oninput="this.setCustomValidity('')" minlength="2" maxlength="100" pattern="^[^\s].*" required>
                         <label for="location">Location</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s10 offset-s1">
-                        <i class="material-icons prefix">subject</i>
+                        <i aria-hidden="true" class="material-icons prefix">subject</i>
                         <textarea id="description" name="description" class="materialize-textarea" data-length="1000" oninvalid="this.setCustomValidity('Describe the workout')" oninput="this.setCustomValidity('')" minlength="5" maxlength="1000" required>{{ post.description }}</textarea>
                         <label for="description">Description</label>
                     </div>
@@ -54,7 +54,7 @@
                 <div class="row">
                     <div class="col s12 center-align">
                         <button class="btn waves-effect waves-light blue darken-4" type="submit" name="action">Save
-                            <i class="material-icons right">save</i>
+                            <i aria-hidden="true" class="material-icons right">save</i>
                         </button>
                     </div>
                 </div>

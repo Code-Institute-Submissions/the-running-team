@@ -17,7 +17,7 @@
                         class="material-icons right">more_vert</i></span>
             </div>
             <div class="card-reveal">
-                <div><i class="card-title material-icons right">close</i></div>
+                <div><i aria-hidden="true" class="card-title material-icons right">close</i></div>
                 <span class="card-title small-bottom-mg grey-text text-darken-4 capitalize">{{ member.first_name }}
                     {{ member.last_name }}</span>
                 <h2>Stamina: </h2>
@@ -43,8 +43,4 @@
     </div>
     {% endfor %}
 </div>
-
-
-
-
 {% endblock %}

@@ -28,7 +28,7 @@
             <!-- Navbar -->
             <nav class="no-top-mg z-depth-0">
                 <div class="nav-wrapper">
-                    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
+                    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i aria-hidden="true" class="fas fa-bars"></i></a>
                     <ul class="right hide-on-med-and-down">
                         <li><a href="{{ url_for('get_events') }}">Events</a></li>
                         <li><a href="{{ url_for('get_members') }}">The Team</a></li>
@@ -75,7 +75,7 @@
         {% endwith %}
     </div>
     <main class="container">
-        <button class="back-to-top" id="back-to-top" title="Go to top"> <i class="material-icons">arrow_circle_up</i></button>
+        <button class="back-to-top" id="back-to-top" title="Go to top"> <i aria-hidden="true" class="material-icons">arrow_circle_up</i></button>
         {% block content %}
         {% endblock %}
     </main>
@@ -83,20 +83,20 @@
         <div class="container">
             <div class="row">
                 <div class="col l6 s12">
-                    <h5 class="white-text">We're on social media!</h5>
+                    <p class="white-text">We're on social media!</p>
                     <p class="grey-text text-lighten-4">Don't forget to keep in touch with your team mates on social
                         media.</p>
                 </div>
                 <div class="col l4 offset-l2 s12">
                     <ul class="center-align">
                         <li class="small-bottom-mg"><a class="grey-text text-lighten-3" target="_blank"
-                                href="https://www.facebook.com"><i class="fa-lg fab fa-facebook"></i></a></li>
+                                href="https://www.facebook.com"><i aria-hidden="true" class="fa-lg fab fa-facebook"></i></a></li>
                         <li class="small-bottom-mg"><a class="grey-text text-lighten-3" target="_blank"
-                                href="https://www.twitter.com"><i class="fa-lg fab fa-twitter"></i></a></li>
+                                href="https://www.twitter.com"><i aria-hidden="true" class="fa-lg fab fa-twitter"></i></a></li>
                         <li class="small-bottom-mg"><a class="grey-text text-lighten-3" target="_blank"
-                                href="https://www.snapchat.com"><i class="fa-lg fab fa-snapchat"></i></a></li>
+                                href="https://www.snapchat.com"><i aria-hidden="true" class="fa-lg fab fa-snapchat"></i></a></li>
                         <li class="small-bottom-mg"><a class="grey-text text-lighten-3" target="_blank"
-                                href="https://www.linkedin.com"><i class="fa-lg fab fa-linkedin"></i></a></li>
+                                href="https://www.linkedin.com"><i aria-hidden="true" class="fa-lg fab fa-linkedin"></i></a></li>
                     </ul>
                 </div>
             </div>

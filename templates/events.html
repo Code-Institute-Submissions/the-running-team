@@ -17,9 +17,9 @@
             {% for event in events %}
             <div data-img="{{ event.img }}" class="carousel-item">
                 <div class="carousel-overlay">
-                    <h3>{{ event.title|title }}</h3>
-                    <h4>Date: {{ event.date }}</h4>
-                    <h4>Location: {{ event.location|title }}</h4>
+                    <h2 class="overlay-header">{{ event.title|title }}</h2>
+                    <p class="small-bottom-mg">Date: {{ event.date }}</p>
+                    <p class="small-top-mg">Location: {{ event.location|title }}</p>
                 </div>
             </div>
             {% endfor %}
