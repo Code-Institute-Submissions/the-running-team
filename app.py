@@ -23,6 +23,7 @@ def get_events():
     events = list(mongo.db.events.find())
     if session.get("user"):
         user = mongo.db.team_members.find_one({"username": session["user"]})
+        print(user)
         return render_template("events.html", events=events, user=user)
     return render_template("events.html", events=events)
 
