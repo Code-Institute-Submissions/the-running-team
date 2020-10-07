@@ -27,6 +27,53 @@ def get_events():
     return render_template("events.html", events=events)
 
 
+@app.route("/add_event", methods=["GET", "POST"])
+def add_event():
+    if request.method == "POST":
+        new_event = {
+            "title": request.form.get("title"),
+            "date": request.form.get("date"),
+            "location": request.form.get("location"),
+            "url": request.form.get("url"),
+            "img": request.form.get("img-url"),
+            "element_id": get_random_string(20)
+        }
+        mongo.db.events.insert_one(new_event)
+        flash("Event added", "success-flash")
+        return redirect(url_for("get_events"))
+    return redirect(url_for("get_events"))
+
+
+@app.route("/edit_event/<event_id>", methods=["GET", "POST"])
+def edit_event(event_id):
+    if session.get("user"):
+        if request.method == "POST":
+            updated_event = {
+                "title": request.form.get("title"),
+                "date": request.form.get("date"),
+                "location": request.form.get("location"),
+                "url": request.form.get("url"),
+                "img": request.form.get("img-url"),
+                "element_id": get_random_string(20)
+            }
+            mongo.db.events.update({"_id": ObjectId(event_id)}, updated_event)
+            flash("Event updated.", "success-flash")
+            return redirect(url_for("get_events"))
+        event = mongo.db.events.find_one({"_id": ObjectId(event_id)})
+        return render_template("edit_event.html", event=event)
+    return redirect(url_for("login"))
+            
+
+
+@app.route("/delete_event/<event_id>")
+def delete_event(event_id):
+    if session.get("user"):
+        mongo.db.events.remove({"_id": ObjectId(event_id)})
+        flash("Event deleted", "success-flash")
+        return redirect(url_for("get_events"))
+    return redirect(url_for("login")) 
+
+
 # Query mongoDB for all team members and send to template.
 @app.route("/get_members")
 def get_members():
