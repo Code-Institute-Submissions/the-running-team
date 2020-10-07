@@ -242,8 +242,18 @@ img {
     top: 2rem;
     left: 1rem;
     padding: 0.5rem;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.7);
     color: #FFF;
+    border-radius: 3px;
+}
+
+.carousel.carousel-slider .carousel-item h2 {
+    font-size: 3rem;
+}
+
+.carousel.carousel-slider .carousel-item p {
+    font-size: 2rem;
+    font-family: "Oswald", sans-serif;
 }
 
 /*------------- Back to top button. From w3schools.com and modified ------------*/
