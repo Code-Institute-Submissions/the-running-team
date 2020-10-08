@@ -286,6 +286,20 @@ img {
     margin-top: 2rem;
 }
 
+.fa-facebook,
+.fa-twitter,
+.fa-snapchat,
+.fa-linkedin {
+    transition: 0.2s; 
+}
+
+.fa-facebook:hover,
+.fa-twitter:hover,
+.fa-snapchat:hover,
+.fa-linkedin:hover {
+    color: #90caf9;
+}
+
 /*------------- Media queries ------------*/
 @media only screen and (max-width: 993px) {
     .flashes h4 {
