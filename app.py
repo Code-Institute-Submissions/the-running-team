@@ -17,17 +17,21 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
+
+# Entry point of app. Find all events and current user. Send variables
+# to template.
 @app.route("/")
 @app.route("/get_events")
 def get_events():
     events = list(mongo.db.events.find())
     if session.get("user"):
         user = mongo.db.team_members.find_one({"username": session["user"]})
-        print(user)
         return render_template("events.html", events=events, user=user)
     return render_template("events.html", events=events)
 
 
+# Add new event. If "POST", get form data and insert. Flash message
+# and redirect. Else redirect.
 @app.route("/add_event", methods=["GET", "POST"])
 def add_event():
     if request.method == "POST":
@@ -45,6 +49,9 @@ def add_event():
     return redirect(url_for("get_events"))
 
 
+# Edit event. If session user and "POST", get form data and update.
+# If not "POST", render template. If no session user, redirect to
+# login.
 @app.route("/edit_event/<event_id>", methods=["GET", "POST"])
 def edit_event(event_id):
     if session.get("user"):
@@ -63,16 +70,17 @@ def edit_event(event_id):
         event = mongo.db.events.find_one({"_id": ObjectId(event_id)})
         return render_template("edit_event.html", event=event)
     return redirect(url_for("login"))
-            
 
 
+# Delete event. If session user, get the document and remove. Flash
+# and redirect. If no session user, redirect to login.
 @app.route("/delete_event/<event_id>")
 def delete_event(event_id):
     if session.get("user"):
         mongo.db.events.remove({"_id": ObjectId(event_id)})
         flash("Event deleted", "success-flash")
         return redirect(url_for("get_events"))
-    return redirect(url_for("login")) 
+    return redirect(url_for("login"))
 
 
 # Query mongoDB for all team members and send to template.
@@ -83,10 +91,11 @@ def get_members():
                            active_tab="workout")
 
 
-# Query mongoDB for all posts, comments and attendants and send to template.
+# if session user, query mongoDB for all posts, comments and attendants
+# and send to template. Else, redirect to login.
 @app.route("/get_posts")
 @app.route("/get_posts/<active_tab>")
-def get_posts(active_tab = "workouts"):
+def get_posts(active_tab="workouts"):
     if session.get("user"):
         workouts = list(mongo.db.posts.find(
             {"category": "workout"}).sort("$natural", -1))
