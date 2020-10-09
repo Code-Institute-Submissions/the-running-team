@@ -167,7 +167,7 @@ img {
 }
 
 .new-workout {
-    height: 85%;
+    min-height: 85%;
 }
 
 /*------------- Workouts/blog-posts view ------------*/
@@ -349,6 +349,6 @@ img {
         font-family: "Oswald", sans-serif;
     }
     .new-workout {
-        height: 90%;
+        min-height: 90%;
     }
 }
