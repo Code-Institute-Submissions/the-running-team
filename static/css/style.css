@@ -166,6 +166,10 @@ img {
     width: 40%;
 }
 
+.new-workout {
+    height: 85%;
+}
+
 /*------------- Workouts/blog-posts view ------------*/
 .workout-container {
     border-bottom: 2px solid #0d47a1;
@@ -343,5 +347,8 @@ img {
     .carousel.carousel-slider .carousel-item p {
         font-size: .75rem;
         font-family: "Oswald", sans-serif;
+    }
+    .new-workout {
+        height: 90%;
     }
 }
