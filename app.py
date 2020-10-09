@@ -18,8 +18,7 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
-# Entry point of app. Find all events and current user. Send variables
-# to template.
+# Entry point of app. 
 @app.route("/")
 @app.route("/get_events")
 def get_events():
@@ -30,8 +29,7 @@ def get_events():
     return render_template("events.html", events=events)
 
 
-# Add new event. If "POST", get form data and insert. Flash message
-# and redirect. Else redirect.
+# Add new event.
 @app.route("/add_event", methods=["GET", "POST"])
 def add_event():
     if request.method == "POST":
@@ -49,9 +47,7 @@ def add_event():
     return redirect(url_for("get_events"))
 
 
-# Edit event. If session user and "POST", get form data and update.
-# If not "POST", render template. If no session user, redirect to
-# login.
+# Edit event.
 @app.route("/edit_event/<event_id>", methods=["GET", "POST"])
 def edit_event(event_id):
     if session.get("user"):
@@ -72,8 +68,7 @@ def edit_event(event_id):
     return redirect(url_for("login"))
 
 
-# Delete event. If session user, get the document and remove. Flash
-# and redirect. If no session user, redirect to login.
+# Delete event.
 @app.route("/delete_event/<event_id>")
 def delete_event(event_id):
     if session.get("user"):
@@ -83,7 +78,7 @@ def delete_event(event_id):
     return redirect(url_for("login"))
 
 
-# Query mongoDB for all team members and send to template.
+# Route for displaying team members.
 @app.route("/get_members")
 def get_members():
     members = mongo.db.team_members.find()
@@ -91,8 +86,8 @@ def get_members():
                            active_tab="workout")
 
 
-# if session user, query mongoDB for all posts, comments and attendants
-# and send to template. Else, redirect to login.
+# Route for displaying all posts. active_tab tells template which tab
+# top activate.
 @app.route("/get_posts")
 @app.route("/get_posts/<active_tab>")
 def get_posts(active_tab="workouts"):
@@ -110,11 +105,8 @@ def get_posts(active_tab="workouts"):
     return redirect(url_for("login"))
 
 
-# Route for adding a new post. First check if there's a user cookie. If
-# not, redirect user to login login route. If there's a user and and
-# request is POST, check if form action is 'blog' or 'workout'. Then
-# insert data from form into database. If not post, redirect to route for
-# 'get_members'.
+# Route for adding a new post. "action" attribute tells the function
+# which fields to insert.
 @app.route("/add_post", methods=["GET", "POST"])
 def add_post():
     if session.get("user"):
@@ -147,10 +139,7 @@ def add_post():
     return redirect(url_for("login"))
 
 
-# Route for editing workout. First check if there's a user cookie.
-# If not, return to login. Else, check if user owns the post. If
-# not, flash error message. Else, if POST, update record. Else, render
-# template.
+# Route for editing workout. 
 @app.route("/edit_workout/<post_id>/<redirect_to>", methods=["GET", "POST"])
 def edit_workout(post_id, redirect_to):
     if session.get("user"):
@@ -180,10 +169,7 @@ def edit_workout(post_id, redirect_to):
     return redirect(url_for("login"))
 
 
-# Route for editing blog post. First check if there's a user cookie.
-# If not, return to login. Else, check if user owns the post. If
-# not, flash error message. Else, if POST, update record. Else, render
-# template page.
+# Route for editing blog post.
 @app.route("/edit_blog/<post_id>/<redirect_to>", methods=["GET", "POST"])
 def edit_blog(post_id, redirect_to):
     if session.get("user"):
@@ -209,10 +195,7 @@ def edit_blog(post_id, redirect_to):
     return redirect(url_for("login"))
 
 
-# Route for editing comment. First check if there's a user cookie.
-# If not, return to login. Else, check if user owns the comment. If
-# not, flash error message. Else, if POST, update record. Return to blog
-# page. Else, render template.
+# Route for editing comment.
 @app.route("/edit_comment/<comment_id>/<post_id>", methods=["GET", "POST"])
 def edit_comment(comment_id, post_id):
     if session.get("user"):
@@ -236,9 +219,7 @@ def edit_comment(comment_id, post_id):
     return redirect(url_for("login"))
 
 
-# Route for deleting comment. First check if there's a user cookie.
-# If not, return to login. Else, check if user owns the comment. If
-# not, flash error message. Else, remove record. Return to blog page.
+# Route for deleting comment.
 @app.route("/delete_comment/<comment_id>")
 def delete_comment(comment_id):
     if session.get("user"):
@@ -251,9 +232,7 @@ def delete_comment(comment_id):
     return redirect(url_for("login"))
 
 
-# Route for deleting workout post. First check if there's a user cookie.
-# If not, return to login. Else, check if user owns the current post. If
-# not, flash error message. Else, remove record. Return to blog page.
+# Route for deleting workout post.
 @app.route("/delete_workout/<post_id>/<redirect_to>", methods=["GET", "POST"])
 def delete_workout(post_id, redirect_to):
     if session.get("user"):
@@ -268,9 +247,7 @@ def delete_workout(post_id, redirect_to):
     return redirect(url_for("login"))
 
 
-# Route for deleting blog post. First check if there's a user cookie.
-# If not, return to login. Else, check if user owns the current post. If
-# not, flash error message. Else, remove record. Return to blog page.
+# Route for deleting blog post.
 @app.route("/delete_blog/<post_id>/<redirect_to>", methods=["GET", "POST"])
 def delete_blog(post_id, redirect_to):
     if session.get("user"):
@@ -285,11 +262,7 @@ def delete_blog(post_id, redirect_to):
     return redirect(url_for("login"))
 
 
-# Route for registering a new user. First check if there's a user cookie.
-# If so, redirect to get_members route. Else check if method is POST. If
-# so, check if username is already in database. If so, flash an error
-# message and redirect. If not, insert data from form into database with
-# hashed password field. Redirect to profile page.
+# Route for registering a new user.
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if session.get('user'):
@@ -322,12 +295,7 @@ def register():
     return render_template("register.html")
 
 
-# Route for logging in. First check for user cookie. If so, redirect to
-# get_members route. Else, if method is POST, check if username exists,
-# if not flash error message and redirect. Else, check if entered
-# password matches that of existing_user-variable. If so, assign username
-# to cookie and display success flash message. If not, display error
-# message and redirect.
+# Route for logging in.
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if session.get('user'):
@@ -354,9 +322,7 @@ def login():
     return render_template("login.html")
 
 
-# Route for profile page. Check if there's a user cookie. If so,
-# Query database for all posts by user and all workout-potsts the user
-# is attending. Send these to template. If not, redirect to login.
+# Route for profile page.
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     if session.get('user'):
@@ -373,10 +339,7 @@ def profile(username):
     return redirect(url_for("login"))
 
 
-# Route for editing profile. First check for user cookie. If not, return
-# to login. Else, check if user cookie matches user_id. If not, return to
-# logout with error flash. Else, and if POST, update record. Else, return
-# template.
+# Route for editing profile.
 @app.route("/edit_profile/<user_id>", methods=["GET", "POST"])
 def edit_profile(user_id):
     if session.get("user"):
@@ -422,10 +385,7 @@ def edit_img(member_id):
     return redirect(url_for("profile", username=session["user"]))
 
 
-# Route for deleting profile. First, check for user cookie. If not,
-# return to logout. Else, check that user owns the profile. If not,
-# return to logout with error flash. Else, removeuser's records of
-# comments, attendants and the profile itself. Return to logout.
+# Route for deleting profile.
 @app.route("/delete_member/<member_id>", methods=["GET", "POST"])
 def delete_member(member_id):
     if session.get("user"):
@@ -440,12 +400,13 @@ def delete_member(member_id):
     return redirect(url_for("logout"))
 
 
+# Helper function. Deletes all posts.
 def delete_posts(member_id):
     mongo.db.posts.remove({"author": mongo.db.team_members.find_one(
         {"_id": ObjectId(member_id)})["username"]})
 
 
-# Route for adding a comment. If POST, insert data.
+# Route for adding a comment.
 @app.route("/add_comment/<username>/<post_id>", methods=["GET", "POST"])
 def add_comment(username, post_id):
     if request.method == "POST":
@@ -460,9 +421,7 @@ def add_comment(username, post_id):
     return redirect(url_for("get_posts", active_tab="blog"))
 
 
-# Route for attending a workout. First check if there's a record with
-# the user's username and post_id matching post_id argument. If
-# not, insert data. Else, remove record. Return to blog.
+# Route for attending a workout.
 @app.route("/attend/<username>/<post_id>/<redirect_to>")
 def attend(username, post_id, redirect_to):
     attending_user = mongo.db.attendants.find_one(
