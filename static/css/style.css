@@ -312,6 +312,14 @@ img {
     .navbar-bg {
         background: #000;
     }
+    .carousel.carousel-slider .carousel-item h2 {
+        font-size: 2rem;
+    }
+    
+    .carousel.carousel-slider .carousel-item p {
+        font-size: 1.5rem;
+        font-family: "Oswald", sans-serif;
+    }
 }
 
 @media only screen and (max-width: 600px) {
@@ -327,5 +335,13 @@ img {
     .back-to-top {
         bottom: 3.5rem;
         right: 1.5rem;
+    }
+    .carousel.carousel-slider .carousel-item h2 {
+        font-size: 1.5rem;
+    }
+    
+    .carousel.carousel-slider .carousel-item p {
+        font-size: .75rem;
+        font-family: "Oswald", sans-serif;
     }
 }
