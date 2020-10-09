@@ -43,7 +43,6 @@ def add_event():
         }
         mongo.db.events.insert_one(new_event)
         flash("Event added", "success-flash")
-        return redirect(url_for("get_events"))
     return redirect(url_for("get_events"))
 
 
@@ -134,7 +133,6 @@ def add_post():
                     "element_id": get_random_string(20)
                 }
                 mongo.db.posts.insert_one(new_post)
-                return redirect(url_for("get_posts"))
         return redirect(url_for("get_posts"))
     return redirect(url_for("login"))
 
@@ -395,7 +393,6 @@ def delete_member(member_id):
             mongo.db.attendants.remove({"attendant": session["user"]})
             mongo.db.team_members.remove({"_id": ObjectId(member_id)})
             flash("Team member deleted", "success-flash")
-            return redirect(url_for("logout"))
         flash("Authentication failed", "error-flash")
     return redirect(url_for("logout"))
 
@@ -417,7 +414,6 @@ def add_comment(username, post_id):
             "element_id": get_random_string(20)
         }
         mongo.db.comments.insert_one(comment)
-        return redirect(url_for("get_posts", active_tab="blog"))
     return redirect(url_for("get_posts", active_tab="blog"))
 
 
