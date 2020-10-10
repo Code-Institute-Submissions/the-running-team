@@ -5,9 +5,7 @@
 
 
 ![readmehero](documentation/images/database_diagram.jpeg)
-Encryptinator is a command line themed, educational website for people who want to learn basic encryption. Possible users can range
-from students of data science all the way down to students in elementary school. This does not exclude any other type of users, of course. Some may simply be interested in the website for the sole purpose of encrypting/decrypting
-a message.
+The Running Team is the digital home of a fictional running team. The website is meant to be a place where the team members can plan workouts, share knowledge through blog posts, and keep up to date with the events the team is participating in. However, the website can also be accessed by anyone who's not a member of the team, although in a very restricted view.
 
  
 ## UX
