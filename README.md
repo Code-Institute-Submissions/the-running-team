@@ -19,35 +19,43 @@ The owner of the website(read: the team) recognizes the need for an online gathe
 
 The website uses two fonts from [Google Fonts'](https://fonts.google.com/) library called [Oswald](https://fonts.google.com/specimen/Oswald?query=oswald) and [Roboto](https://fonts.google.com/specimen/Roboto?query=roboto)
 
-Oswald is used for all header type elements, while Roboto is used for paragraph type elements and large blocks of text. These fonts, especially Oswald, was chosen with two sources of inspiration: [Roboto](https://www.runnersworld.com)
+Oswald is used for all header type elements, while Roboto is used for paragraph type elements and large blocks of text. These fonts, especially Oswald, was chosen with two sources of inspiration: [Runner's World](https://www.runnersworld.com)
+
 ![runnersworld](documentation/images/runnersworld.png)
-the "Love Running" mini project at Code Institute. Roboto was chosen as it is pleasant to look at and easy to read. This is especially important in the "training blog" section of the website where the user is potentially exposed to large blocks of text. Roboto is also a popular pairing with Oswald and suggested by google fonts.  
+
+and the "Love Running" mini project at Code Institute. Roboto was chosen as it is pleasant to look at and easy to read. This is especially important in the "training blog" section of the website where the user is potentially exposed to large blocks of text. Roboto is also a popular pairing with Oswald and suggested by google fonts.
+
+*Note: Runner's world frequently changes header fonts on their website, and the similarities may not be evident.*
 
 
+### Colors
 
- ### Colors
- The color theme of the website is very simplistic. All text is green, while backgrounds alternate between black and dark grey. Black and grey is very important to provide some variation against the green text. It also serves the purpose of separating the three main parts of the website.
+In general, the website is minimalistic in use of colors. Black and blue are the main colors used through out the site, where black is dominant. Shades of blue are used for most interactive items like buttons and links. A shade of yellow is used as a "danger" color and displayed when the user tries to delete content.
 
- There are a few instances across the website where a tone of white is used. Most of these instances are for
- text that needs to stand out, like in the learn section and the alternating green/white "start game" button, but also on hover on links in the navbar.
+Although the main frame of the site is conservative in use of color, a more colorful palette is used for the progression bars of each runner. This is evident if the user opens one or more of the cards of each team member. These colors were carefully selected to match up with the level of progression.
 
- A tone of orange is used for all error messages in the encryption forms and in the game. 
+![Progression bars](documentation/images/progbars.PNG)
+
+For the most part, text is black on white background. In some cases, where the text is less important, it has a color of light grey. This makes for a sharp contrast and makes it easy to read large blocks of text.  
+
+It is also worth mentioning that the background image in the navigation bar section provides some color as well.
  
 
 ### User Stories
 
+- I want to see a navigation bar at the top of the site. The navigation should either follow the page down as I scroll (sticky) or provide some other way to quickly access the navigation bar, independently on how far down the page I currently am.
 
-- Upon entering the website, I immediately get the feeling of working with an old computer/command line.
+- Upon entering the website I can immediately see what events I can visit to see the team in action.
 
-- I want to see a navbar at the top of the screen.
+- As a non-member of the team, I want to be able to get information about the members of the team.
 
-- I want to see a large jumbotron/hero which sums up the most important features of the website. 
+- As a member of the team, I want to be able to add content to the website in the form of blog posts and workouts.
 
-- As a learner, I would like to see a section which explains the two encryption/decryption methods used in the website, as well as examples and figures.
+- As a member of the team I want to be able to edit and delete content that I have added. I also want to be able to remove myself as a member of the team.
 
-- I want to see a section beneath the learning section where I can try to encrypt and decrypt text in an easy way. 
+- I want to be able to navigate to a section that displays my personal profile, and displays content that I've added to the site.
 
-- I would like to see a feature that lets me test what I have learned.
+- At the bottom of the site I want to see a footer containing links to relevant social media sites.
 
 ### Wireframes
 
