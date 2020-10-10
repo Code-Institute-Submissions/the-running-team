@@ -12,10 +12,8 @@ The Running Team is the digital home of a fictional running team. The website is
 
 ### General
 
-The owner of the website recognize the needs for a website that explains the basics of encryption in a non-complex
-manner. Its important for the owner that the content of the page is layed out in such a way that it does not
-scare off users with too much complexity. The owner also has interests in developing such a site as it easilly
-can be used to encrypt/decrypt messages. 
+The owner of the website(read: the team) recognizes the need for an online gathering point for the team. The website needs to enable the team members to plan out their workouts, share information via blog posts and keep up to date on events. While the owner first and foremost have self interest in the app, it's also important that it offers the general public access to keep updated on the team, while preserving key features of the site for the team members themselves.  
+
 
 ### Typography
 The font used for this website was carefully chosen, as it is very important that the font supports the feeling of 
