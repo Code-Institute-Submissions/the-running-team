@@ -4,8 +4,17 @@
 [Live website](https://the-running-team.herokuapp.com)
 
 
-![readmehero](documentation/images/database_diagram.jpeg)
 The Running Team is the digital home of a fictional running team. The website is meant to be a place where the team members can plan workouts, share knowledge through blog posts, and keep up to date with the events the team is participating in. However, the website can also be accessed by anyone who's not a member of the team, although in a very restricted view.
+
+## Databases and mongoDB
+
+The database system chosen for this project is [mongoDB](https://www.mongodb.com/). MongoDB is a document-based database in the cloud. The main reason for choosing MongoDB for this project is that it's quick and easy to set up. However, since the database structure of this project is highly relational, an SQL-structure would have been a good solution as well.
+
+![readmehero](documentation/images/db_diagram.jpeg)
+
+The diagram displays all the databases in the project. Four of them relates to each other through keys like "username", "author", or "post_id". This, for instance, makes it easy to display the comments that belongs to a certain blog-post, among many other things. It also makes it easy to delete all entries by a certain user. As an example, if you were to find all workouts a user is attending, you would loop through all the attendants records and find those with an "attendant" key equal to a certain username and "post_id" equal to the workout "post_id".
+
+The "events" database is, at the moment, not relating to the other four. This one's special since only users with an "is_admin" key equal to "true", can add, edit and delete events.
 
  
 ## UX
@@ -254,16 +263,18 @@ on github.
 ## Credits
 
 ### Content
-The figure image in the cesar cipher learn section was taken from [Wikipedia](https://no.wikipedia.org/wiki/C%C3%A6sarchiffer). Most of the facts in the learn section was also taken from the same Wikipedia page.
+The background image in the nav bar section was taken from [Worlds Marathons](https://worldsmarathons.com/fr/article/why-are-east-african-runners-so-dominant-).
+
+The image used in the favicon and as default profile image was taken from [Vectorstock](https://www.vectorstock.com/royalty-free-vector/running-runner-man-marathon-logo-jogging-emblems-vector-13465761).
+
+All other images are provided by the users.
 
 
 ### Acknowledgements
 
-This template heavilly inspired the website and was used as a _visual reference_ to create a command line themed website. None of the actual code behind the template was used.
-https://brobin.github.io/hacker-bootstrap/
+Some inspiration for "The Team" section was picked up from the home of football team [Real Madrid](https://www.realmadrid.com/en/football/squad).
 
 Thanks to my mentor [Jonathan Munz](https://github.com/jpmunz) for guidance on the project and for providing online litterature.
 
-This site was used to double check that the encryption/decryption forms was working correctly in development.
-https://cryptii.com/pipes/vigenere-cipher
+Thanks to [Tim](https://github.com/TravelTimN) at [Code Institute](https://github.com/Code-Institute-Org) for letting me preview the updated videos of the mini project [Task Manager](https://github.com/TravelTimN/flask-task-manager-project). Large parts of the register and login functionality were picked up from these videos.
 
