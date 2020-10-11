@@ -68,7 +68,7 @@ The wireframes somewhat deviates from the finished website as some of the ideas 
 
 
 
-## Features
+## Features and views
 
 The website has three main views. One view for users who are not logged in, one for when the user's logged in, and one for logged in users with administrator rights.   
 
@@ -78,64 +78,85 @@ The website has three main views. One view for users who are not logged in, one 
 
 The nav bar comes from Materialize's library and collapses to a "hamburger" on smaller screens. In addition, the navbar is wrapped inside an element containing the background image. Each nav link changes color on hover. 
 
-### Events (entry point)
+### Events view (entry point)
+
 ![Events](documentation/images/events.PNG)
 
-This section is part of the meat and potatos of the website. It is key for users without any knowledge of encryption to read through this section in order to understand the other two sections of the website. However, the learning section works fine on its own, and she's/he's not required to try out the later sections.
+This is the entry point for the website. All events the team will be participating in is displayed in a materialize carousel. This view is accessible for all users, but only logged in users with administrator rights can add, edit and delete events. The subheader text changes depending if there's a logged in user or not.
 
-The learning section features two sub sections, one for each encryption method. Both sub sections have buttons that lets the user expand or collapse it. The main purpose for this is that these sections are relatively long, and being able to collapse them when a user has read through the content makes the website easier to navigate, and visually more tidied.
+### The Team view
 
-Each subsection contains information on how encryption works when using Cesar cipher and Vigenere cipher. There are also figures present to aid the user in understanding the concepts. Both figures opens in a modal on click and displays even further explaining and examples. Modals close by either clicking on the close symbol (X) or by clicking anywhere in the window.
+![The Team](documentation/images/theteam.PNG)
 
-### Explore section
-![Explore section](documentation/exploreforms.PNG)
+The team section is accessible for all users. All registered users (team members) are displayed in clickable materialize cards. When clicked, the cards display the team member's full name and stats in the for of progression bars.
 
-In this section the user can try out encrypting/decrypting text on their own. Both forms are built in a similar way. The user enters some text in the appropriate textfield, sets the shift or key, and then click encrypt or decrypt button. If the user don't enter any text in the textfield, or fails to meet the required format of the shift or key, an error message will be displayed over the current input element. This message briefly explains what the user must do to make it right.
+![Member Stats](documentation/images/progression.PNG)
 
-The Vigenere Cipher form also sports an option to generate a key. This functionality uses an API to retrieve a random word. The drawback of this functionality is that if you request many words repeatedly, you're timed out for a few seconds. If this happens, the user will also be notified in the same way as explained in the last paragraph. Optionally, in the mean time, the user can just enter their own key instead if they don't wish to wait.
+If the user has a slogan, that will be displayed as well.
 
-It is also worth mentioning that all input areas are highlighted with a green glow around the borders when focused. There are also "clear" buttons present to quickly clear all the text areas.
+### Training Blog view
+![Training Blog](documentation/images/training.PNG)
 
-### Game
-![Game](documentation/game.PNG)
+This section is restricted to logged in users. Here, the user can add new workouts and blog posts as well as edit and delete posts that belongs to the current user. Each post is displayed on a simple materialize card. If the user wants to add a post, the form pops up in a modal.
 
-The game is an additional feature of the website, and is meant to be a fun and quick way to test your own decryption skills. It has a very simple interface that displays a blinking start button, and on click starts the game. For each level there's a word displayed that the user must try to decrypt before the time runs out. The encryption is based on the Cesar cipher and both the shift and length of the current word changes as the user makes progress through the levels. 
+![Training Blog](documentation/images/newpost_modal.PNG)
 
-The game screen displays the current shift, score, timer, the word to be decrypted, "check" button, exit button, and the alphabet.  
+The user can use the tabs to filter workouts and blog posts.
 
-The check button is used to submit the answer. If wrong, the user gets an error message. The same happens if the input field is empty. The exit button takes you back to the blinking "start game" screen.
+![Blog](documentation/images/blog.PNG)
 
-The alphabet is there to help the user traverse the letters in the alphabet according to the current shift. Note that all decryption fields in the forms are disabled when the game is active.
+Both workout posts and blog posts has some additional features, where the users can interact with the posts. All workout posts has an "attend/unattend" button to let other users know that they are attending/not attending the particular workout. All attending users are displayed in a section just beneath the body of the post. All of the blog posts can be commented. All comments, including the input field is displayed in a materialize collapsible beneath each post.
 
-Between each level, the game displays a success message and your current score. The "next level" button takes you to the next stage. If the user fails to decrypt the word before time's up, the game displays a game over screen with your final score and a "back to start" button that takes you back to the "start game" screen.
+![Comments](documentation/images/comments.PNG)
 
-**_Note to assessors and testers:_** There's a hidden feature at the end of the game. If the user fails to decrypt the final word, the website is encrypted and rendered unusable. If this happens, a "restore website" button appears fixed on screen, which refreshes the browser on click. If you wish to experience this feature without playing through the game, click repeatedly (up to 15 times) on the copyright symbol in the footer of the page. The cursor turns to crosshairs when you hover over the correct spot. This will take you directly to the last level. Please note that this only works when the game is not active and the blinking "start game" button is displayed. This is easiest achieved on a larger screen when using a mouse.
+### Profile view
+
+![Comments](documentation/images/profile.PNG)
+
+In the profile section, the user can edit and even delete their account. The profile image can be edited without editing the entire account by clicking on it. In addition, all the user's workout- and blog posts are displayed in collapsibles. All the workouts the user is attending are also displayed in collapsibles. This way, the profile page works like a dashboard for the user, containing all information relevant to them.
+
+### Register view
+
+This section is simply a form for the user to fill in and submit. If all required fields are valid, a new record is inserted into mongoDB, the user is redirected to their profile page, and can start using the website.
+
+### Log in/out
+
+This simply allows user to log in and out of the site. Logging in redirects the user to their profile while logging out redirects to The Team section.
+
 
 ### Features Left to Implement
-All of the features that was planned for on this website was executed. However, there are a few ideas which could be implemented in the future.
 
-- Let the user encrypt a text, enter an email address and send the encrypted text to that email with a short explanation on how to decrypt the message, using the same website.
+All of the features that was planned for on this website was executed. However, there are almost an endless array of features that can be implemented to make the site even more functional. Here are a few ideas of features that would improve the site (in loosely prioritized order):
 
-- Build out the game so that it involves both decryption and encryption. In addition, the user could set difficulty before starting the game.
+- Using AJAX for posting comments and attend/unattend functionality.
+- Pagination in the training blog section
+- File upload for profile image
+- Administrator dashboard
+- E-mail confirmation when registering
+- Back-end validation of forms 
 
 ## Technologies Used
 
+- [Flask](https://flask.palletsprojects.com/en/1.1.x/)
+- [Jinja](https://jinja.palletsprojects.com/en/2.11.x/)
 - [VS Code](https://code.visualstudio.com/)
 - [HTML5](https://www.w3.org/) 
 - [CSS3](https://www.w3.org/)
+- [Python](https://www.python.org/)
+- [Pip](https://pip.pypa.io/en/stable/)
+- [mongoDB](https://www.mongodb.com/)
 - [JavaScript](https://www.javascript.com/)
 - [jQuery](https://jquery.com/)
-- [Bootstrap](https://www.getbootstrap.com)
+- [Materialize](https://materializecss.com)
 - [Google Fonts](https://fonts.google.com/)
-- [Wordnik API](https://developer.wordnik.com/) - Retrieves random word
-- [Jasmine](https://jasmine.github.io/)
-- [Node.js](https://nodejs.org/en/) - In the early stages, node.js was used to run javascript on the cli.
-- [npm-package: http-server](https://www.npmjs.com/package/http-server) - Used to set up a server in development.
+- [Git](https://git-scm.com/)
+- [Github](https://www.github.com)
+- [Heroku](https://id.heroku.com/)
 
- 
+
 ## Testing
 
-The testing of the website, both in development and as a finished product has been done through both manual testing and automated testing (jasmine). As the manual test documentation became very long, it can be viewed in [this document](https://github.com/thorole/encryptinator/blob/master/TESTING.md).
+The testing of the website, both in development and as a finished product has been done through manual testing. As the manual test documentation became very long, it can be viewed in [this document](https://github.com/thorole/encryptinator/blob/master/TESTING.md).
 
 The automated testing tests the functionality of the encryption/decryption forms. All the test can be viewed in [this file](https://github.com/thorole/encryptinator/blob/master/testing/spec/functionSpecs.js). You can view the test results [here](https://thorole.github.io/encryptinator/testing/test.html).
 
