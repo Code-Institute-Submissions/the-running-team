@@ -181,7 +181,7 @@ Debugging login
 
 The console was used to debug javascript. This image displays debugging of the function that sets the colors and widths of the progression bars.
 
-![Progression bars debug](documentation/images/debug_progress_bar.PNG)
+![Progression bars debug](documentation/images/debug_progress_bar.png)
 
 Other than this, printing variables directly on the templates using jinja has also been a method of debugging.
 
