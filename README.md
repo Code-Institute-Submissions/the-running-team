@@ -152,25 +152,49 @@ All of the features that was planned for on this website was executed. However, 
 - [Git](https://git-scm.com/)
 - [Github](https://www.github.com)
 - [Heroku](https://id.heroku.com/)
+- [WSL | Ubuntu](https://ubuntu.com/wsl)
 
 
 ## Testing
 
 The testing of the website, both in development and as a finished product has been done through manual testing. As the manual test documentation became very long, it can be viewed in [this document](https://github.com/thorole/encryptinator/blob/master/TESTING.md).
 
-The automated testing tests the functionality of the encryption/decryption forms. All the test can be viewed in [this file](https://github.com/thorole/encryptinator/blob/master/testing/spec/functionSpecs.js). You can view the test results [here](https://thorole.github.io/encryptinator/testing/test.html).
+### Notes on defensive design
+
+Since this website relies heavilly on the user for adding content, some measures has been implemented to prevent misuse. The most important feature is registering/login functionality. Even though this project does not focus on user authentication, this feature was added to the project to prevent random users to add, edit or even delete documents in the database.
+
+In addition to authentication, back-end functions prevents users to brute-force deleting (via url field in browser) content that does not belong to them.
+
+Other than that, all forms uses `required`, `max/min-length` and `pattern` attributes where relevant.
+
+It's worth mentioning that regex for url inputs (like profile image) is somewhat strict, and users may experience that some urls does not fulfill the rquirements, even though it's a valid url. This is why a file upload should replace this feature in future updates of the site.
 
 ### Bug report
 
-Through out development, there has been a series of minor and more complex bugs. The most important tool for debuggin has been the browser console in chrome. Here's how the console would typically look like during development.
+Through out development, there has been a series of minor and more complex bugs. The most important tool for debuggin has been printing information in the cli while the app is running. 
 
-Debugging forms
-![Testing the forms](testing/images/consoletestingforms.png)
+![Cli debug](documentation/images/db_debugging.png)
 
-Debugging game
-![Testing game](testing/images/consoletestinggame.png)
+Debugging login
 
-One of the more interesting bugs was discovered in automated testing. When passing numbers through the shift input field, the number was handled as a string, which again led to errors. This led to the re-writing of the function `checkShift()`. In the later stages of the project, the built in javascript method `checkValidity()` was introduced to the project to check all the input fields before the rest of the functions are called. This makes `checkShift()`, `writeDefaultKey()` and `writeDefaultShift()` a bit redundant but they were kept as an extra safety.
+![Login debug](documentation/images/login_debugging.png)
+
+The console was used to debug javascript. This image displays debugging of the function that sets the colors and widths of the progression bars.
+
+![Progression bars debug](documentation/images/debug_progress_bar.PNG)
+
+Other than this, printing variables directly on the templates using jinja has also been a method of debugging.
+
+There is currently one known bug in the app. This bug is related to users who view the site on ios devices. All select inputs are more or less non-functional. When touching the select, the drop down of options is displayed, as intended. However, the user will be unable to choose their desired option. Instead, when pressing an option, what seems like a random option is selected. Luckily, just beneath the input, a small downward pointing arrow is visible, which lets the user utilize a standard select instead, which works as it should.
+
+![ios select](documentation/images/ios_select.jpg)
+
+This is a known issue with materialize selects and ios devices. Currently there are no known quick fixes. Some users on github has tried to provide solutions with javascript. Some of these were tried out for the project, but without success.
+
+You can read more about the issue in this github thread:
+[ios selects](https://github.com/Dogfalo/materialize/issues/6464)
+
+*Note: this bug only arises on physical ios devices. In chrome dev-tools, when choosing an iphone, the select behaves as intended.*
 
 
 
@@ -180,20 +204,18 @@ in Mozilla Firefox, MS Edge and Mac OS Safari. The website is responsive as inte
 all browsers used in testing.
 
 The website has also been tested physically on iPhone S, ipad 2nd gen., iPhone 7 and Mi a2 Redmi note 7.
-The website responds well to smaller screen sizes and no major problems have appeared. The intention
-is that on medium to small screens the website is layed out in a single column. During construction the site was constantly tested on phone sized
+The website responds well to smaller screen sizes and no major problems have appeared, except for the select issue on ios. The site utilizes the materialize grid system and changes column sizing from small and up to x-large screens, depending on the view. For instance, the forms is either single column or two-columns, while "The Team" view has breakpoints for small, medium, large and x-large screens. During construction the site was constantly tested on phone sized
 screen in the Chrome dev. tools to make sure it looked good and behaved as intended.
 
 #### Tools used in testing
-- [JsHint](https://jshint.com/) (0 warnings. Please note that there will be warnings of unused variables if you test each file individually. This is because game.js uses functions from encryption.js. JsHint will, of course, not detect this if not all the code is pasted in.)
+- [JsHint](https://jshint.com/) (0 warnings)
+- [PEP-8 checker](http://pep8online.com/)(All right)
 - [W3C Markup Validation](https://validator.w3.org/) (0 errors in html.)
 - [W3C CSS Validation](https://jigsaw.w3.org/css-validator/#validate_by_input)(0 errors, 17 warnings of unknown vendor extensions.) 
-- [Accessibility checker](https://www.achecker.ca) (No known problems.)
-- [Node.js](https://nodejs.org/en/) - In the early stages, node.js was used to run javascript on the cli.
-- [npm-package: http-server](https://www.npmjs.com/package/http-server) - Used to set up a server in development.
+- [Accessibility checker](https://www.achecker.ca) (Multiple known problems, all related to use of `<i>` for icons. In most cases, swapping with `<span>` solves the problem, but this does not translate well with materialize.)
 - [Autoprefixer](https://autoprefixer.github.io/)
 - [Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools)
-- [Jasmine](https://jasmine.github.io/)
+
 
 ## Deployment
 
