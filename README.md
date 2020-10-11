@@ -70,18 +70,16 @@ The wireframes somewhat deviates from the finished website as some of the ideas 
 
 ## Features
 
-The website is divided into three main sections, all on the same page. The content is layed out in such a way that a user who has no experience with encryption can read through the learning section at the top, move on to the encryption forms and try it out for themselves, and finally test themselves in a simple game where the goal is to decrypt as many words as possible.   
+The website has three main views. One view for users who are not logged in, one for when the user's logged in, and one for logged in users with administrator rights.   
 
 
-### Nav bar and jumbotron
-![Navbar and jumbotron](documentation/navjumbotron.PNG)
+### Nav bar
+![Navbar](documentation/images/navbar.PNG)
 
-The navbar is custom built with flexbox. It consists of four navigation links which takes the user to the desired sections of the site. All links turn white on hover. The navbar does not collapse into a button on small screens, like you would usually see in webdesign these days. The reason for this is to maintain the illusion of a toolbar.
+The nav bar comes from Materialize's library and collapses to a "hamburger" on smaller screens. In addition, the navbar is wrapped inside an element containing the background image. Each nav link changes color on hover. 
 
-The jumbotron has two purposes. It displays the title of the website, and sumarizes its main features.
-
-### Learning section
-![Learning section](documentation/learningsection.PNG)
+### Events (entry point)
+![Events](documentation/images/events.PNG)
 
 This section is part of the meat and potatos of the website. It is key for users without any knowledge of encryption to read through this section in order to understand the other two sections of the website. However, the learning section works fine on its own, and she's/he's not required to try out the later sections.
 
