@@ -267,6 +267,8 @@ The background image in the nav bar section was taken from [Worlds Marathons](ht
 
 The image used in the favicon and as default profile image was taken from [Vectorstock](https://www.vectorstock.com/royalty-free-vector/running-runner-man-marathon-logo-jogging-emblems-vector-13465761).
 
+Image in 404 page was taken from [this](http://glosfit.co.uk/10-reasons-not-improving/sad-runner/) website.
+
 All other images are provided by the users.
 
 
