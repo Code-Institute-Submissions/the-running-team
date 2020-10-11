@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+    <div class="col s12">
+        <h2 class="center-align">Ohh no..</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col s4 offset-s4">
+        <div class="center-align lost-runner-image"><img src="{{ url_for('static', filename='images/404_image.jpg') }}"
+                alt="Sad runner."></div>
+    </div>
+</div>
+<div class="row">
+    <div class="col s12">
+        <p class="center-align">Seems like you "ran" into nowhere (pun intended).</p>
+        <p class="center-align"><a href="{{ url_for('get_events') }}">Take me back somewhere nice.</a></p>
+        {% endblock %}
+    </div>
+</div>
