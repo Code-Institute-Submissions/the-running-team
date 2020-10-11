@@ -18,7 +18,13 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
-# Entry point of app. 
+#Custom 404 redirect
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
+
+# Entry point of app.
 @app.route("/")
 @app.route("/get_events")
 def get_events():
