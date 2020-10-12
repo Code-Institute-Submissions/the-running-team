@@ -11,7 +11,7 @@
                         <i aria-hidden="true" class="material-icons prefix">title</i>
                         <input id="title" name="title" value="{{ post.title }}" type="text" class="validate"
                             oninvalid="this.setCustomValidity('Enter a title between 2 and 50 characters.')"
-                            oninput="this.setCustomValidity('')" minlength="2" maxlength="50" pattern="^[^\s].*"
+                            oninput="this.setCustomValidity('')" minlength="2" maxlength="50" pattern="^[^\s].*" data-length="50"
                             required>
                         <label for="title">Title</label>
                     </div>
@@ -21,7 +21,7 @@
                         <i aria-hidden="true" class="material-icons prefix">subject</i>
                         <textarea id="main-content" name="main-content" class="materialize-textarea"
                             oninvalid="this.setCustomValidity('Enter main content of blog post.')"
-                            oninput="this.setCustomValidity('')" minlength="5" maxlength="3000"
+                            oninput="this.setCustomValidity('')" minlength="5" maxlength="3000" data-length="3000"
                             required>{{ post.description }}</textarea>
                         <label for="main-content">Text content</label>
                     </div>

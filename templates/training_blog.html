@@ -17,7 +17,7 @@
                 <i aria-hidden="true" class="material-icons prefix">title</i>
                 <input id="workout-title" name="workout-title" type="text" class="validate"
                     oninvalid="this.setCustomValidity('Enter a title between 2 and 50 characters.')"
-                    oninput="this.setCustomValidity('')" minlength="2" maxlength="50" pattern="^[^\s].*" required>
+                    oninput="this.setCustomValidity('')" minlength="2" maxlength="50" pattern="^[^\s].*" data-length="50" required>
                 <label for="workout-title">Title</label>
             </div>
         </div>
@@ -25,15 +25,13 @@
             <div class="input-field col m5 offset-m1 s10 offset-s1">
                 <i aria-hidden="true" class="material-icons prefix">calendar_today</i>
                 <input type="text" id="date" name="date" class="datepicker validate"
-                    oninvalid="this.setCustomValidity('Pick a date for the workout.')"
-                    oninput="this.setCustomValidity('')" required>
+                     required>
                 <label for="date">Date</label>
             </div>
             <div class="input-field col m5 s10 offset-s1">
                 <i aria-hidden="true" class="material-icons prefix">access_time</i>
                 <input type="text" id="time" name="time" class="timepicker validate"
-                    oninvalid="this.setCustomValidity('Enter a time for the workout.')"
-                    oninput="this.setCustomValidity('')" required>
+                     required>
                 <label for="time">Time</label>
             </div>
         </div>
@@ -94,7 +92,7 @@
                 <i aria-hidden="true" class="material-icons prefix">title</i>
                 <input id="blog-title" name="blog-title" type="text" class="validate"
                     oninvalid="this.setCustomValidity('Enter a title between 2 and 50 characters.')"
-                    oninput="this.setCustomValidity('')" minlength="2" maxlength="50" pattern="^[^\s].*" required>
+                    oninput="this.setCustomValidity('')" minlength="2" maxlength="50" pattern="^[^\s].*" data-length="50" required>
                 <label for="blog-title">Title</label>
             </div>
         </div>
@@ -261,7 +259,7 @@
                                             class="col s12">
                                             <div class="row">
                                                 <div class="input-field col s12">
-                                                    <textarea id="commentfor{{ blog._id }}" name="comment" class="materialize-textarea"
+                                                    <textarea id="commentfor{{ blog._id }}" name="comment" class="materialize-textarea" data-length="1000"
                                                         required></textarea>
                                                     <label for="commentfor{{ blog._id }}">Textarea</label>
                                                 </div>

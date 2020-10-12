@@ -15,19 +15,19 @@
                 <div class="row">
                     <div class="input-field col s5 offset-s1">
                         <i aria-hidden="true" class="material-icons prefix">calendar_today</i>
-                        <input type="text" id="date" name="date" value="{{ post.date }}" class="datepicker validate" oninvalid="this.setCustomValidity('Pick a date for the workout.')" oninput="this.setCustomValidity('')" required>
+                        <input type="text" id="date" name="date" value="{{ post.date }}" class="datepicker validate"  required>
                         <label for="date">Date</label>
                     </div>
                     <div class="input-field col s5">
                         <i aria-hidden="true" class="material-icons prefix">access_time</i>
-                        <input type="text" id="time" name="time" value="{{ post.time }}" class="timepicker validate" oninvalid="this.setCustomValidity('Enter a time for the workout.')" oninput="this.setCustomValidity('')" required>
+                        <input type="text" id="time" name="time" value="{{ post.time }}" class="timepicker validate"  required>
                         <label for="time">Time</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s5 offset-s1">
                         <i aria-hidden="true" class="material-icons prefix">access_alarm</i>
-                        <select id="duration" class="validate" name="duration" required>
+                        <select id="duration" class="validate" name="duration">
                             <option value="{{ post.duration }}" selected>{{ post.duration }} min</option>
                             <option value="15">15 min</option>
                             <option value="30">30 min</option>
