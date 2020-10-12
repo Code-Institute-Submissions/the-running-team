@@ -48,7 +48,20 @@ Although the main frame of the site is conservative in use of color, a more colo
 For the most part, text is black on white background. In some cases, where the text is less important, it has a color of light grey. This makes for a sharp contrast and makes it easy to read large blocks of text.  
 
 It is also worth mentioning that the background image in the navigation bar section provides some color as well.
- 
+
+#### Color palette
+Buttons and links
+
+![Color](documentation/images/colors/buttons_colors.PNG)
+
+Flashed messages
+
+![Color](documentation/images/colors/flashed_colors.PNG)
+
+Progression bars
+
+![Color](documentation/images/colors/progress_colors.PNG)
+
 
 ### User Stories
 
@@ -174,6 +187,8 @@ Since this website relies heavilly on the user for adding content, some measures
 
 In addition to authentication, back-end functions prevents users to brute-force deleting (via url field in browser) content that does not belong to them.
 
+All comments, posts and events have a key called "element_id" which is set by the `get_random_string(length)` function. This assigns the key with a random string. This string is used to set the `id` of repeatedly generated elements, like delete modals. This way the ids of otherwise identical elements won't be repeated. Another solution would be to use the `_id` of the current item in the loop, but I chose this method to avoid exposing the `_id` of the item in the generated html. 
+
 Other than that, all forms uses `required`, `max/min-length` and `pattern` attributes where relevant.
 
 It's worth mentioning that regex for url inputs (like profile image) is somewhat strict, and users may experience that some urls does not fulfill the rquirements, even though it's a valid url. This is why a file upload should replace this feature in future updates of the site.
@@ -220,9 +235,8 @@ screen in the Chrome dev. tools to make sure it looked good and behaved as inten
 - [JsHint](https://jshint.com/) (0 warnings)
 - [PEP-8 checker](http://pep8online.com/)(All right)
 - [W3C Markup Validation](https://validator.w3.org/) (0 errors in html.)
-- [W3C CSS Validation](https://jigsaw.w3.org/css-validator/#validate_by_input)(0 errors, 17 warnings of unknown vendor extensions.) 
+- [W3C CSS Validation](https://jigsaw.w3.org/css-validator/#validate_by_input)(0 errors in local css) 
 - [Accessibility checker](https://www.achecker.ca) (Multiple known problems, all related to use of `<i>` for icons. In most cases, swapping with `<span>` solves the problem, but this does not translate well with materialize.)
-- [Autoprefixer](https://autoprefixer.github.io/)
 - [Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools)
 
 
