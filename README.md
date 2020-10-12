@@ -90,7 +90,7 @@ The wireframes somewhat deviates from the finished website as some of the ideas 
 
 - [Blog-posts](https://github.com/thorole/the-running-team/tree/master/documentation/wireframes/blog_post.pdf)
 - [Workout-posts](https://github.com/thorole/the-running-team/tree/master/documentation/wireframes/workout.pdf)
-- [Team page](https://github.com/thorole/the-running-team/tree/master/documentation/wireframes/team.pdf) | [Team page layout plan](https://github.com/thorole/the-running-team/tree/master/documentation/wireframes/team_all_sizes.pdf) | [Team page small screen and tablet](https://github.com/thorole/the-running-team/tree/master/documentation/wireframes/team_small_tablet.pdf)
+- [Team page](https://github.com/thorole/the-running-team/tree/master/documentation/wireframes/team.pdf) | [Team page layout plan](https://github.com/thorole/the-running-team/tree/master/documentation/wireframes/team_all_sizes.pdf) | [Team page small screen and tablet](https://github.com/thorole/the-running-team/tree/master/documentation/wireframes/team_phone_tablet.pdf)
 - [profile](https://github.com/thorole/the-running-team/tree/master/documentation/wireframes/profile.pdf) | [Profile small screen](https://github.com/thorole/the-running-team/tree/master/documentation/wireframes/profile_small.pdf)
 - [Forms](https://github.com/thorole/the-running-team/tree/master/documentation/wireframes/forms.pdf) | [Forms small](https://github.com/thorole/the-running-team/tree/master/documentation/wireframes/forms_small.pdf)
 
