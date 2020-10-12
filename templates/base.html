@@ -83,8 +83,8 @@
         <div class="container">
             <div class="row">
                 <div class="col l6 s12">
-                    <h2 class="white-text">We're on social media!</h2>
-                    <p class="grey-text text-lighten-4">Don't forget to keep in touch with your team mates on social
+                    <h2 id="footer-heading" class="white-text">We're on social media!</h2>
+                    <p id="footer-info" class="grey-text text-lighten-4">Don't forget to keep in touch with your team mates on social
                         media.</p>
                 </div>
                 <div class="col l4 offset-l2 s12">
@@ -103,7 +103,7 @@
         </div>
         <div class="footer-copyright">
             <div class="container">
-                © 2020 Copyright The Running Team
+                <span id="admin">©</span> 2020 Copyright The Running Team
             </div>
         </div>
     </footer>
@@ -111,6 +111,9 @@
         integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script type=text/javascript>
+        $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    </script>
     {% block scripts %}
     {% endblock %}
 </body>
