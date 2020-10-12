@@ -1,6 +1,6 @@
 $(document).ready(function () {
   "use strict";
-
+  
   $('.sidenav').sidenav();
   $('select').formSelect();
   $('.modal').modal();
@@ -17,7 +17,10 @@ $(document).ready(function () {
     fullWidth: true,
     indicators: true
   });
-
+  
+  //Set background to indicators on carousel to make them more visible.
+  $(".indicators").css("background-color", "rgba(0, 0, 0, .6)");
+  
   /*
   This line enables validation on materialize selects by displaying the otherwise hidden select element.
   The idea was taken from stackoverflow user "Imran Saleem."
@@ -70,7 +73,7 @@ $(document).ready(function () {
   setTimeout(function () {
     $(".flashes").fadeOut('slow');
   }, 5000);
-
+  
 
   /*
   Code for displaying/hiding back-to-top button. Taken from 
