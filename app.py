@@ -289,7 +289,8 @@ def register():
             "strength": request.form.get("strength"),
             "speed": request.form.get("speed"),
             "quote": request.form.get("slogan"),
-            "img": request.form.get("img-url")
+            "img": request.form.get("img-url"),
+            "is_admin": False
         }
         mongo.db.team_members.insert_one(new_member)
 
@@ -361,7 +362,9 @@ def edit_profile(user_id):
                     "strength": request.form.get("strength"),
                     "speed": request.form.get("speed"),
                     "quote": request.form.get("slogan"),
-                    "img": request.form.get("img-url")
+                    "img": request.form.get("img-url"),
+                    "is_admin": mongo.db.team_members.find_one(
+                        {"_id": ObjectId(user_id)})["is_admin"]
                 }
 
                 mongo.db.team_members.update(
