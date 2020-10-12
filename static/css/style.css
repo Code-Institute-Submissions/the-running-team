@@ -177,7 +177,9 @@ img {
 }
 
 .comment {
-    border-top: 1px solid #000;
+    border-top: 1px solid #9e9e9e;
+    border-radius: 3px;
+    min-height: 5rem;
 }
 
 .line-breaks {
