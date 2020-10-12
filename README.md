@@ -63,6 +63,11 @@ Progression bars
 ![Color](documentation/images/colors/progress_colors.PNG)
 
 
+### Materialize
+I chose to use [Materialize](https://materializecss.com) for this project as I'm only familiar with bootstrap from before, and would like to try a new css framework. My aim during development has been to rely on materialize as much as possible, in order to write less custom CSS and JavaScript. This way, I have been able to focus on python for backend management. For this purpose, materilize has served the project well. As evident by taking a look at the [script.js](https://github.com/thorole/the-running-team/blob/master/static/js/script.js) file, there's hardly any custom JavaScript, with only a few exceptions.
+
+Materialze offers a wide array of elements that looks and functions great right out of the box. There are however a few exceptions like the issue regarding selects, which I've commented on in the bug section. The drawback (in my view) of materialize is the strict design, and the feeling that they really don't want you to play around too much with the design (probably in order to not break the rules of material design). However, for me, it feels a bit stiff.
+
 ### User Stories
 
 - I want to see a navigation bar at the top of the site. The navigation should either follow the page down as I scroll (sticky) or provide some other way to quickly access the navigation bar, independently on how far down the page I currently am.
@@ -242,7 +247,7 @@ screen in the Chrome dev. tools to make sure it looked good and behaved as inten
 
 ## Deployment
 
-**This procedure was followed to deploy Encryptinator**
+**This procedure was followed to deploy The Running Team**
 For step 1 and 2, make sure you are in the root directory of your project. Don't forget to push the two new files to github before proceeding with the deployment.
 
 1. Create a requirements file. In the cli it can be done by running the following command:
