@@ -11,7 +11,7 @@ $(document).ready(function () {
   });
   $('.timepicker').timepicker();
   $('.collapsible').collapsible();
-  $('textarea, input').characterCounter();
+  $('textarea, .count').characterCounter();
   $('.tooltipped').tooltip();
   $('.carousel.carousel-slider').carousel({
     fullWidth: true,
