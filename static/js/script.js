@@ -17,13 +17,13 @@ $(document).ready(function () {
     fullWidth: true,
     indicators: true
   });
-  
+
   /*
   This line enables validation on materialize selects by displaying the otherwise hidden select element.
   The idea was taken from stackoverflow user "Imran Saleem."
   */
   $("select[required]").css({ display: "block", height: 0, padding: 0, width: 0, position: 'absolute' });
-  
+
   /*
   This function iterates through all the progressbars, gets its data-value, and
   sets a width and class(color) to the progressbar according to the data-value.
@@ -61,7 +61,7 @@ $(document).ready(function () {
     while (i < carouselImgs.length) {
       let carouselImg = carouselImgs[i];
       let url = carouselImg.getAttribute("data-img");
-      $(carouselImg).css({"background-image" : "url(" + url + ")", "background-repeat" : "no-repeat", "background-size" : "cover"});
+      $(carouselImg).css({ "background-image": "url(" + url + ")", "background-repeat": "no-repeat", "background-size": "cover" });
       i++;
     }
   }
@@ -99,5 +99,19 @@ $(document).ready(function () {
 
   $("#back-to-top").click(function () {
     topFunction();
+  });
+  
+  // Enable admin rights via function in app.py.
+  $("#admin").click(function () {
+    $.getJSON($SCRIPT_ROOT + '/toggle_admin',
+      function (data) {
+        $("#footer-heading").text("Admin mode: " + data.admin);
+        $("#footer-info").text("Refresh browser for changes to take effect.")
+        setTimeout(function() {
+          $("#footer-heading").text("We're on social media!");
+        $("#footer-info").text("Don't forget to keep in touch with your team mates on social media.");
+        }, 5000)
+      });
+    return false
   });
 });
