@@ -494,6 +494,26 @@ def owns_account(member_id):
     else:
         return False
 
+# Function for turning on/off admin rights. Triggered by clicking
+# copyright symbol in footer. Remove before production.
+@app.route("/toggle_admin")
+def toggle_admin():
+    if session.get("user"):
+        username = session.get("user")
+        is_admin = mongo.db.team_members.find_one(
+                    {"username": username})["is_admin"]
+        if is_admin:
+            mongo.db.team_members.update({"username": username},
+                                     {"$set":
+                                     {"is_admin": False}})
+            return {"admin": "off"}
+        else:
+            mongo.db.team_members.update({"username": username},
+                                     {"$set":
+                                     {"is_admin": True}})
+            return {"admin": "on"} 
+    return {"error": "error"}    
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
