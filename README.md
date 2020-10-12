@@ -86,12 +86,13 @@ Materialze offers a wide array of elements that looks and functions great right 
 
 ### Wireframes
 
-The wireframes somewhat deviates from the finished website as some of the ideas and features came into existence after the planning process. Note that there is only wireframes for large and small screens. This is due to the simple structure of the website. There is only one breakpoint, so any screen under large (991px) will display the website in single columns.   
+The wireframes somewhat deviates from the finished website as some of the ideas and features came into existence after the planning process. The "Events" view for instance, was an idea I just wanted to try out at the last stages of development and lacks wireframes. Other than that, there's wireframes for different screen sizes of views where this is relevant.    
 
-- [Learn and explore section](https://github.com/thorole/encryptinator/tree/master/wireframes/learn_forms_sections.pdf) | [Learn section mobile](https://github.com/thorole/encryptinator/tree/master/wireframes/small_screen.pdf)
-- [Explore section mobile](https://github.com/thorole/encryptinator/tree/master/wireframes/explore_mobile.pdf)
-- [Game](https://github.com/thorole/encryptinator/tree/master/wireframes/game.pdf) | [mobile](wireframes/game_small_screen.pdf)
-- [Learn section expanded and modal](https://github.com/thorole/encryptinator/tree/master/wireframes/dropdown_expanded.pdf)
+- [Blog-posts](https://github.com/thorole/the-running-team/tree/master/documentation/wireframes/blog_post.pdf)
+- [Workout-posts](https://github.com/thorole/the-running-team/tree/master/documentation/wireframes/workout.pdf)
+- [Team page](https://github.com/thorole/the-running-team/tree/master/documentation/wireframes/team.pdf) | [Team page layout plan](https://github.com/thorole/the-running-team/tree/master/documentation/wireframes/team_all_sizes.pdf) | [Team page small screen and tablet](https://github.com/thorole/the-running-team/tree/master/documentation/wireframes/team_small_tablet.pdf)
+- [profile](https://github.com/thorole/the-running-team/tree/master/documentation/wireframes/profile.pdf) | [Profile small screen](https://github.com/thorole/the-running-team/tree/master/documentation/wireframes/profile_small.pdf)
+- [Forms](https://github.com/thorole/the-running-team/tree/master/documentation/wireframes/forms.pdf) | [Forms small](https://github.com/thorole/the-running-team/tree/master/documentation/wireframes/forms_small.pdf)
 
 
 
