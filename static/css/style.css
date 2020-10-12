@@ -1,4 +1,5 @@
 /*------------- General body rule and helper classes ------------*/
+
 body {
     font-family: "Roboto", sans-serif;
     font-size: 1.1rem;
@@ -34,7 +35,9 @@ main {
 .bold {
     font-weight: bold;
 }
+
 /*------------- Header title and navbar ------------*/
+
 .title {
     text-transform: uppercase;
     font-size: 5rem;
@@ -51,7 +54,7 @@ main {
     font-size: 2.5rem;
 }
 
-.navbar-bg { 
+.navbar-bg {
     background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 1)), url(/static/images/runners_cropped.jpg);
     background-repeat: no-repeat;
     background-size: cover;
@@ -74,6 +77,7 @@ nav ul li a:hover {
 }
 
 /*------------- Headers ------------*/
+
 h1, h2, h3 {
     font-family: "Oswald", sans-serif;
     font-weight: 700;
@@ -81,6 +85,7 @@ h1, h2, h3 {
 }
 
 /*------------- Cards ------------*/
+
 .card-reveal h2, span {
     font-size: 1rem;
     margin: 0;
@@ -111,6 +116,7 @@ blockquote {
 }
 
 /*------------- Special rules for profile view ------------*/
+
 .profile-stats h3 {
     font-size: 1.5rem;
 }
@@ -132,6 +138,7 @@ blockquote {
 }
 
 /*------------- Images ------------*/
+
 img {
     width: 100%;
 }
@@ -144,6 +151,7 @@ img {
 }
 
 /*------------- Flashed messages ------------*/
+
 .error-flash {
     background-color: #ef5350;
 }
@@ -158,6 +166,7 @@ img {
 }
 
 /*------------- Modals ------------*/
+
 .modal {
     width: 60%;
 }
@@ -171,6 +180,7 @@ img {
 }
 
 /*------------- Workouts/blog-posts view ------------*/
+
 .workout-container {
     border-bottom: 2px solid #0d47a1;
     padding-bottom: 1rem;
@@ -206,6 +216,7 @@ img {
 }
 
 /*------------- Tabs in training blog view ------------*/
+
 .tabs {
     margin-bottom: 2rem;
 }
@@ -243,6 +254,7 @@ img {
 }
 
 /*------------- Carousel text overlay ------------*/
+
 .carousel-overlay {
     position: absolute;
     top: 2rem;
@@ -263,6 +275,7 @@ img {
 }
 
 /*------------- Back to top button. From w3schools.com and modified ------------*/
+
 .back-to-top {
     display: none;
     position: fixed;
@@ -288,25 +301,21 @@ img {
 }
 
 /*------------- Footer ------------*/
+
 .page-footer {
     margin-top: 2rem;
 }
 
-.fa-facebook,
-.fa-twitter,
-.fa-snapchat,
-.fa-linkedin {
-    transition: 0.2s; 
+.fa-facebook, .fa-twitter, .fa-snapchat, .fa-linkedin {
+    transition: 0.2s;
 }
 
-.fa-facebook:hover,
-.fa-twitter:hover,
-.fa-snapchat:hover,
-.fa-linkedin:hover {
+.fa-facebook:hover, .fa-twitter:hover, .fa-snapchat:hover, .fa-linkedin:hover {
     color: #90caf9;
 }
 
 /*------------- Media queries ------------*/
+
 @media only screen and (max-width: 993px) {
     .flashes h4 {
         font-size: 2rem;
@@ -321,7 +330,6 @@ img {
     .carousel.carousel-slider .carousel-item h2 {
         font-size: 2rem;
     }
-    
     .carousel.carousel-slider .carousel-item p {
         font-size: 1.5rem;
         font-family: "Oswald", sans-serif;
@@ -350,4 +358,3 @@ img {
         font-family: "Oswald", sans-serif;
     }
 }
-    
