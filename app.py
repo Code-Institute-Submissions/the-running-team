@@ -399,6 +399,7 @@ def delete_member(member_id):
             mongo.db.attendants.remove({"attendant": session["user"]})
             mongo.db.team_members.remove({"_id": ObjectId(member_id)})
             flash("Team member deleted", "success-flash")
+            return redirect(url_for("logout"))
         flash("Authentication failed", "error-flash")
     return redirect(url_for("logout"))
 
