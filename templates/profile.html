@@ -36,7 +36,7 @@
                 <div class="row">
                     <div class="input-field col s10 offset-s1">
                         <i aria-hidden="true" class="material-icons prefix">http</i>
-                        <input id="img-url" value="{{ member.img }}" name="img-url" type="text" class="validate"
+                        <input id="img-url" value="{{ member.img }}" name="img-url" type="text" class="validate count"
                             oninvalid="this.setCustomValidity('Url must start with http(s): and end with .jpg, .png or .gif')"
                             oninput="this.setCustomValidity('')" maxlength="300" data-length="300" pattern="(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)">
                         <label for="img-url">Enter url</label>

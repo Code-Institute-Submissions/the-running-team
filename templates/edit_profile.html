@@ -78,7 +78,7 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="img-url" value="{{ member.img }}" name="img-url" type="text" class="validate"
+                    <input id="img-url" value="{{ member.img }}" name="img-url" type="text" class="validate count" data-length="300"
                         oninvalid="this.setCustomValidity('Url must start with http(s): and end with .jpg, .png or .gif')"
                         oninput="this.setCustomValidity('')" maxlength="300" pattern="(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)">
                     <label for="img-url">Enter url for an image <span class="form-tip">(Optional)</span></label>
