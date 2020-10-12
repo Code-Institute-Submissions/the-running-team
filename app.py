@@ -4,7 +4,7 @@ import string
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask import (Flask, flash, render_template, redirect, request,
+from flask import (Flask, flash, jsonify, render_template, redirect, request,
                    url_for, session)
 if os.path.exists("env.py"):
     import env
@@ -506,13 +506,13 @@ def toggle_admin():
             mongo.db.team_members.update({"username": username},
                                      {"$set":
                                      {"is_admin": False}})
-            return {"admin": "off"}
+            return jsonify(admin="off")
         else:
             mongo.db.team_members.update({"username": username},
                                      {"$set":
                                      {"is_admin": True}})
-            return {"admin": "on"} 
-    return {"error": "error"}    
+            return jsonify(admin="on") 
+    return jsonify(admin="error")    
 
 
 if __name__ == "__main__":
