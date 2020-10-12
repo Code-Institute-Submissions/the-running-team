@@ -275,7 +275,7 @@
                                     <div class="comments">
                                         {% for comment in comments %}
                                             {% if comment.post_id == blog._id %}
-                                                <p class="comment">
+                                                <div class="comment small-top-mg">    
                                                 <p class="grey-text"><em>Posted by: {{ comment.author }}</em></p>
                                                 {% if session.user|lower == comment.author %}
                                                     <div class="small-top-mg">
@@ -306,6 +306,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </div>
                                             {% endif %}
                                         {% endfor %}
                                     </div>
