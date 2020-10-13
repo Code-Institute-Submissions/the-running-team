@@ -506,13 +506,13 @@ def toggle_admin():
             mongo.db.team_members.update({"username": username},
                                      {"$set":
                                      {"is_admin": False}})
-            return jsonify(admin="off")
+            return jsonify(admin="Admin mode: off", info="Refresh browser for changes to take effect.")
         else:
             mongo.db.team_members.update({"username": username},
                                      {"$set":
                                      {"is_admin": True}})
-            return jsonify(admin="on") 
-    return jsonify(admin="error")    
+            return jsonify(admin="Admin mode: on", info="Refresh browser for changes to take effect.") 
+    return jsonify(admin="Please log in", info="Don't forget to keep in touch with your team mates on social media.")
 
 
 if __name__ == "__main__":

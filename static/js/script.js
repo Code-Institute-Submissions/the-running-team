@@ -108,12 +108,12 @@ $(document).ready(function () {
   $("#admin").click(function () {
     $.getJSON($SCRIPT_ROOT + '/toggle_admin',
       function (data) {
-        $("#footer-heading").text("Admin mode: " + data.admin);
-        $("#footer-info").text("Refresh browser for changes to take effect.")
+        $("#footer-heading").text(data.admin);
+        $("#footer-info").text(data.info)
         setTimeout(function() {
           $("#footer-heading").text("We're on social media!");
         $("#footer-info").text("Don't forget to keep in touch with your team mates on social media.");
-        }, 5000)
+        }, 4000)
       });
     return false
   });
