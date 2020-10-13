@@ -104,7 +104,11 @@ $(document).ready(function () {
     topFunction();
   });
   
-  // Enable admin rights via function in app.py.
+  /* 
+  Enable admin rights via function in app.py. Used in development to quickly switch
+  view from a regular user to a user with admin rights. Currently, only admins can
+  add, edit and delete events.
+  */
   $("#admin").click(function () {
     $.getJSON($SCRIPT_ROOT + '/toggle_admin',
       function (data) {
