@@ -70,7 +70,7 @@
     </div>
     <form method="POST" action="{{ url_for('add_event') }}">
         <div class="row">
-            <div class="input-field col s10 offset-s1">
+            <div class="input-field col s12 m10 offset-m1">
                 <i aria-hidden="true" class="material-icons prefix">title</i>
                 <input id="title" name="title" type="text" class="validate"
                     oninvalid="this.setCustomValidity('Enter a title between 2 and 50 characters.')"
@@ -79,7 +79,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="input-field col s10 offset-s1">
+            <div class="input-field col s12 m10 offset-m1">
                 <i aria-hidden="true" class="material-icons prefix">calendar_today</i>
                 <input type="text" id="date" name="date" class="datepicker validate"
                     oninvalid="this.setCustomValidity('Pick a date for the event.')"
@@ -88,7 +88,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="input-field col s10 offset-s1">
+            <div class="input-field col s12 m10 offset-m1">
                 <i aria-hidden="true" class="material-icons prefix">location_on</i>
                 <input id="location" name="location" type="text" class="validate"
                     oninvalid="this.setCustomValidity('Enter a title between 2 and 50 characters.')"
@@ -97,7 +97,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="input-field col s10 offset-s1">
+            <div class="input-field col s12 m10 offset-m1">
                 <i aria-hidden="true" class="material-icons prefix">http</i>
                 <input id="img-url" name="img-url" type="text" class="validate"
                     oninvalid="this.setCustomValidity('Url must start with http(s): and end with .jpg, .png or .gif')"
@@ -107,7 +107,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="input-field col s10 offset-s1">
+            <div class="input-field col s12 m10 offset-m1">
                 <i aria-hidden="true" class="material-icons prefix">http</i>
                 <input id="url" name="url" type="text" class="validate"
                     oninvalid="this.setCustomValidity('Url must start with http(s): and end with .jpg, .png or .gif')"
