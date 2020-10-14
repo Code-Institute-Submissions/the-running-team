@@ -274,6 +274,15 @@ img {
     font-family: "Oswald", sans-serif;
 }
 
+ul.indicators.custom-indicators {
+    background-color: rgba(0, 0, 0, 0.8);
+    display: table;
+    min-width: 20%;
+    margin-left: 40%;
+    border: 1px solid, rgba(0, 0, 0, 0.8);
+    border-radius: 30px;
+}
+
 /*------------- Back to top button. From w3schools.com and modified ------------*/
 
 .back-to-top {
