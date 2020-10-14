@@ -274,7 +274,7 @@ img {
     font-family: "Oswald", sans-serif;
 }
 
-ul.indicators.custom-indicators {
+ul.indicators.custom-indicators { /* Add background to add contrast to indicators */ 
     background-color: rgba(0, 0, 0, 0.8);
     display: table;
     min-width: 20%;
