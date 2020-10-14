@@ -3,6 +3,20 @@
 ![readmehero](documentation/images/responsive_demo.PNG)
 [Live website](https://the-running-team.herokuapp.com)
 
+## Quick start
+
+If you want to try out the app right away, you can either create a new user or log in with:
+
+username: testuser  
+password: testuser
+
+### Toggle admin rights on/off
+
+There's a feature that easilly let's you switch between admin rights view/non-admin rights view. This has been left in the project for future development, but would have to be removed if the project were to be deployed for real life use. Simply click the copyright symbol in the footer to toggel on/off. You will have to log in for this to work. This feature sets the `is_admin` key of the current user to either true or false. An ajax request is used to run the python script in this case. At the moment, the only difference between a regular user and an admin is the ability for an admin to create, edit and delete events.  
+
+![copyright symbol](documentation/images/set_admin.PNG)
+
+## Introduction
 
 The Running Team is the digital home of a fictional running team. The website is meant to be a place where the team members can plan workouts, share knowledge through blog posts, and keep up to date with the events the team is participating in. However, the website can also be accessed by anyone who's not a member of the team, although in a very restricted view.
 
