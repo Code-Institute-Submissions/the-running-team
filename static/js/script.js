@@ -18,8 +18,8 @@ $(document).ready(function () {
     indicators: true
   });
   
-  //Set background to indicators on carousel to make them more visible.
-  $(".indicators").css("background-color", "rgba(0, 0, 0, .6)");
+  // Adds class to control the indicators element in the events view.
+  $(".indicators").addClass("custom-indicators");
   
   /*
   This line enables validation on materialize selects by displaying the otherwise hidden select element.
