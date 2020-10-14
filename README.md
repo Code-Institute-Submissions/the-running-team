@@ -12,7 +12,7 @@ password: testuser
 
 ### Toggle admin rights on/off
 
-There's a feature that easilly let's you switch between admin rights view/non-admin rights view. This has been left in the project for future development, but would have to be removed if the project were to be deployed for real life use. Simply click the copyright symbol in the footer to toggel on/off. You will have to log in for this to work. This feature sets the `is_admin` key of the current user to either true or false. An ajax request is used to run the python script in this case. At the moment, the only difference between a regular user and an admin is the ability for an admin to create, edit and delete events.  
+There's a feature that easilly let's you switch between admin rights view/non-admin rights view. This has been left in the project for future development, but would have to be removed if the project were to be deployed for real life use. Simply click the copyright symbol in the footer to toggle on/off. You will have to log in for this to work. This feature sets the `is_admin` key of the current user to either true or false. An ajax request is used to run the python script in this case. At the moment, the only difference between a regular user and an admin is the ability for an admin to create, edit and delete events.  
 
 ![copyright symbol](documentation/images/set_admin.PNG)
 
