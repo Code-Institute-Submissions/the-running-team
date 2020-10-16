@@ -18,7 +18,7 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
-#Custom 404 redirect
+# Custom 404 redirect
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
@@ -143,7 +143,7 @@ def add_post():
     return redirect(url_for("login"))
 
 
-# Route for editing workout. 
+# Route for editing workout.
 @app.route("/edit_workout/<post_id>/<redirect_to>", methods=["GET", "POST"])
 def edit_workout(post_id, redirect_to):
     if session.get("user"):
@@ -494,6 +494,7 @@ def owns_account(member_id):
     else:
         return False
 
+
 # Function for turning on/off admin rights. Triggered by clicking
 # copyright symbol in footer. Remove before production.
 @app.route("/toggle_admin")
@@ -504,15 +505,21 @@ def toggle_admin():
                     {"username": username})["is_admin"]
         if is_admin:
             mongo.db.team_members.update({"username": username},
-                                     {"$set":
-                                     {"is_admin": False}})
-            return jsonify(admin="Admin mode: off", info="Refresh browser for changes to take effect.")
+                                         {"$set":
+                                         {"is_admin": False}})
+            return jsonify(admin="Admin mode: off",
+                           info="Refresh browser for changes to "
+                           "take effect.")
         else:
             mongo.db.team_members.update({"username": username},
-                                     {"$set":
-                                     {"is_admin": True}})
-            return jsonify(admin="Admin mode: on", info="Refresh browser for changes to take effect.") 
-    return jsonify(admin="Please log in", info="Don't forget to keep in touch with your team mates on social media.")
+                                         {"$set":
+                                         {"is_admin": True}})
+            return jsonify(admin="Admin mode: on",
+                           info="Refresh browser for changes to "
+                           "take effect.")
+    return jsonify(admin="Please log in",
+                   info="Don't forget to keep in touch with your "
+                   "team mates on social media.")
 
 
 if __name__ == "__main__":
