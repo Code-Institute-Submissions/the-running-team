@@ -100,7 +100,7 @@
                     <input id="img-url" name="img-url" type="text" class="validate count"
                         oninvalid="this.setCustomValidity('Url must start with http(s): and end with .jpg, .png or .gif')"
                         oninput="this.setCustomValidity('')" data-length="300" maxlength="300"
-                        pattern="(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)">
+                        pattern="(https?:\/\/.*\.(?:png|jpg|gif|jpeg))">
                     <label for="img-url">Enter url for an image <span class="form-tip">(Optional)</span></label>
                 </div>
             </div>

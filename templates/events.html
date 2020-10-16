@@ -114,7 +114,7 @@
                 <input id="url" name="url" type="text" class="validate"
                     oninvalid="this.setCustomValidity('Url must start with http(s): and end with .jpg, .png or .gif')"
                     oninput="this.setCustomValidity('')" maxlength="300"
-                    pattern="(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)">
+                    pattern="(https?:\/\/.*\.(?:png|jpg|gif|jpeg))">
                 <label for="url">Enter URL for the event<span class="form-tip"> (Optional)</span></label>
             </div>
         </div>

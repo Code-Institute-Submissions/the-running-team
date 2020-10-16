@@ -10,7 +10,8 @@
                         <i aria-hidden="true" class="material-icons prefix">title</i>
                         <input id="title" value="{{ event.title }}" name="title" type="text" class="validate"
                             oninvalid="this.setCustomValidity('Enter a title between 2 and 50 characters.')"
-                            oninput="this.setCustomValidity('')" minlength="2" maxlength="50" pattern="^[^\s].*" required>
+                            oninput="this.setCustomValidity('')" minlength="2" maxlength="50" pattern="^[^\s].*"
+                            required>
                         <label for="title">Title</label>
                     </div>
                 </div>
@@ -28,7 +29,8 @@
                         <i aria-hidden="true" class="material-icons prefix">location_on</i>
                         <input id="location" value="{{ event.location }}" name="location" type="text" class="validate"
                             oninvalid="this.setCustomValidity('Enter a title between 2 and 50 characters.')"
-                            oninput="this.setCustomValidity('')" minlength="2" maxlength="50" pattern="^[^\s].*" required>
+                            oninput="this.setCustomValidity('')" minlength="2" maxlength="50" pattern="^[^\s].*"
+                            required>
                         <label for="location">Location</label>
                     </div>
                 </div>
@@ -38,7 +40,7 @@
                         <input id="img-url" value="{{ event.img }}" name="img-url" type="text" class="validate"
                             oninvalid="this.setCustomValidity('Url must start with http(s): and end with .jpg, .png or .gif')"
                             oninput="this.setCustomValidity('')" maxlength="300"
-                            pattern="(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)" required>
+                            pattern="(https?:\/\/.*\.(?:png|jpg|gif|jpeg))" required>
                         <label for="img-url">Enter URL for event image</label>
                     </div>
                 </div>

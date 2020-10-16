@@ -28,7 +28,7 @@
                 </div>
             </div>
         </div>
-        <!-- Modal for edit image. Regex pattern taken from https://regexr.com/3g1v7 -->
+        <!-- Modal for edit image -->
         <div id="edit-image" class="modal">
             <div class="modal-content">
                 <h2 class="center-align">Profile Image</h2>
@@ -41,7 +41,7 @@
                         <input id="img-url" value="{{ member.img }}" name="img-url" type="text" class="validate count"
                             oninvalid="this.setCustomValidity('Url must start with http(s): and end with .jpg, .png or .gif')"
                             oninput="this.setCustomValidity('')" maxlength="300" data-length="300"
-                            pattern="(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)">
+                            pattern="(https?:\/\/.*\.(?:png|jpg|gif|jpeg))">
                         <label for="img-url">Enter url</label>
                     </div>
                 </div>
