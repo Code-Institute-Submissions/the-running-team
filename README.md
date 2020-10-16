@@ -211,7 +211,7 @@ All comments, posts and events have a key called "element_id" which is set by th
 
 Other than that, all forms uses `required`, `max/min-length` and `pattern` attributes where relevant.
 
-It's worth mentioning that regex for url inputs (like profile image) is somewhat strict, and users may experience that some urls does not fulfill the rquirements, even though it's a valid url. This is why a file upload should replace this feature in future updates of the site.
+It's worth mentioning that regex for url inputs (like profile image) is somewhat strict, and users may experience that some urls does not fulfill the rquirements, even though it's a valid url. This is why a file upload should replace this feature in future updates of the site. The regex was picked up from [regex pattern](https://stackoverflow.com/questions/4098415/use-regex-to-get-image-url-in-html-js) and modified.
 
 ### Bug report
 
@@ -312,5 +312,5 @@ Some inspiration for "The Team" section was picked up from the home of football 
 
 Thanks to my mentor [Jonathan Munz](https://github.com/jpmunz) for guidance on the project and for providing online litterature.
 
-Thanks to [Tim](https://github.com/TravelTimN) at [Code Institute](https://github.com/Code-Institute-Org) for letting me preview the updated videos of the mini project [Task Manager](https://github.com/TravelTimN/flask-task-manager-project). Large parts of the register and login functionality were picked up from these videos.
+Thanks to [Tim](https://github.com/TravelTimN) at [Code Institute](https://github.com/Code-Institute-Org) for letting me preview the updated videos of the mini project [Task Manager](https://github.com/TravelTimN/flask-task-manager-project). Large parts of the register and login/log out functionality were picked up from these videos.
 
