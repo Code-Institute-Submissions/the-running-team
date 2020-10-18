@@ -274,12 +274,13 @@ img {
     font-family: "Oswald", sans-serif;
 }
 
-ul.indicators.custom-indicators { /* Add background to add contrast to indicators */ 
+ul.indicators.custom-indicators {
+    /* Add background to add contrast to indicators */
     background-color: rgba(0, 0, 0, 0.8);
     display: table;
     min-width: 20%;
     margin-left: 40%;
-    border: 1px solid, rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
     border-radius: 30px;
 }
 
