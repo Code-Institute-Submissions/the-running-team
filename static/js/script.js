@@ -1,6 +1,6 @@
 $(document).ready(function () {
   "use strict";
-  
+
   $('.sidenav').sidenav();
   $('select').formSelect();
   $('.modal').modal();
@@ -17,10 +17,10 @@ $(document).ready(function () {
     fullWidth: true,
     indicators: true
   });
-  
+
   // Adds class to control the indicators element in the events view.
   $(".indicators").addClass("custom-indicators");
-  
+
   /*
   This line enables validation on materialize selects by displaying the otherwise hidden select element.
   The idea was taken from stackoverflow user "Imran Saleem."
@@ -56,7 +56,7 @@ $(document).ready(function () {
     }
   }
   /*
-  Set background image for carousel items
+  Set background image for carousel items. URL is stored in data-img attribute.
   */
   function setCarouselImage() {
     let i = 0;
@@ -73,7 +73,7 @@ $(document).ready(function () {
   setTimeout(function () {
     $(".flashes").fadeOut('slow');
   }, 5000);
-  
+
 
   /*
   Code for displaying/hiding back-to-top button. Taken from 
@@ -103,22 +103,22 @@ $(document).ready(function () {
   $("#back-to-top").click(function () {
     topFunction();
   });
-  
+
   /* 
   Enable admin rights via function in app.py. Used in development to quickly switch
   view from a regular user to a user with admin rights. Currently, only admins can
   add, edit and delete events.
   */
   $("#admin").click(function () {
-    $.getJSON($SCRIPT_ROOT + '/toggle_admin',
+    $.getJSON("/toggle_admin",
       function (data) {
         $("#footer-heading").text(data.admin);
-        $("#footer-info").text(data.info)
-        setTimeout(function() {
+        $("#footer-info").text(data.info);
+        setTimeout(function () {
           $("#footer-heading").text("We're on social media!");
-        $("#footer-info").text("Don't forget to keep in touch with your team mates on social media.");
-        }, 4000)
+          $("#footer-info").text("Don't forget to keep in touch with your team mates on social media.");
+        }, 4000);
       });
-    return false
+    return false;
   });
 });
