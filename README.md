@@ -227,6 +227,10 @@ The console was used to debug javascript. This image displays debugging of the f
 
 ![Progression bars debug](documentation/images/debug_progress_bar.png)
 
+The built-in werkzeug-debugger has also been a very important tool to deal with bugs.
+
+![Werkzeug-debugger](documentation/images/werkzeug_debug.PNG)
+
 Other than this, printing variables directly on the templates using jinja has also been a method of debugging.
 
 There is currently one known bug in the app. This bug is related to users who view the site on ios devices. All select inputs are more or less non-functional. When touching the select, the drop down of options is displayed, as intended. However, the user will be unable to choose their desired option. Instead, when pressing an option, what seems like a random option is selected. Luckily, just beneath the input, a small downward pointing arrow is visible, which lets the user utilize a standard select instead, which works as it should.
