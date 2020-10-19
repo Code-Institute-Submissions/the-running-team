@@ -4,6 +4,7 @@
     <div class="col s12">
         <div class="card-panel">
             <h2 class="center-align">Edit Event</h2>
+            <!-- Regex from https://stackoverflow.com/questions/4098415/use-regex-to-get-image-url-in-html-js -->
             <form method="POST" action="{{ url_for('edit_event', event_id=event._id) }}">
                 <div class="row">
                     <div class="input-field col s12 m10 offset-m1">
