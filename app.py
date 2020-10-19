@@ -266,7 +266,8 @@ def delete_blog(post_id, redirect_to):
     return redirect(url_for("login"))
 
 
-# Route for registering a new user.
+# Route for registering a new user. Code from "Task manager" project
+# at Code Institute.
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if session.get('user'):
@@ -300,7 +301,7 @@ def register():
     return render_template("register.html")
 
 
-# Route for logging in.
+# Route for logging in. Code from "Task manager" project at Code Institute.
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if session.get('user'):
@@ -448,7 +449,8 @@ def attend(username, post_id, redirect_to):
         return redirect(url_for("get_posts"))
 
 
-# Route for logging out. Removes session cookie.
+# Route for logging out. Removes session cookie. Code from "Task manager"
+# project at Code Institute.
 @app.route("/logout")
 def logout():
     session.pop("user", None)
