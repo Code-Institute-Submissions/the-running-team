@@ -175,7 +175,7 @@ img {
     width: 40%;
 }
 
-.new-workout {
+.new-workout, .new-event {
     min-height: 85%;
 }
 
